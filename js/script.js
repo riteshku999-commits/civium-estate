@@ -105,3 +105,31 @@ function nextSlide() {
 
 setInterval(nextSlide, 4000);
 
+// PROPERTY FILTERING
+const budgetFilter = document.getElementById('budgetFilter');
+const locationFilter = document.getElementById('locationFilter');
+const typeFilter = document.getElementById('typeFilter');
+const properties = document.querySelectorAll('.property-card');
+
+function filterProperties() {
+  properties.forEach(property => {
+    const budget = property.getAttribute('data-budget');
+    const location = property.getAttribute('data-location');
+    const type = property.getAttribute('data-type');
+
+    const matchBudget = budgetFilter.value === "all" || budget === budgetFilter.value;
+    const matchLocation = locationFilter.value === "all" || location === locationFilter.value;
+    const matchType = typeFilter.value === "all" || type === typeFilter.value;
+
+    if (matchBudget && matchLocation && matchType) {
+      property.style.display = "block";
+    } else {
+      property.style.display = "none";
+    }
+  });
+}
+
+budgetFilter.addEventListener('change', filterProperties);
+locationFilter.addEventListener('change', filterProperties);
+typeFilter.addEventListener('change', filterProperties);
+
