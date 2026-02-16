@@ -53,3 +53,38 @@ window.addEventListener("scroll", function () {
   }
 });
 
+// 5️⃣ Animated Number Counter
+const counters = document.querySelectorAll('.counter');
+const speed = 200;
+
+const startCounter = () => {
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+
+      const increment = target / speed;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 10);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    updateCount();
+  });
+};
+
+// Trigger when section is visible
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      startCounter();
+      observer.disconnect();
+    }
+  });
+});
+
+observer.observe(document.querySelector('.credibility'));
