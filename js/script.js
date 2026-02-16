@@ -42,3 +42,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// 4️⃣ Subtle Parallax Effect for Hero
+window.addEventListener("scroll", function () {
+  const hero = document.querySelector(".hero-overlay");
+  let scrollPosition = window.scrollY;
+
+  if (hero) {
+    hero.style.transform = "translateY(" + scrollPosition * 0.2 + "px)";
+  }
+});
+
