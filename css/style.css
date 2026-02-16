@@ -271,3 +271,40 @@ section {
   color: #999;
   font-size: 0.9rem;
 }
+
+/* ============================
+   Testimonials
+============================ */
+
+.testimonials {
+  padding: 100px 20px;
+  background: #0d0d0d;
+  text-align: center;
+  color: #fff;
+}
+
+.testimonial-slider {
+  max-width: 700px;
+  margin: 40px auto 0;
+  position: relative;
+}
+
+.testimonial {
+  display: none;
+  transition: opacity 0.5s ease;
+}
+
+.testimonial.active {
+  display: block;
+}
+
+.testimonial p {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.testimonial h4 {
+  color: #c5a47e;
+}
+
