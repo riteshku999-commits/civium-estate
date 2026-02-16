@@ -88,3 +88,20 @@ const observer = new IntersectionObserver(entries => {
 });
 
 observer.observe(document.querySelector('.credibility'));
+
+// 6️⃣ Simple Testimonial Slider
+let currentSlide = 0;
+const testimonials = document.querySelectorAll('.testimonial');
+
+function showSlide(index) {
+  testimonials.forEach(slide => slide.classList.remove('active'));
+  testimonials[index].classList.add('active');
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % testimonials.length;
+  showSlide(currentSlide);
+}
+
+setInterval(nextSlide, 4000);
+
