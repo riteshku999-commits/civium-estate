@@ -133,3 +133,17 @@ budgetFilter.addEventListener('change', filterProperties);
 locationFilter.addEventListener('change', filterProperties);
 typeFilter.addEventListener('change', filterProperties);
 
+// POPUP LOGIC
+const popup = document.getElementById("leadPopup");
+const closePopup = document.getElementById("closePopup");
+const priceButtons = document.querySelectorAll(".price-btn");
+
+priceButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    popup.style.display = "flex";
+  });
+});
+
+closePopup.addEventListener("click", () => {
+  popup.style.display = "none";
+});
