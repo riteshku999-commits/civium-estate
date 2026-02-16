@@ -379,3 +379,49 @@ section {
   font-weight: bold;
 }
 
+/* Popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: #1a1a1a;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.popup-content input,
+.popup-content select {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.popup-content button {
+  width: 100%;
+  padding: 10px;
+  background: #c5a47e;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#closePopup {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+
