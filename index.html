@@ -4,32 +4,81 @@
   <meta charset="UTF-8">
   <title>Civium Estate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Header -->
   <header class="header">
-    <div class="container">
+    <div class="container nav-container">
       <h1 class="logo">Civium Estate</h1>
       <nav>
         <ul class="nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h2>Where Vision Meets Architecture</h2>
+        <p>Luxury developments crafted for modern urban living.</p>
+        <a href="#projects" class="btn">View Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="projects" id="projects">
     <div class="container">
-      <h2>Building Spaces. Creating Communities.</h2>
-      <p>Premium real estate developments designed for modern living.</p>
-      <a href="#" class="btn">Explore Projects</a>
+      <h2 class="section-title">Featured Developments</h2>
+
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-img"></div>
+          <h3>Skyline Residences</h3>
+          <p>Premium high-rise living in the heart of the city.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img"></div>
+          <h3>Green Haven Villas</h3>
+          <p>Private villas surrounded by landscaped serenity.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img"></div>
+          <h3>Urban Square</h3>
+          <p>Mixed-use commercial and residential excellence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">About Civium Estate</h2>
+      <p>
+        Civium Estate is dedicated to developing timeless properties
+        that blend architectural excellence with sustainable urban growth.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <p>Email: info@civiumestate.com</p>
     </div>
   </section>
 
