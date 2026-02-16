@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
+  
 <body>
 
   <!-- Header -->
@@ -224,5 +225,41 @@
   </section>  
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="js/script.js"></script>
+
+  <!-- Lead Popup -->
+<div id="leadPopup" class="popup">
+  <div class="popup-content">
+    <span id="closePopup">&times;</span>
+    <h3>Get Exact Price Details</h3>
+
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="tel" placeholder="Phone Number" required>
+
+      <select required>
+        <option value="">Budget Range</option>
+        <option>₹30L–50L</option>
+        <option>₹50L–80L</option>
+        <option>₹1Cr+</option>
+      </select>
+
+      <select required>
+        <option value="">Purpose</option>
+        <option>End Use</option>
+        <option>Investment</option>
+      </select>
+
+      <select required>
+        <option value="">Buying Timeline</option>
+        <option>Immediate</option>
+        <option>3–6 Months</option>
+        <option>Just Exploring</option>
+      </select>
+
+      <button type="submit">Submit & Get Price</button>
+    </form>
+  </div>
+</div>
+
 </body>
 </html>
