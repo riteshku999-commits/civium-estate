@@ -209,3 +209,34 @@ section {
   font-size: 1rem;
   color: #ccc;
 }
+
+/* ============================
+   Partners Section
+============================ */
+
+.partners {
+  padding: 80px 20px;
+  background: #0d0d0d;
+  text-align: center;
+}
+
+.partner-logos {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.partner-logos img {
+  height: 40px;
+  opacity: 0.7;
+  transition: 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.partner-logos img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
