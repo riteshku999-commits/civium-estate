@@ -240,3 +240,34 @@ section {
   opacity: 1;
   filter: grayscale(0%);
 }
+
+/* ============================
+   RERA Section
+============================ */
+
+.rera {
+  padding: 80px 20px;
+  background: #111;
+  text-align: center;
+}
+
+.rera-box {
+  background: #1a1a1a;
+  padding: 40px;
+  border-radius: 10px;
+  border: 1px solid #c5a47e;
+  max-width: 800px;
+  margin: auto;
+}
+
+.rera-box h3 {
+  color: #c5a47e;
+  margin-bottom: 20px;
+}
+
+.rera-number {
+  display: block;
+  margin-top: 15px;
+  color: #999;
+  font-size: 0.9rem;
+}
