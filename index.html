@@ -37,6 +37,63 @@
     </div>
   </section>
 
+  <!-- Property Listings Section -->
+<section class="properties">
+  <div class="container">
+    <h2>Explore Premium Properties in Kolkata</h2>
+
+    <!-- Filters -->
+    <div class="filters">
+      <select id="budgetFilter">
+        <option value="all">Budget</option>
+        <option value="30-50">₹30L–50L</option>
+        <option value="50-80">₹50L–80L</option>
+        <option value="1cr">₹1Cr+</option>
+      </select>
+
+      <select id="locationFilter">
+        <option value="all">Location</option>
+        <option value="newtown">New Town</option>
+        <option value="rajarhat">Rajarhat</option>
+        <option value="embypass">EM Bypass</option>
+      </select>
+
+      <select id="typeFilter">
+        <option value="all">Type</option>
+        <option value="2bhk">2BHK</option>
+        <option value="3bhk">3BHK</option>
+        <option value="villa">Villa</option>
+      </select>
+    </div>
+
+    <!-- Property Cards -->
+    <div class="property-grid">
+
+      <div class="property-card" data-budget="50-80" data-location="newtown" data-type="3bhk">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Property">
+        <h3>Luxury 3BHK in New Town</h3>
+        <p>Ideal for IT professionals | Near Metro</p>
+        <button class="price-btn">Get Exact Price</button>
+      </div>
+
+      <div class="property-card" data-budget="30-50" data-location="rajarhat" data-type="2bhk">
+        <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e" alt="Property">
+        <h3>Affordable 2BHK in Rajarhat</h3>
+        <p>Best for first-time buyers</p>
+        <button class="price-btn">Get Exact Price</button>
+      </div>
+
+      <div class="property-card" data-budget="1cr" data-location="embypass" data-type="villa">
+        <img src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb" alt="Property">
+        <h3>Premium Villa EM Bypass</h3>
+        <p>Luxury living | High appreciation zone</p>
+        <button class="price-btn">Get Exact Price</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
   <!-- Projects -->
   <section class="projects" id="projects">
     <div class="container">
