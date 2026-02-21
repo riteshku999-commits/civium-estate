@@ -1,113 +1,149 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbz48gli_1QQXyaZL-ljHB8j2NgzVq3fQU7dYbQN7efUsUo5eHEQOu0RMObSsIQODDKulQ/exec";
+// ==============================
+// CIVIUM ESTATE - MAIN SCRIPT
+// ==============================
 
-const app = document.getElementById("app");
 
-window.onload = () => {
-  const params = new URLSearchParams(window.location.search);
-  const propertyId = params.get("id");
+// 1️⃣ Smooth Scroll for Anchor Links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
 
-  if (propertyId) {
-    loadPropertyDetail(propertyId);
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  });
+});
+
+
+// 2️⃣ Navbar Background Change on Scroll
+window.addEventListener("scroll", function () {
+  const header = document.querySelector(".header");
+
+  if (window.scrollY > 60) {
+    header.style.background = "rgba(0, 0, 0, 0.9)";
   } else {
-    loadHome();
+    header.style.background = "rgba(0, 0, 0, 0.7)";
   }
+});
+
+
+// 3️⃣ Initialize AOS (Animate On Scroll)
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof AOS !== "undefined") {
+    AOS.init({
+      duration: 1000,      // Animation speed
+      easing: "ease-in-out",
+      once: true,          // Only animate once
+      offset: 100          // Trigger slightly before element enters view
+    });
+  }
+});
+
+// 4️⃣ Subtle Parallax Effect for Hero
+window.addEventListener("scroll", function () {
+  const hero = document.querySelector(".hero-overlay");
+  let scrollPosition = window.scrollY;
+
+  if (hero) {
+    hero.style.transform = "translateY(" + scrollPosition * 0.2 + "px)";
+  }
+});
+
+// 5️⃣ Animated Number Counter
+const counters = document.querySelectorAll('.counter');
+const speed = 200;
+
+const startCounter = () => {
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+
+      const increment = target / speed;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 10);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    updateCount();
+  });
 };
 
-function goHome() {
-  window.location.href = "index.html";
+// Trigger when section is visible
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      startCounter();
+      observer.disconnect();
+    }
+  });
+});
+
+observer.observe(document.querySelector('.credibility'));
+
+// 6️⃣ Simple Testimonial Slider
+let currentSlide = 0;
+const testimonials = document.querySelectorAll('.testimonial');
+
+function showSlide(index) {
+  testimonials.forEach(slide => slide.classList.remove('active'));
+  testimonials[index].classList.add('active');
 }
 
-async function loadHome() {
-  app.innerHTML = "<h2 style='padding:30px'>Loading properties...</h2>";
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % testimonials.length;
+  showSlide(currentSlide);
+}
 
-  const response = await fetch(`${API_URL}?action=getProperties`);
-  const properties = await response.json();
+setInterval(nextSlide, 4000);
 
-  let html = `<div class="property-grid">`;
+// PROPERTY FILTERING
+const budgetFilter = document.getElementById('budgetFilter');
+const locationFilter = document.getElementById('locationFilter');
+const typeFilter = document.getElementById('typeFilter');
+const properties = document.querySelectorAll('.property-card');
 
+function filterProperties() {
   properties.forEach(property => {
-    html += `
-      <div class="property-card" onclick="viewProperty('${property.id}')">
-        <img src="${property.image1}" />
-        <div class="property-info">
-          <h3>${property.title}</h3>
-          <p><strong>₹ ${Number(property.price).toLocaleString()}</strong></p>
-          <p>${property.location}</p>
-          <p>${property.area} sq.ft | ${property.bedrooms} Beds | ${property.bathrooms} Baths</p>
-        </div>
-      </div>
-    `;
+    const budget = property.getAttribute('data-budget');
+    const location = property.getAttribute('data-location');
+    const type = property.getAttribute('data-type');
+
+    const matchBudget = budgetFilter.value === "all" || budget === budgetFilter.value;
+    const matchLocation = locationFilter.value === "all" || location === locationFilter.value;
+    const matchType = typeFilter.value === "all" || type === typeFilter.value;
+
+    if (matchBudget && matchLocation && matchType) {
+      property.style.display = "block";
+    } else {
+      property.style.display = "none";
+    }
   });
-
-  html += `</div>`;
-
-  app.innerHTML = html;
 }
 
-function viewProperty(id) {
-  window.location.href = `index.html?id=${id}`;
-}
+budgetFilter.addEventListener('change', filterProperties);
+locationFilter.addEventListener('change', filterProperties);
+typeFilter.addEventListener('change', filterProperties);
 
-async function loadPropertyDetail(id) {
-  app.innerHTML = "<h2 style='padding:30px'>Loading property...</h2>";
+// POPUP LOGIC
+const popup = document.getElementById("leadPopup");
+const closePopup = document.getElementById("closePopup");
+const priceButtons = document.querySelectorAll(".price-btn");
 
-  const response = await fetch(`${API_URL}?action=getPropertyById&id=${id}`);
-  const property = await response.json();
-
-  if (property.error) {
-    app.innerHTML = "<h2>Property not found</h2>";
-    return;
-  }
-
-  app.innerHTML = `
-    <div class="property-detail">
-      <h2>${property.title}</h2>
-      <p><strong>₹ ${Number(property.price).toLocaleString()}</strong></p>
-      <p>${property.location}</p>
-      <p>${property.area} sq.ft | ${property.bedrooms} Beds | ${property.bathrooms} Baths</p>
-
-      <div class="detail-images">
-        <img src="${property.image1}" />
-        <img src="${property.image2}" />
-        <img src="${property.image3}" />
-      </div>
-
-      <p>${property.description}</p>
-
-      <div class="lead-form">
-        <h3>Interested? Enquire Now</h3>
-        <input type="text" id="name" placeholder="Your Name" required />
-        <input type="text" id="phone" placeholder="Your Phone" required />
-        <textarea id="message" placeholder="Message"></textarea>
-        <button onclick="submitLead('${property.id}')">Submit</button>
-      </div>
-    </div>
-  `;
-}
-
-async function submitLead(propertyId) {
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const message = document.getElementById("message").value;
-
-  if (!name || !phone) {
-    alert("Please fill required fields");
-    return;
-  }
-
-  await fetch(`${API_URL}?action=addLead`, {
-    method: "POST",
-    body: JSON.stringify({
-      propertyId,
-      name,
-      phone,
-      message
-    })
+priceButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    popup.style.display = "flex";
   });
+});
 
-  alert("Thank you! We will contact you soon.");
-
-  document.getElementById("name").value = "";
-  document.getElementById("phone").value = "";
-  document.getElementById("message").value = "";
-}
+closePopup.addEventListener("click", () => {
+  popup.style.display = "none";
+});
