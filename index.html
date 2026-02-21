@@ -1,26 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Civium Estate</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
+  
 <body>
 
+  <!-- Header -->
   <header class="header">
-    <h1>Civium Estate</h1>
-    <nav>
-      <a href="#" onclick="goHome()">Home</a>
-    </nav>
+    <div class="container nav-container">
+      <h1 class="logo">Civium Estate</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main id="app"></main>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-overlay">
+      <div class="hero-content" data-aos="fade-up">
+        <h2>Where Vision Meets Architecture</h2>
+        <p>Luxury developments crafted for modern urban living.</p>
+        <a href="#projects" class="btn">View Projects</a>
+      </div>
+    </div>
+  </section>
 
-  <footer class="footer">
-    © 2026 Civium Estate
-  </footer>
+  <!-- Property Listings Section -->
+<section class="properties">
+  <div class="container">
+    <h2>Explore Premium Properties in Kolkata</h2>
 
-  <script src="script.js"></script>
+    <!-- Filters -->
+    <div class="filters">
+      <select id="budgetFilter">
+        <option value="all">Budget</option>
+        <option value="30-50">₹30L–50L</option>
+        <option value="50-80">₹50L–80L</option>
+        <option value="1cr">₹1Cr+</option>
+      </select>
+
+      <select id="locationFilter">
+        <option value="all">Location</option>
+        <option value="newtown">New Town</option>
+        <option value="rajarhat">Rajarhat</option>
+        <option value="embypass">EM Bypass</option>
+      </select>
+
+      <select id="typeFilter">
+        <option value="all">Type</option>
+        <option value="2bhk">2BHK</option>
+        <option value="3bhk">3BHK</option>
+        <option value="villa">Villa</option>
+      </select>
+    </div>
+
+    <!-- Property Cards -->
+    <div class="property-grid">
+
+      <div class="property-card" data-budget="50-80" data-location="newtown" data-type="3bhk">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Property">
+        <h3>Luxury 3BHK in New Town</h3>
+        <p>Ideal for IT professionals | Near Metro</p>
+        <button class="price-btn">Get Exact Price</button>
+      </div>
+
+      <div class="property-card" data-budget="30-50" data-location="rajarhat" data-type="2bhk">
+        <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e" alt="Property">
+        <h3>Affordable 2BHK in Rajarhat</h3>
+        <p>Best for first-time buyers</p>
+        <button class="price-btn">Get Exact Price</button>
+      </div>
+
+      <div class="property-card" data-budget="1cr" data-location="embypass" data-type="villa">
+        <img src="https://images.unsplash.com/photo-1600047509358-9dc75507daeb" alt="Property">
+        <h3>Premium Villa EM Bypass</h3>
+        <p>Luxury living | High appreciation zone</p>
+        <button class="price-btn">Get Exact Price</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Featured Developments</h2>
+
+      <div class="project-grid">
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-img"></div>
+          <h3>Skyline Residences</h3>
+          <p>Premium high-rise living in the heart of the city.</p>
+        </div>
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-img"></div>
+          <h3>Green Haven Villas</h3>
+          <p>Private villas surrounded by landscaped serenity.</p>
+        </div>
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-img"></div>
+          <h3>Urban Square</h3>
+          <p>Mixed-use commercial and residential excellence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">About Civium Estate</h2>
+      <p data-aos="fade-up">
+        Civium Estate is dedicated to developing timeless properties
+        that blend architectural excellence with sustainable urban growth.
+      </p>
+    </div>
+  </section>
+
+    <!-- Investor Credibility Section -->
+<section class="credibility" id="credibility">
+  <div class="container">
+    <h2 data-aos="fade-up">Trusted by Investors. Proven by Numbers.</h2>
+
+    <div class="stats">
+
+      <div class="stat" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="counter" data-target="500">0</h3>
+        <p>₹ Crores+ Portfolio Value</p>
+      </div>
+
+      <div class="stat" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="counter" data-target="12">0</h3>
+        <p>Completed Projects</p>
+      </div>
+
+      <div class="stat" data-aos="fade-up" data-aos-delay="300">
+        <h3 class="counter" data-target="2">0</h3>
+        <p>Million Sq. Ft. Developed</p>
+      </div>
+
+      <div class="stat" data-aos="fade-up" data-aos-delay="400">
+        <h3 class="counter" data-target="15">0</h3>
+        <p>Years of Excellence</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Testimonials Section -->
+<section class="testimonials">
+  <div class="container">
+    <h2 data-aos="fade-up">What Our Clients Say</h2>
+
+    <div class="testimonial-slider" data-aos="fade-up" data-aos-delay="200">
+
+      <div class="testimonial active">
+        <p>"Civium Estate delivered beyond expectations. Transparent, professional and on-time execution."</p>
+        <h4>- Rajiv Mehta</h4>
+      </div>
+
+      <div class="testimonial">
+        <p>"Their quality standards and investor communication are unmatched in the region."</p>
+        <h4>- Ananya Kapoor</h4>
+      </div>
+
+      <div class="testimonial">
+        <p>"A trusted name in real estate. Strong ROI and premium developments."</p>
+        <h4>- Vikram Sharma</h4>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Partners Section -->
+<section class="partners">
+  <div class="container">
+    <h2 data-aos="fade-up">Trusted Financial & Strategic Partners</h2>
+
+    <div class="partner-logos" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/HDFC_Bank_Logo.svg" alt="HDFC Bank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/ICICI_Bank_Logo.svg" alt="ICICI Bank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/SBI-logo.svg" alt="SBI">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Axis_Bank_logo.svg" alt="Axis Bank">
+    </div>
+  </div>
+</section>
+
+  <!-- RERA Badge -->
+<section class="rera">
+  <div class="container">
+    <div class="rera-box" data-aos="zoom-in">
+      <h3>RERA Approved Projects</h3>
+      <p>All developments comply with regulatory standards under the Real Estate Regulatory Authority.</p>
+      <span class="rera-number">RERA Reg. No: PRM/KA/RERA/1251/310/PR/210123/004567</span>
+    </div>
+  </div>
+</section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <p>Email: info@civiumestate.com</p>
+    </div>
+  </section>  
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Lead Popup -->
+<div id="leadPopup" class="popup">
+  <div class="popup-content">
+    <span id="closePopup">&times;</span>
+    <h3>Get Exact Price Details</h3>
+
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="tel" placeholder="Phone Number" required>
+
+      <select required>
+        <option value="">Budget Range</option>
+        <option>₹30L–50L</option>
+        <option>₹50L–80L</option>
+        <option>₹1Cr+</option>
+      </select>
+
+      <select required>
+        <option value="">Purpose</option>
+        <option>End Use</option>
+        <option>Investment</option>
+      </select>
+
+      <select required>
+        <option value="">Buying Timeline</option>
+        <option>Immediate</option>
+        <option>3–6 Months</option>
+        <option>Just Exploring</option>
+      </select>
+
+      <button type="submit">Submit & Get Price</button>
+    </form>
+  </div>
+</div>
+
 </body>
 </html>
