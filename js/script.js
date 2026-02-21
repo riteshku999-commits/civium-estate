@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize EmailJS with your Public Key
 (function() {
-  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+  emailjs.init("lyKpG1clXdqatOcBq"); // Replace with your EmailJS Public Key
 })();
 
 // Your contact details
@@ -374,8 +374,8 @@ const OWNER_EMAIL = "riteshku999@gmail.com";
 const OWNER_WHATSAPP = "918093172004"; // Format: country code + number (no + or spaces)
 
 // EmailJS Configuration
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // Replace with your Service ID
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // Replace with your Template ID
+const EMAILJS_SERVICE_ID = "service_stseq07"; // Replace with your Service ID
+const EMAILJS_TEMPLATE_ID = "template_l07jlcs"; // Replace with your Template ID
 
 // ==============================
 // CONTACT FORM HANDLING
