@@ -8,10 +8,9 @@
       "location": "newtown",
       "type": "3bhk",
       "media": [
-        { "type": "image", "src": "images/properties/pl-001-1.jpg" },
-        { "type": "image", "src": "images/properties/pl-001-2.jpg" },
-        { "type": "image", "src": "images/properties/pl-001-3.jpg" },
-        { "type": "video", "src": "images/properties/pl-001-tour.mp4" }
+        { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
+        { "type": "image", "src": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" },
+        { "type": "image", "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" }
       ]
     },
     {
@@ -22,9 +21,9 @@
       "location": "rajarhat",
       "type": "2bhk",
       "media": [
-        { "type": "image", "src": "images/properties/pl-002-1.jpg" },
-        { "type": "image", "src": "images/properties/pl-002-2.jpg" },
-        { "type": "image", "src": "images/properties/pl-002-3.jpg" }
+        { "type": "image", "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80" },
+        { "type": "image", "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" },
+        { "type": "image", "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" }
       ]
     },
     {
@@ -35,10 +34,9 @@
       "location": "embypass",
       "type": "villa",
       "media": [
-        { "type": "image", "src": "images/properties/pl-003-1.jpg" },
-        { "type": "image", "src": "images/properties/pl-003-2.jpg" },
-        { "type": "image", "src": "images/properties/pl-003-3.jpg" },
-        { "type": "video", "src": "images/properties/pl-003-tour.mp4" }
+        { "type": "image", "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80" },
+        { "type": "image", "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" },
+        { "type": "image", "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" }
       ]
     }
   ],
@@ -58,10 +56,9 @@
         "soldOut": false,
         "buttonText": "Schedule Site Visit",
         "media": [
-          { "type": "image", "src": "images/properties/r-001-1.jpg" },
-          { "type": "image", "src": "images/properties/r-001-2.jpg" },
-          { "type": "image", "src": "images/properties/r-001-3.jpg" },
-          { "type": "video", "src": "images/properties/r-001-tour.mp4" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" }
         ]
       },
       {
@@ -77,9 +74,9 @@
         "soldOut": false,
         "buttonText": "Schedule Site Visit",
         "media": [
-          { "type": "image", "src": "images/properties/r-002-1.jpg" },
-          { "type": "image", "src": "images/properties/r-002-2.jpg" },
-          { "type": "image", "src": "images/properties/r-002-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" }
         ]
       },
       {
@@ -95,10 +92,9 @@
         "soldOut": false,
         "buttonText": "Schedule Site Visit",
         "media": [
-          { "type": "image", "src": "images/properties/r-003-1.jpg" },
-          { "type": "image", "src": "images/properties/r-003-2.jpg" },
-          { "type": "image", "src": "images/properties/r-003-3.jpg" },
-          { "type": "video", "src": "images/properties/r-003-tour.mp4" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" }
         ]
       },
       {
@@ -114,9 +110,9 @@
         "soldOut": false,
         "buttonText": "Schedule Site Visit",
         "media": [
-          { "type": "image", "src": "images/properties/r-004-1.jpg" },
-          { "type": "image", "src": "images/properties/r-004-2.jpg" },
-          { "type": "image", "src": "images/properties/r-004-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" }
         ]
       },
       {
@@ -132,10 +128,9 @@
         "soldOut": false,
         "buttonText": "Schedule Site Visit",
         "media": [
-          { "type": "image", "src": "images/properties/r-005-1.jpg" },
-          { "type": "image", "src": "images/properties/r-005-2.jpg" },
-          { "type": "image", "src": "images/properties/r-005-3.jpg" },
-          { "type": "video", "src": "images/properties/r-005-tour.mp4" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" }
         ]
       },
       {
@@ -151,9 +146,9 @@
         "soldOut": false,
         "buttonText": "Schedule Site Visit",
         "media": [
-          { "type": "image", "src": "images/properties/r-006-1.jpg" },
-          { "type": "image", "src": "images/properties/r-006-2.jpg" },
-          { "type": "image", "src": "images/properties/r-006-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80" }
         ]
       },
       {
@@ -169,8 +164,8 @@
         "soldOut": true,
         "buttonText": "Sold Out",
         "media": [
-          { "type": "image", "src": "images/properties/r-007-1.jpg" },
-          { "type": "image", "src": "images/properties/r-007-2.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" }
         ]
       },
       {
@@ -186,9 +181,9 @@
         "soldOut": false,
         "buttonText": "Schedule Site Visit",
         "media": [
-          { "type": "image", "src": "images/properties/r-008-1.jpg" },
-          { "type": "image", "src": "images/properties/r-008-2.jpg" },
-          { "type": "image", "src": "images/properties/r-008-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" }
         ]
       },
       {
@@ -204,9 +199,9 @@
         "soldOut": false,
         "buttonText": "Schedule Site Visit",
         "media": [
-          { "type": "image", "src": "images/properties/r-009-1.jpg" },
-          { "type": "image", "src": "images/properties/r-009-2.jpg" },
-          { "type": "image", "src": "images/properties/r-009-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80" }
         ]
       }
     ],
@@ -225,9 +220,9 @@
         "soldOut": false,
         "buttonText": "Get Details",
         "media": [
-          { "type": "image", "src": "images/properties/c-001-1.jpg" },
-          { "type": "image", "src": "images/properties/c-001-2.jpg" },
-          { "type": "image", "src": "images/properties/c-001-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" }
         ]
       },
       {
@@ -243,10 +238,9 @@
         "soldOut": false,
         "buttonText": "Get Details",
         "media": [
-          { "type": "image", "src": "images/properties/c-002-1.jpg" },
-          { "type": "image", "src": "images/properties/c-002-2.jpg" },
-          { "type": "image", "src": "images/properties/c-002-3.jpg" },
-          { "type": "video", "src": "images/properties/c-002-tour.mp4" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80" }
         ]
       },
       {
@@ -262,8 +256,8 @@
         "soldOut": false,
         "buttonText": "Get Details",
         "media": [
-          { "type": "image", "src": "images/properties/c-003-1.jpg" },
-          { "type": "image", "src": "images/properties/c-003-2.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1565610222536-ef125c59da2e?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" }
         ]
       },
       {
@@ -279,9 +273,9 @@
         "soldOut": false,
         "buttonText": "Get Details",
         "media": [
-          { "type": "image", "src": "images/properties/c-004-1.jpg" },
-          { "type": "image", "src": "images/properties/c-004-2.jpg" },
-          { "type": "image", "src": "images/properties/c-004-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" }
         ]
       },
       {
@@ -297,10 +291,9 @@
         "soldOut": false,
         "buttonText": "Get Details",
         "media": [
-          { "type": "image", "src": "images/properties/c-005-1.jpg" },
-          { "type": "image", "src": "images/properties/c-005-2.jpg" },
-          { "type": "image", "src": "images/properties/c-005-3.jpg" },
-          { "type": "video", "src": "images/properties/c-005-tour.mp4" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" }
         ]
       },
       {
@@ -316,9 +309,9 @@
         "soldOut": false,
         "buttonText": "Get Details",
         "media": [
-          { "type": "image", "src": "images/properties/c-006-1.jpg" },
-          { "type": "image", "src": "images/properties/c-006-2.jpg" },
-          { "type": "image", "src": "images/properties/c-006-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" }
         ]
       },
       {
@@ -334,8 +327,8 @@
         "soldOut": true,
         "buttonText": "Sold Out",
         "media": [
-          { "type": "image", "src": "images/properties/c-007-1.jpg" },
-          { "type": "image", "src": "images/properties/c-007-2.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" }
         ]
       },
       {
@@ -351,9 +344,9 @@
         "soldOut": false,
         "buttonText": "Get Details",
         "media": [
-          { "type": "image", "src": "images/properties/c-008-1.jpg" },
-          { "type": "image", "src": "images/properties/c-008-2.jpg" },
-          { "type": "image", "src": "images/properties/c-008-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1565610222536-ef125c59da2e?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" }
         ]
       },
       {
@@ -369,9 +362,9 @@
         "soldOut": false,
         "buttonText": "Get Details",
         "media": [
-          { "type": "image", "src": "images/properties/c-009-1.jpg" },
-          { "type": "image", "src": "images/properties/c-009-2.jpg" },
-          { "type": "image", "src": "images/properties/c-009-3.jpg" }
+          { "type": "image", "src": "https://images.unsplash.com/photo-1519494140681-8b17d830a3ec?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" },
+          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" }
         ]
       }
     ]
