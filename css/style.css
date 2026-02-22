@@ -1284,4 +1284,101 @@ section {
     padding: 12px 30px;
   }
 }
+/* ============================
+   HOVER SLIDESHOW — MEDIA STACK
+   Myntra-style crossfade on hover
+   
+   ADD THIS BLOCK TO THE BOTTOM OF YOUR style.css
+============================ */
 
+.media-stack {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #111;
+  flex-shrink: 0;
+}
+
+.property-card .media-stack {
+  height: 200px;
+}
+
+.media-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.media-layer--active {
+  opacity: 1;
+}
+
+.media-stack--no-transition .media-layer {
+  transition: none;
+}
+
+/* Progress dots */
+.media-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.property-card:hover .media-dots,
+.deal-card:hover .media-dots {
+  opacity: 1;
+}
+
+.media-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.media-dot--active {
+  background: #fff;
+  transform: scale(1.25);
+}
+
+/* Video tour badge — appears on tiles that have a video */
+.media-stack[data-has-video="true"]::after {
+  content: "▶ Tour";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.property-card:hover .media-stack[data-has-video="true"]::after,
+.deal-card:hover .media-stack[data-has-video="true"]::after {
+  opacity: 1;
+}
+
+/* Mobile: no hover possible, just show first frame */
+@media (hover: none) {
+  .media-dots { display: none; }
+}
