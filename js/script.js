@@ -1,4 +1,41 @@
 // ==============================
+// MOBILE NAV TOGGLE
+// ==============================
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.querySelector(".nav-toggle");
+  const backdrop = document.querySelector(".nav-backdrop");
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  if (!toggleBtn || !backdrop) return;
+
+  const openNav = () => {
+    document.body.classList.add("nav-open");
+    toggleBtn.setAttribute("aria-expanded", "true");
+  };
+
+  const closeNav = () => {
+    document.body.classList.remove("nav-open");
+    toggleBtn.setAttribute("aria-expanded", "false");
+  };
+
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.contains("nav-open") ? closeNav() : openNav();
+  });
+
+  backdrop.addEventListener("click", closeNav);
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", closeNav);
+  });
+
+  // Close on ESC key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeNav();
+  });
+});
+
+
+// ==============================
 // CIVIUM ESTATE - MAIN SCRIPT
 // ==============================
 
