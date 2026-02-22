@@ -1,372 +1,550 @@
 {
-  "propertyListings": [
+  "properties": [
     {
-      "id": "pl-001",
-      "title": "Luxury 3BHK in New Town",
-      "description": "Ideal for IT professionals | Near Metro",
+      "id": "p-001",
+      "title": "4BHK Premium Apartment - Salt Lake",
+      "description": "📍 Salt Lake Sector V | 2000 sq.ft | Ready to Move",
+      "category": "residential",
+      "isHotDeal": true,
+      "featured": true,
+      "badge": "HOT DEAL",
+      "badgeClass": "hot",
+      "price": 120,
+      "priceLabel": "₹1.2 Cr",
+      "oldPriceLabel": "₹1.5 Cr",
+      "budget": "1cr",
+      "location": "saltlake",
+      "type": "4bhk",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-002",
+      "title": "3BHK Garden Facing - New Town",
+      "description": "📍 Action Area II | 1600 sq.ft | Metro Nearby",
+      "category": "residential",
+      "isHotDeal": true,
+      "featured": true,
+      "badge": "URGENT SALE",
+      "badgeClass": "urgent",
+      "price": 75,
+      "priceLabel": "₹75 Lac",
+      "oldPriceLabel": "₹85 Lac",
       "budget": "50-80",
       "location": "newtown",
       "type": "3bhk",
+      "soldOut": false,
       "media": [
-        { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
-        { "type": "image", "src": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" },
-        { "type": "image", "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" }
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80"
+        }
       ]
     },
     {
-      "id": "pl-002",
-      "title": "Affordable 2BHK in Rajarhat",
-      "description": "Best for first-time buyers",
-      "budget": "30-50",
-      "location": "rajarhat",
-      "type": "2bhk",
-      "media": [
-        { "type": "image", "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80" },
-        { "type": "image", "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" },
-        { "type": "image", "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" }
-      ]
-    },
-    {
-      "id": "pl-003",
-      "title": "Premium Villa EM Bypass",
-      "description": "Luxury living | High appreciation zone",
+      "id": "p-003",
+      "title": "Duplex Villa - Rajarhat",
+      "description": "📍 Rajarhat Main Road | 2500 sq.ft | Private Garden",
+      "category": "residential",
+      "isHotDeal": true,
+      "featured": false,
+      "badge": "BEST INVESTMENT",
+      "badgeClass": "investment",
+      "price": 210,
+      "priceLabel": "₹2.1 Cr",
+      "oldPriceLabel": "₹2.4 Cr",
       "budget": "1cr",
-      "location": "embypass",
+      "location": "rajarhat",
       "type": "villa",
+      "soldOut": false,
       "media": [
-        { "type": "image", "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80" },
-        { "type": "image", "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" },
-        { "type": "image", "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" }
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-004",
+      "title": "2BHK Modern Flat - EM Bypass",
+      "description": "📍 Kasba EM Bypass | 1100 sq.ft | Gated Community",
+      "category": "residential",
+      "isHotDeal": true,
+      "featured": false,
+      "badge": "READY TO MOVE",
+      "badgeClass": "ready",
+      "price": 52,
+      "priceLabel": "₹52 Lac",
+      "oldPriceLabel": "₹60 Lac",
+      "budget": "50-80",
+      "location": "embypass",
+      "type": "2bhk",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-005",
+      "title": "Penthouse 5BHK - Ballygunge",
+      "description": "📍 Ballygunge Place | 3500 sq.ft | Terrace Garden",
+      "category": "residential",
+      "isHotDeal": true,
+      "featured": true,
+      "badge": "LUXURY SEGMENT",
+      "badgeClass": "luxury",
+      "price": 450,
+      "priceLabel": "₹4.5 Cr",
+      "oldPriceLabel": "₹5.2 Cr",
+      "budget": "1cr",
+      "location": "ballygunge",
+      "type": "5bhk",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-006",
+      "title": "3BHK Smart Home - New Town",
+      "description": "📍 Action Area III | 1450 sq.ft | Possession 2025",
+      "category": "residential",
+      "isHotDeal": true,
+      "featured": false,
+      "badge": "UNDER CONSTRUCTION",
+      "badgeClass": "construction",
+      "price": 68,
+      "priceLabel": "₹68 Lac",
+      "oldPriceLabel": "₹78 Lac",
+      "budget": "50-80",
+      "location": "newtown",
+      "type": "3bhk",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-007",
+      "title": "3BHK Heritage Building - Alipore",
+      "description": "📍 Alipore Road | 1800 sq.ft | Vintage Charm",
+      "category": "residential",
+      "isHotDeal": true,
+      "featured": false,
+      "badge": "PRIME LOCATION",
+      "badgeClass": "prime",
+      "price": 320,
+      "priceLabel": "₹3.2 Cr",
+      "oldPriceLabel": "₹3.8 Cr",
+      "budget": "1cr",
+      "location": "alipore",
+      "type": "3bhk",
+      "soldOut": true,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-008",
+      "title": "2BHK Compact Flat - Behala",
+      "description": "📍 Behala Chowrasta | 950 sq.ft | Near Schools",
+      "category": "residential",
+      "isHotDeal": true,
+      "featured": false,
+      "badge": "BEST VALUE",
+      "badgeClass": "value",
+      "price": 38,
+      "priceLabel": "₹38 Lac",
+      "oldPriceLabel": "₹45 Lac",
+      "budget": "30-50",
+      "location": "behala",
+      "type": "2bhk",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-009",
+      "title": "4BHK Spacious - New Alipore",
+      "description": "📍 New Alipore Block H | 2400 sq.ft | Club House",
+      "category": "residential",
+      "isHotDeal": false,
+      "featured": false,
+      "badge": "HIGH APPRECIATION",
+      "badgeClass": "appreciation",
+      "price": 280,
+      "priceLabel": "₹2.8 Cr",
+      "oldPriceLabel": "₹3.3 Cr",
+      "budget": "1cr",
+      "location": "alipore",
+      "type": "4bhk",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-013",
+      "title": "Retail Space - Park Street",
+      "description": "📍 Park Street Central | 1200 sq.ft | Ground Floor",
+      "category": "commercial",
+      "isHotDeal": true,
+      "featured": true,
+      "badge": "PRIME LOCATION",
+      "badgeClass": "prime",
+      "price": 350,
+      "priceLabel": "₹3.5 Cr",
+      "oldPriceLabel": "₹4 Cr",
+      "budget": "1cr",
+      "location": "parkstreet",
+      "type": "retail",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-014",
+      "title": "IT Office Space - Sector V",
+      "description": "📍 Eco Space, Sector V | 5000 sq.ft | Furnished",
+      "category": "commercial",
+      "isHotDeal": true,
+      "featured": true,
+      "badge": "HIGH ROI",
+      "badgeClass": "roi",
+      "price": 280,
+      "priceLabel": "₹2.8 Cr",
+      "oldPriceLabel": "₹3.2 Cr",
+      "budget": "1cr",
+      "location": "saltlake",
+      "type": "office",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-015",
+      "title": "Warehouse - Dankuni",
+      "description": "📍 NH2 Dankuni | 15000 sq.ft | Highway Access",
+      "category": "commercial",
+      "isHotDeal": true,
+      "featured": false,
+      "badge": "WAREHOUSE",
+      "badgeClass": "warehouse",
+      "price": 150,
+      "priceLabel": "₹1.5 Cr",
+      "oldPriceLabel": "₹1.8 Cr",
+      "budget": "1cr",
+      "location": "dankuni",
+      "type": "warehouse",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1565610222536-ef125c59da2e?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-016",
+      "title": "Co-Working Space - New Town",
+      "description": "📍 Uniworld City | 3000 sq.ft | Fully Managed",
+      "category": "commercial",
+      "isHotDeal": true,
+      "featured": false,
+      "badge": "READY TO OCCUPY",
+      "badgeClass": "ready",
+      "price": 120,
+      "priceLabel": "₹1.2 Cr",
+      "oldPriceLabel": "₹1.5 Cr",
+      "budget": "1cr",
+      "location": "newtown",
+      "type": "office",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-017",
+      "title": "Premium Showroom - Camac Street",
+      "description": "📍 Camac Street | 2000 sq.ft | High Footfall Area",
+      "category": "commercial",
+      "isHotDeal": true,
+      "featured": true,
+      "badge": "SHOWROOM",
+      "badgeClass": "showroom",
+      "price": 420,
+      "priceLabel": "₹4.2 Cr",
+      "oldPriceLabel": "₹4.8 Cr",
+      "budget": "1cr",
+      "location": "camacstreet",
+      "type": "retail",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-018",
+      "title": "Office Complex - Rajarhat",
+      "description": "📍 Rajarhat IT Hub | 10000 sq.ft | Pre-Leased",
+      "category": "commercial",
+      "isHotDeal": true,
+      "featured": false,
+      "badge": "INVESTMENT",
+      "badgeClass": "investment",
+      "price": 550,
+      "priceLabel": "₹5.5 Cr",
+      "oldPriceLabel": "₹6.2 Cr",
+      "budget": "1cr",
+      "location": "rajarhat",
+      "type": "office",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-019",
+      "title": "F&B Outlet - Elgin Road",
+      "description": "📍 Elgin Road | 1500 sq.ft | Corner Property",
+      "category": "commercial",
+      "isHotDeal": true,
+      "featured": false,
+      "badge": "RESTAURANT SPACE",
+      "badgeClass": "restaurant",
+      "price": 220,
+      "priceLabel": "₹2.2 Cr",
+      "oldPriceLabel": "₹2.6 Cr",
+      "budget": "1cr",
+      "location": "elginroad",
+      "type": "retail",
+      "soldOut": true,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-020",
+      "title": "Cold Storage - Barasat",
+      "description": "📍 Barasat Highway | 25000 sq.ft | Modern Facility",
+      "category": "commercial",
+      "isHotDeal": false,
+      "featured": false,
+      "badge": "LOGISTICS HUB",
+      "badgeClass": "logistics",
+      "price": 380,
+      "priceLabel": "₹3.8 Cr",
+      "oldPriceLabel": "₹4.5 Cr",
+      "budget": "1cr",
+      "location": "barasat",
+      "type": "warehouse",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1565610222536-ef125c59da2e?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "p-021",
+      "title": "Clinic Space - Salt Lake",
+      "description": "📍 Salt Lake BD Block | 800 sq.ft | Ground Floor",
+      "category": "commercial",
+      "isHotDeal": false,
+      "featured": false,
+      "badge": "MEDICAL CENTER",
+      "badgeClass": "medical",
+      "price": 85,
+      "priceLabel": "₹85 Lac",
+      "oldPriceLabel": "₹95 Lac",
+      "budget": "50-80",
+      "location": "saltlake",
+      "type": "office",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1519494140681-8b17d830a3ec?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+        }
       ]
     }
-  ],
-
-  "hotDeals": {
-    "residential": [
-      {
-        "id": "r-001",
-        "title": "4BHK Premium Apartment - Salt Lake",
-        "description": "📍 Salt Lake Sector V | 2000 sq.ft | Ready to Move",
-        "price": 120,
-        "priceLabel": "₹1.2 Cr",
-        "oldPriceLabel": "₹1.5 Cr",
-        "badge": "HOT DEAL",
-        "badgeClass": "hot",
-        "featured": true,
-        "soldOut": false,
-        "buttonText": "Schedule Site Visit",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "r-002",
-        "title": "3BHK Garden Facing - New Town",
-        "description": "📍 Action Area II | 1600 sq.ft | Metro Nearby",
-        "price": 75,
-        "priceLabel": "₹75 Lac",
-        "oldPriceLabel": "₹85 Lac",
-        "badge": "URGENT SALE",
-        "badgeClass": "urgent",
-        "featured": true,
-        "soldOut": false,
-        "buttonText": "Schedule Site Visit",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "r-003",
-        "title": "Duplex Villa - Rajarhat",
-        "description": "📍 Rajarhat Main Road | 2500 sq.ft | Private Garden",
-        "price": 210,
-        "priceLabel": "₹2.1 Cr",
-        "oldPriceLabel": "₹2.4 Cr",
-        "badge": "BEST INVESTMENT",
-        "badgeClass": "investment",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Schedule Site Visit",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "r-004",
-        "title": "2BHK Modern Flat - EM Bypass",
-        "description": "📍 Kasba EM Bypass | 1100 sq.ft | Gated Community",
-        "price": 52,
-        "priceLabel": "₹52 Lac",
-        "oldPriceLabel": "₹60 Lac",
-        "badge": "READY TO MOVE",
-        "badgeClass": "ready",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Schedule Site Visit",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "r-005",
-        "title": "Penthouse 5BHK - Ballygunge",
-        "description": "📍 Ballygunge Place | 3500 sq.ft | Terrace Garden",
-        "price": 450,
-        "priceLabel": "₹4.5 Cr",
-        "oldPriceLabel": "₹5.2 Cr",
-        "badge": "LUXURY SEGMENT",
-        "badgeClass": "luxury",
-        "featured": true,
-        "soldOut": false,
-        "buttonText": "Schedule Site Visit",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "r-006",
-        "title": "3BHK Smart Home - New Town",
-        "description": "📍 Action Area III | 1450 sq.ft | Possession 2025",
-        "price": 68,
-        "priceLabel": "₹68 Lac",
-        "oldPriceLabel": "₹78 Lac",
-        "badge": "UNDER CONSTRUCTION",
-        "badgeClass": "construction",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Schedule Site Visit",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "r-007",
-        "title": "3BHK Heritage Building - Alipore",
-        "description": "📍 Alipore Road | 1800 sq.ft | Vintage Charm",
-        "price": 320,
-        "priceLabel": "₹3.2 Cr",
-        "oldPriceLabel": "₹3.8 Cr",
-        "badge": "PRIME LOCATION",
-        "badgeClass": "prime",
-        "featured": false,
-        "soldOut": true,
-        "buttonText": "Sold Out",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "r-008",
-        "title": "2BHK Compact Flat - Behala",
-        "description": "📍 Behala Chowrasta | 950 sq.ft | Near Schools",
-        "price": 38,
-        "priceLabel": "₹38 Lac",
-        "oldPriceLabel": "₹45 Lac",
-        "badge": "BEST VALUE",
-        "badgeClass": "value",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Schedule Site Visit",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "r-009",
-        "title": "4BHK Spacious - New Alipore",
-        "description": "📍 New Alipore Block H | 2400 sq.ft | Club House",
-        "price": 280,
-        "priceLabel": "₹2.8 Cr",
-        "oldPriceLabel": "₹3.3 Cr",
-        "badge": "HIGH APPRECIATION",
-        "badgeClass": "appreciation",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Schedule Site Visit",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80" }
-        ]
-      }
-    ],
-
-    "commercial": [
-      {
-        "id": "c-001",
-        "title": "Retail Space - Park Street",
-        "description": "📍 Park Street Central | 1200 sq.ft | Ground Floor",
-        "price": 350,
-        "priceLabel": "₹3.5 Cr",
-        "oldPriceLabel": "₹4 Cr",
-        "badge": "PRIME LOCATION",
-        "badgeClass": "prime",
-        "featured": true,
-        "soldOut": false,
-        "buttonText": "Get Details",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "c-002",
-        "title": "IT Office Space - Sector V",
-        "description": "📍 Eco Space, Sector V | 5000 sq.ft | Furnished",
-        "price": 280,
-        "priceLabel": "₹2.8 Cr",
-        "oldPriceLabel": "₹3.2 Cr",
-        "badge": "HIGH ROI",
-        "badgeClass": "roi",
-        "featured": true,
-        "soldOut": false,
-        "buttonText": "Get Details",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "c-003",
-        "title": "Warehouse - Dankuni",
-        "description": "📍 NH2 Dankuni | 15000 sq.ft | Highway Access",
-        "price": 150,
-        "priceLabel": "₹1.5 Cr",
-        "oldPriceLabel": "₹1.8 Cr",
-        "badge": "WAREHOUSE",
-        "badgeClass": "warehouse",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Get Details",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1565610222536-ef125c59da2e?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "c-004",
-        "title": "Co-Working Space - New Town",
-        "description": "📍 Uniworld City | 3000 sq.ft | Fully Managed",
-        "price": 120,
-        "priceLabel": "₹1.2 Cr",
-        "oldPriceLabel": "₹1.5 Cr",
-        "badge": "READY TO OCCUPY",
-        "badgeClass": "ready",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Get Details",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "c-005",
-        "title": "Premium Showroom - Camac Street",
-        "description": "📍 Camac Street | 2000 sq.ft | High Footfall Area",
-        "price": 420,
-        "priceLabel": "₹4.2 Cr",
-        "oldPriceLabel": "₹4.8 Cr",
-        "badge": "SHOWROOM",
-        "badgeClass": "showroom",
-        "featured": true,
-        "soldOut": false,
-        "buttonText": "Get Details",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "c-006",
-        "title": "Office Complex - Rajarhat",
-        "description": "📍 Rajarhat IT Hub | 10000 sq.ft | Pre-Leased",
-        "price": 550,
-        "priceLabel": "₹5.5 Cr",
-        "oldPriceLabel": "₹6.2 Cr",
-        "badge": "INVESTMENT",
-        "badgeClass": "investment",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Get Details",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "c-007",
-        "title": "F&B Outlet - Elgin Road",
-        "description": "📍 Elgin Road | 1500 sq.ft | Corner Property",
-        "price": 220,
-        "priceLabel": "₹2.2 Cr",
-        "oldPriceLabel": "₹2.6 Cr",
-        "badge": "RESTAURANT SPACE",
-        "badgeClass": "restaurant",
-        "featured": false,
-        "soldOut": true,
-        "buttonText": "Sold Out",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "c-008",
-        "title": "Cold Storage - Barasat",
-        "description": "📍 Barasat Highway | 25000 sq.ft | Modern Facility",
-        "price": 380,
-        "priceLabel": "₹3.8 Cr",
-        "oldPriceLabel": "₹4.5 Cr",
-        "badge": "LOGISTICS HUB",
-        "badgeClass": "logistics",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Get Details",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1565610222536-ef125c59da2e?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" }
-        ]
-      },
-      {
-        "id": "c-009",
-        "title": "Clinic Space - Salt Lake",
-        "description": "📍 Salt Lake BD Block | 800 sq.ft | Ground Floor",
-        "price": 85,
-        "priceLabel": "₹85 Lac",
-        "oldPriceLabel": "₹95 Lac",
-        "badge": "MEDICAL CENTER",
-        "badgeClass": "medical",
-        "featured": false,
-        "soldOut": false,
-        "buttonText": "Get Details",
-        "media": [
-          { "type": "image", "src": "https://images.unsplash.com/photo-1519494140681-8b17d830a3ec?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" },
-          { "type": "image", "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" }
-        ]
-      }
-    ]
-  }
+  ]
 }
