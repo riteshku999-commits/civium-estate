@@ -56,6 +56,112 @@ body {
   opacity: 0.7;
 }
 
+/* ============================
+   MOBILE NAV (Hamburger + Drawer)
+============================ */
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 10px;
+  line-height: 0;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 26px;
+  height: 2px;
+  margin: 6px 0;
+  background: #fff;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Backdrop hidden by default */
+.nav-backdrop {
+  display: none;
+}
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  /* Turn the nav into a drawer */
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    height: 100vh;
+    width: 280px;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(8px);
+    padding: 90px 20px 20px;
+    transition: right 0.25s ease;
+    z-index: 1200;
+  }
+
+  /* Stack links vertically */
+  .nav-links {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 12px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover {
+    background: rgba(197, 164, 126, 0.18);
+    opacity: 1;
+  }
+
+  /* Backdrop behind drawer */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    z-index: 1100;
+  }
+
+  /* OPEN STATE */
+  body.nav-open .nav {
+    right: 0;
+  }
+
+  body.nav-open .nav-backdrop {
+    display: block;
+  }
+
+  /* Hamburger -> X animation */
+  body.nav-open .nav-toggle-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  body.nav-open .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+  body.nav-open .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Prevent hero fixed background issues on mobile */
+  .hero {
+    background-attachment: scroll;
+  }
+
+  /* Improve hero text sizing on small screens */
+  .hero h2 {
+    font-size: 34px;
+    padding: 0 10px;
+  }
+}
+
 /* HERO */
 .hero {
   height: 100vh;
@@ -1178,108 +1284,3 @@ section {
   }
 }
 
-/* ============================
-   MOBILE NAV (Hamburger + Drawer)
-============================ */
-
-.nav-toggle {
-  display: none;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  padding: 10px;
-  line-height: 0;
-}
-
-.nav-toggle-bar {
-  display: block;
-  width: 26px;
-  height: 2px;
-  margin: 6px 0;
-  background: #fff;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-/* Backdrop hidden by default */
-.nav-backdrop {
-  display: none;
-}
-
-/* Mobile breakpoint */
-@media (max-width: 768px) {
-  .nav-toggle {
-    display: inline-block;
-  }
-
-  /* Turn the nav into a drawer */
-  .nav {
-    position: fixed;
-    top: 0;
-    right: -280px;
-    height: 100vh;
-    width: 280px;
-    background: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(8px);
-    padding: 90px 20px 20px;
-    transition: right 0.25s ease;
-    z-index: 1200;
-  }
-
-  /* Stack links vertically */
-  .nav-links {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .nav-links a {
-    display: block;
-    padding: 14px 12px;
-    border-radius: 8px;
-    font-weight: 500;
-  }
-
-  .nav-links a:hover {
-    background: rgba(197, 164, 126, 0.18);
-    opacity: 1;
-  }
-
-  /* Backdrop behind drawer */
-  .nav-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    display: none;
-    z-index: 1100;
-  }
-
-  /* OPEN STATE */
-  body.nav-open .nav {
-    right: 0;
-  }
-
-  body.nav-open .nav-backdrop {
-    display: block;
-  }
-
-  /* Hamburger -> X animation */
-  body.nav-open .nav-toggle-bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  body.nav-open .nav-toggle-bar:nth-child(2) {
-    opacity: 0;
-  }
-  body.nav-open .nav-toggle-bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-
-  /* Prevent hero fixed background issues on mobile */
-  .hero {
-    background-attachment: scroll;
-  }
-
-  /* Improve hero text sizing on small screens */
-  .hero h2 {
-    font-size: 34px;
-    padding: 0 10px;
-  }
-}
