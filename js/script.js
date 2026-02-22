@@ -119,12 +119,12 @@ if (testimonials.length) setInterval(() => {
 const popup      = document.getElementById("leadPopup");
 const closePopup = document.getElementById("closePopup");
 
-const openPopup  = () => { if (popup) popup.style.display = "flex"; };
+const openPopup    = () => { if (popup) popup.style.display = "flex"; };
 const closePopupFn = () => { if (popup) popup.style.display = "none"; };
 
 if (closePopup) closePopup.addEventListener("click", closePopupFn);
 
-// Delegate popup opening to any .price-btn or .deal-btn (including dynamically created ones)
+// Delegate popup opening — works for dynamically created buttons too
 document.addEventListener("click", e => {
   if (e.target.matches(".price-btn") || (e.target.matches(".deal-btn") && !e.target.disabled)) {
     openPopup();
@@ -249,14 +249,125 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => {
       console.error("Could not load properties.json:", err);
-      // Show a friendly fallback message in each grid
-      const grids = ["propertyGrid", "residentialDeals", "commercialDeals"];
-      grids.forEach(id => {
+      ["propertyGrid", "residentialDeals", "commercialDeals"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.innerHTML = `<p class="loading-text" style="color:#c5a47e;">Unable to load properties. Please try again later.</p>`;
       });
     });
 });
+
+
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  HOVER SLIDESHOW ENGINE  (Myntra-style)                      ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+// ─────────────────────────────────────────
+// S1. BUILD MEDIA STACK HTML
+//     All layers stacked via CSS position:absolute.
+//     First layer starts visible (opacity:1), rest are 0.
+//     Videos are muted + loop so they autoplay silently.
+// ─────────────────────────────────────────
+function buildMediaStack(media, altText) {
+  if (!media || media.length === 0) return "";
+
+  const layers = media.map((item, i) => {
+    const isFirst   = i === 0;
+    const activeClass = isFirst ? " media-layer--active" : "";
+
+    if (item.type === "video") {
+      return `
+        <video class="media-layer${activeClass}"
+               src="${item.src}"
+               muted loop playsinline
+               preload="none"
+               aria-label="${altText} – video tour">
+        </video>`;
+    } else {
+      // Only the first image uses eager loading; rest are lazy
+      const loading = isFirst ? "eager" : "lazy";
+      return `
+        <img class="media-layer${activeClass}"
+             src="${item.src}"
+             alt="${altText}${i > 0 ? ` – photo ${i + 1}` : ""}"
+             loading="${loading}">`;
+    }
+  }).join("");
+
+  const hasVideo = media.some(m => m.type === "video");
+  return `
+    <div class="media-stack"${hasVideo ? ' data-has-video="true"' : ""}>
+      ${layers}
+      <div class="media-dots">
+        ${media.map((_, i) => `<span class="media-dot${i === 0 ? " media-dot--active" : ""}"></span>`).join("")}
+      </div>
+    </div>`;
+}
+
+
+// ─────────────────────────────────────────
+// S2. ATTACH HOVER SLIDESHOW TO A CARD
+//     mouseenter → starts cycling every 1.2 s
+//     mouseleave → clears timer, resets to frame 0
+// ─────────────────────────────────────────
+function attachHoverSlideshow(card) {
+  const stack  = card.querySelector(".media-stack");
+  if (!stack) return;
+
+  const layers = Array.from(stack.querySelectorAll(".media-layer"));
+  const dots   = Array.from(stack.querySelectorAll(".media-dot"));
+  if (layers.length <= 1) return;  // nothing to cycle if only 1 media item
+
+  let currentIndex = 0;
+  let timer        = null;
+
+  // Switch to a specific frame
+  function goTo(index) {
+    // Hide / pause current
+    const prev = layers[currentIndex];
+    prev.classList.remove("media-layer--active");
+    dots[currentIndex]?.classList.remove("media-dot--active");
+    if (prev.tagName === "VIDEO") prev.pause();
+
+    // Show / play next
+    currentIndex = index;
+    const next = layers[currentIndex];
+    next.classList.add("media-layer--active");
+    dots[currentIndex]?.classList.add("media-dot--active");
+    if (next.tagName === "VIDEO") {
+      next.currentTime = 0;
+      next.play().catch(() => {}); // swallow autoplay policy errors silently
+    }
+  }
+
+  // Advance to the next frame and schedule the one after
+  function advance() {
+    const nextIndex = (currentIndex + 1) % layers.length;
+    goTo(nextIndex);
+    timer = setTimeout(advance, 1200);
+  }
+
+  card.addEventListener("mouseenter", () => {
+    // Start from frame 1 immediately (frame 0 is already visible)
+    timer = setTimeout(advance, 1200);
+  });
+
+  card.addEventListener("mouseleave", () => {
+    clearTimeout(timer);
+    timer = null;
+
+    // Pause any playing video
+    const curr = layers[currentIndex];
+    if (curr.tagName === "VIDEO") curr.pause();
+
+    // Reset to first frame without transition flash
+    stack.classList.add("media-stack--no-transition");
+    goTo(0);
+    // Re-enable transitions after reset
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => stack.classList.remove("media-stack--no-transition"));
+    });
+  });
+}
 
 
 // ─────────────────────────────────────────
@@ -271,14 +382,17 @@ function renderPropertyListings(listings) {
          data-budget="${p.budget}"
          data-location="${p.location}"
          data-type="${p.type}">
-      <img src="${p.image}" alt="${p.title}" loading="lazy">
+      ${buildMediaStack(p.media, p.title)}
       <h3>${p.title}</h3>
       <p>${p.description}</p>
       <button class="price-btn">Get Exact Price</button>
     </div>
   `).join("");
 
-  // Wire up the existing filter selects
+  // Attach hover slideshow to every listing card
+  grid.querySelectorAll(".property-card").forEach(card => attachHoverSlideshow(card));
+
+  // Wire up filter selects
   const budgetFilter   = document.getElementById("budgetFilter");
   const locationFilter = document.getElementById("locationFilter");
   const typeFilter     = document.getElementById("typeFilter");
@@ -302,8 +416,8 @@ function renderPropertyListings(listings) {
 // 12. BUILD A SINGLE DEAL CARD (HTML string)
 // ─────────────────────────────────────────
 function buildDealCard(deal, index) {
-  const soldClass    = deal.soldOut ? " sold-out" : "";
-  const soldOverlay  = deal.soldOut
+  const soldClass   = deal.soldOut ? " sold-out" : "";
+  const soldOverlay = deal.soldOut
     ? `<div class="sold-overlay">
          <div class="sold-text">SOLD OUT</div>
          <p>This property has been successfully sold</p>
@@ -322,7 +436,7 @@ function buildDealCard(deal, index) {
       ${soldOverlay}
       <div class="deal-badge ${deal.badgeClass}">${deal.badge}</div>
       ${featuredBadge}
-      <img src="${deal.image}" alt="${deal.title}" loading="lazy">
+      ${buildMediaStack(deal.media, deal.title)}
       <div class="deal-content">
         <h3>${deal.title}</h3>
         <p>${deal.description}</p>
@@ -349,27 +463,29 @@ let visibleDeals       = 6;
 function renderHotDeals(hotDeals) {
   // Insert raw cards into each slider container
   ["residential", "commercial"].forEach(cat => {
-    const container = document.getElementById(cat === "residential" ? "residentialDeals" : "commercialDeals");
+    const containerId = cat === "residential" ? "residentialDeals" : "commercialDeals";
+    const container   = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = hotDeals[cat].map((deal, i) => buildDealCard(deal, i)).join("");
+
+    // Attach hover slideshow to every deal card
+    container.querySelectorAll(".deal-card").forEach(card => attachHoverSlideshow(card));
   });
 
-  // Wire up tab buttons
+  // Tab buttons
   document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.addEventListener("click", function () {
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
       document.querySelectorAll(".deal-slider").forEach(s => s.classList.remove("active"));
-
       this.classList.add("active");
       currentCategory = this.getAttribute("data-category");
       document.querySelector(`.${currentCategory}-deals`).classList.add("active");
-
       visibleDeals = 6;
       applyFiltersAndSort();
     });
   });
 
-  // Wire up price filter buttons
+  // Price filter buttons
   document.querySelectorAll(".filter-btn").forEach(btn => {
     btn.addEventListener("click", function () {
       document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -379,7 +495,7 @@ function renderHotDeals(hotDeals) {
     });
   });
 
-  // Wire up sort select
+  // Sort select
   const sortSelect = document.getElementById("sortDeals");
   if (sortSelect) {
     sortSelect.addEventListener("change", function () {
@@ -388,7 +504,7 @@ function renderHotDeals(hotDeals) {
     });
   }
 
-  // Wire up Load More
+  // Load More
   const loadMoreBtn = document.getElementById("loadMoreBtn");
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener("click", () => {
@@ -397,7 +513,6 @@ function renderHotDeals(hotDeals) {
     });
   }
 
-  // Run initial layout
   applyFiltersAndSort();
 }
 
@@ -413,9 +528,9 @@ function applyFiltersAndSort() {
   const slider = getActiveSlider();
   if (!slider) return;
 
-  let deals = Array.from(slider.querySelectorAll(".deal-card"));
+  const deals = Array.from(slider.querySelectorAll(".deal-card"));
 
-  // 1. Filter by price
+  // Filter by price
   const filtered = deals.filter(card => {
     const price = parseFloat(card.getAttribute("data-price"));
     if (currentPriceFilter === "all")     return true;
@@ -425,7 +540,7 @@ function applyFiltersAndSort() {
     return true;
   });
 
-  // 2. Sort
+  // Sort
   filtered.sort((a, b) => {
     const pA = parseFloat(a.getAttribute("data-price"));
     const pB = parseFloat(b.getAttribute("data-price"));
@@ -438,18 +553,18 @@ function applyFiltersAndSort() {
       case "price-low":  return pA - pB;
       case "price-high": return pB - pA;
       case "featured":   return (fA === fB) ? 0 : fA ? -1 : 1;
-      default:           return iA - iB;   // newest = original JSON order
+      default:           return iA - iB;
     }
   });
 
-  // 3. Re-append in new order and set visibility
+  // Re-append in sorted order and toggle visibility
   filtered.forEach((card, i) => {
     slider.appendChild(card);
     card.style.display = i < visibleDeals ? "block" : "none";
     card.classList.toggle("hidden-deal", i >= visibleDeals);
   });
 
-  // 4. Hide cards that didn't match the filter
+  // Hide non-matching cards
   deals.filter(c => !filtered.includes(c)).forEach(c => {
     c.style.display = "none";
     c.classList.add("hidden-deal");
