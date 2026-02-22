@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +27,7 @@
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#deals">Hot Deals</a></li>
+          <li><a href="#properties">Properties &amp; Deals</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -89,91 +88,99 @@
   </section>
 
   <!-- ============================================================
-       PROPERTY LISTINGS — cards injected by script.js from JSON
+       EXPLORE PROPERTIES — unified section (injected by script.js)
   ============================================================ -->
-  <section class="properties">
+  <section class="explore-properties" id="properties">
     <div class="container">
-      <h2>Explore Premium Properties in Kolkata</h2>
 
-      <!-- Filters (static — values must match JSON budget/location/type fields) -->
-      <div class="filters">
-        <select id="budgetFilter">
-          <option value="all">Budget</option>
-          <option value="30-50">₹30L–50L</option>
-          <option value="50-80">₹50L–80L</option>
-          <option value="1cr">₹1Cr+</option>
-        </select>
-
-        <select id="locationFilter">
-          <option value="all">Location</option>
-          <option value="newtown">New Town</option>
-          <option value="rajarhat">Rajarhat</option>
-          <option value="embypass">EM Bypass</option>
-        </select>
-
-        <select id="typeFilter">
-          <option value="all">Type</option>
-          <option value="2bhk">2BHK</option>
-          <option value="3bhk">3BHK</option>
-          <option value="villa">Villa</option>
-        </select>
+      <div class="ep-header" data-aos="fade-up">
+        <h2 class="section-title">Properties &amp; Deals</h2>
+        <p class="section-subtitle">Discover residential &amp; commercial properties — including this month's exclusive hot deals</p>
       </div>
 
-      <!-- ✅ Empty grid — populated by renderPropertyListings() -->
-      <div class="property-grid" id="propertyGrid">
-        <!-- Loading placeholder -->
-        <p class="loading-text">Loading properties…</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       HOT DEALS — cards injected by script.js from JSON
-  ============================================================ -->
-  <section class="hot-deals" id="deals">
-    <div class="container">
-      <h2 class="section-title" data-aos="fade-up">Hot Deals This Month</h2>
-      <p class="section-subtitle" data-aos="fade-up">Exclusive properties handpicked by our experts</p>
-
-      <!-- Category Tabs -->
-      <div class="deal-tabs" data-aos="fade-up">
-        <button class="tab-btn active" data-category="residential">Residential</button>
-        <button class="tab-btn" data-category="commercial">Commercial</button>
+      <!-- Primary category tabs -->
+      <div class="ep-tabs" data-aos="fade-up">
+        <button class="ep-tab active" data-tab="all">All Properties</button>
+        <button class="ep-tab" data-tab="residential">Residential</button>
+        <button class="ep-tab" data-tab="commercial">Commercial</button>
+        <button class="ep-tab ep-tab--hot" data-tab="hotdeals">🔥 Hot Deals</button>
       </div>
 
-      <!-- Filter & Sort Controls -->
-      <div class="deal-controls" data-aos="fade-up">
-        <div class="price-filters">
-          <button class="filter-btn active" data-price="all">All Prices</button>
-          <button class="filter-btn" data-price="0-50">Under ₹50L</button>
-          <button class="filter-btn" data-price="50-100">₹50L–₹1Cr</button>
-          <button class="filter-btn" data-price="100-999">Above ₹1Cr</button>
+      <!-- Filters + sort bar -->
+      <div class="ep-controls" data-aos="fade-up">
+        <div class="ep-filters">
+
+          <select id="epBudget">
+            <option value="all">All Budgets</option>
+            <option value="30-50">₹30L – ₹50L</option>
+            <option value="50-80">₹50L – ₹80L</option>
+            <option value="1cr">₹1 Cr+</option>
+          </select>
+
+          <select id="epLocation">
+            <option value="all">All Locations</option>
+            <optgroup label="Residential">
+              <option value="newtown">New Town</option>
+              <option value="rajarhat">Rajarhat</option>
+              <option value="embypass">EM Bypass</option>
+              <option value="saltlake">Salt Lake</option>
+              <option value="ballygunge">Ballygunge</option>
+              <option value="alipore">Alipore / New Alipore</option>
+              <option value="behala">Behala</option>
+            </optgroup>
+            <optgroup label="Commercial">
+              <option value="parkstreet">Park Street</option>
+              <option value="camacstreet">Camac Street</option>
+              <option value="elginroad">Elgin Road</option>
+              <option value="dankuni">Dankuni</option>
+              <option value="barasat">Barasat</option>
+            </optgroup>
+          </select>
+
+          <select id="epType">
+            <option value="all">All Types</option>
+            <optgroup label="Residential">
+              <option value="2bhk">2 BHK</option>
+              <option value="3bhk">3 BHK</option>
+              <option value="4bhk">4 BHK</option>
+              <option value="5bhk">5 BHK</option>
+              <option value="villa">Villa</option>
+            </optgroup>
+            <optgroup label="Commercial">
+              <option value="office">Office / Co-working</option>
+              <option value="retail">Retail / Showroom</option>
+              <option value="warehouse">Warehouse / Storage</option>
+            </optgroup>
+          </select>
+
         </div>
-        <div class="sort-options">
-          <select id="sortDeals">
-            <option value="newest">Newest First</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="featured">Featured Deals</option>
+
+        <div class="ep-sort">
+          <select id="epSort">
+            <option value="default">Sort: Default</option>
+            <option value="price-low">Price: Low → High</option>
+            <option value="price-high">Price: High → Low</option>
+            <option value="featured">Featured First</option>
           </select>
         </div>
       </div>
 
-      <!-- ✅ Residential slider — populated by renderHotDeals() -->
-      <div class="deal-slider residential-deals active" id="residentialDeals">
-        <p class="loading-text">Loading deals…</p>
+      <!-- Active filter chips + result count -->
+      <div class="ep-meta" data-aos="fade-up">
+        <span class="ep-count"></span>
+        <div class="ep-chips" id="epChips"></div>
       </div>
 
-      <!-- ✅ Commercial slider — populated by renderHotDeals() -->
-      <div class="deal-slider commercial-deals" id="commercialDeals">
-        <p class="loading-text">Loading deals…</p>
+      <!-- Property grid — populated by script.js -->
+      <div class="ep-grid" id="epGrid">
+        <p class="loading-text">Loading properties…</p>
       </div>
 
-      <!-- Load More -->
-      <div class="load-more-container">
-        <button id="loadMoreBtn" class="load-more-btn">Load More Deals</button>
-        <p class="showing-count"></p>
+      <!-- Load more -->
+      <div class="ep-load-more">
+        <button id="epLoadMore" class="load-more-btn">Load More Properties</button>
       </div>
+
     </div>
   </section>
 
@@ -360,51 +367,15 @@
           </div>
         </div>
 
-        <div class="contact-info-container" data-aos="fade-left">
-          <h3>Contact Information</h3>
-          <div class="info-item">
-            <div class="info-icon">📧</div>
-            <div class="info-content">
-              <h4>Email</h4>
-              <a href="mailto:info@civiumestate.com">info@civiumestate.com</a>
-            </div>
-          </div>
-          <div class="info-item">
-            <div class="info-icon">📱</div>
-            <div class="info-content">
-              <h4>Phone</h4>
-              <a href="tel:+919830012345">+91 98300 12345</a>
-            </div>
-          </div>
-          <div class="info-item">
-            <div class="info-icon">📍</div>
-            <div class="info-content">
-              <h4>Office Address</h4>
-              <p>Salt Lake Sector V<br>Kolkata - 700091<br>West Bengal, India</p>
-            </div>
-          </div>
-          <div class="info-item">
-            <div class="info-icon">🕒</div>
-            <div class="info-content">
-              <h4>Business Hours</h4>
-              <p>Monday - Saturday: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>
-            </div>
-          </div>
-          <div class="social-links">
-            <h4>Follow Us</h4>
-            <div class="social-icons">
-              <a href="#" aria-label="Facebook">📘</a>
-              <a href="#" aria-label="Instagram">📷</a>
-              <a href="#" aria-label="LinkedIn">💼</a>
-              <a href="#" aria-label="WhatsApp">💬</a>
-            </div>
-          </div>
+        <!-- Contact info — injected by script.js from data/contact.json -->
+        <div class="contact-info-container" id="contactInfoPanel" data-aos="fade-left">
+          <p class="loading-text" style="color:#c5a47e;">Loading contact info…</p>
         </div>
       </div>
     </div>
   </section>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="js/script.js"></script>
 
   <!-- Lead Popup -->
@@ -428,14 +399,3 @@
         </select>
         <select required>
           <option value="">Buying Timeline</option>
-          <option>Immediate</option>
-          <option>3–6 Months</option>
-          <option>Just Exploring</option>
-        </select>
-        <button type="submit">Submit &amp; Get Price</button>
-      </form>
-    </div>
-  </div>
-
-</body>
-</html>
