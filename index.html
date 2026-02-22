@@ -14,20 +14,31 @@
 <body>
 
   <!-- Header -->
-  <header class="header">
-    <div class="container nav-container">
-      <h1 class="logo">Civium Estate</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#deals">Hot Deals</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<header class="header">
+  <div class="container nav-container">
+    <h1 class="logo">Civium Estate</h1>
+
+    <!-- Hamburger button (mobile) -->
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <nav class="nav" id="primaryNav">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#deals">Hot Deals</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Backdrop for mobile drawer -->
+    <div class="nav-backdrop" aria-hidden="true"></div>
+  </div>
+</header>
 
   <!-- Hero -->
   <section class="hero" id="home">
