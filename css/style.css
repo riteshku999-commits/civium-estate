@@ -1382,3 +1382,467 @@ section {
 @media (hover: none) {
   .media-dots { display: none; }
 }
+/* ============================
+   HOVER SLIDESHOW — MEDIA STACK
+   Myntra-style crossfade on hover
+   
+   ADD THIS BLOCK TO THE BOTTOM OF YOUR style.css
+============================ */
+
+.media-stack {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #111;
+  flex-shrink: 0;
+}
+
+.property-card .media-stack {
+  height: 200px;
+}
+
+.media-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.media-layer--active {
+  opacity: 1;
+}
+
+.media-stack--no-transition .media-layer {
+  transition: none;
+}
+
+/* Progress dots */
+.media-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.property-card:hover .media-dots,
+.deal-card:hover .media-dots {
+  opacity: 1;
+}
+
+.media-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.media-dot--active {
+  background: #fff;
+  transform: scale(1.25);
+}
+
+/* Video tour badge — appears on tiles that have a video */
+.media-stack[data-has-video="true"]::after {
+  content: "▶ Tour";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.property-card:hover .media-stack[data-has-video="true"]::after,
+.deal-card:hover .media-stack[data-has-video="true"]::after {
+  opacity: 1;
+}
+
+/* Mobile: no hover possible, just show first frame */
+@media (hover: none) {
+  .media-dots { display: none; }
+}
+
+
+/* ============================
+   EXPLORE PROPERTIES — unified section
+============================ */
+
+.explore-properties {
+  padding: 100px 20px;
+  background: #0d0d0d;
+  color: #fff;
+}
+
+.ep-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────── */
+.ep-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 40px 0 30px;
+  flex-wrap: wrap;
+}
+
+.ep-tab {
+  padding: 11px 28px;
+  background: #1a1a1a;
+  border: 2px solid #333;
+  color: #ccc;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.ep-tab:hover,
+.ep-tab.active {
+  background: #c5a47e;
+  border-color: #c5a47e;
+  color: #000;
+}
+
+/* Hot Deals tab gets a special idle colour */
+.ep-tab--hot {
+  border-color: #ff4444;
+  color: #ff6666;
+}
+
+.ep-tab--hot.active,
+.ep-tab--hot:hover {
+  background: #ff4444;
+  border-color: #ff4444;
+  color: #fff;
+}
+
+/* ── Controls bar ─────────────────────────────────────────── */
+.ep-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.ep-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ep-filters select,
+.ep-sort select {
+  padding: 10px 14px;
+  background: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s;
+}
+
+.ep-filters select:focus,
+.ep-sort select:focus {
+  outline: none;
+  border-color: #c5a47e;
+}
+
+/* ── Meta row (count + chips) ─────────────────────────────── */
+.ep-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  min-height: 28px;
+}
+
+.ep-count {
+  color: #888;
+  font-size: 0.88rem;
+}
+
+.ep-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ep-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(197,164,126,0.15);
+  border: 1px solid #c5a47e;
+  color: #c5a47e;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+}
+
+.ep-chip-x {
+  background: none;
+  border: none;
+  color: #c5a47e;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+}
+
+.ep-chip-x:hover { color: #fff; }
+
+/* ── Property grid ─────────────────────────────────────────── */
+.ep-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+/* ── Individual card ──────────────────────────────────────── */
+.ep-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.ep-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.ep-card--sold {
+  opacity: 0.72;
+}
+
+/* Media wrapper inherits the slideshow styles */
+.ep-card-media {
+  position: relative;
+}
+
+.ep-card-media .media-stack {
+  height: 220px;
+}
+
+/* ── Badges on cards ──────────────────────────────────────── */
+.ep-badge {
+  position: absolute;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ep-badge--deal {
+  top: 12px;
+  right: 12px;
+  background: #c5a47e;
+  color: #000;
+}
+
+.ep-badge--featured {
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #000;
+  animation: pulse 2s infinite;
+}
+
+/* Re-use badge colour overrides from existing CSS */
+.ep-badge.hot          { background: #ff4444; color: #fff; }
+.ep-badge.urgent       { background: #ff6b35; color: #fff; }
+.ep-badge.investment   { background: #4ecdc4; color: #000; }
+.ep-badge.ready        { background: #95e1d3; color: #000; }
+.ep-badge.luxury       { background: #9b59b6; color: #fff; }
+.ep-badge.construction { background: #3498db; color: #fff; }
+.ep-badge.prime        { background: #e74c3c; color: #fff; }
+.ep-badge.value        { background: #2ecc71; color: #000; }
+.ep-badge.appreciation { background: #f39c12; color: #000; }
+.ep-badge.roi          { background: #16a085; color: #fff; }
+.ep-badge.warehouse    { background: #7f8c8d; color: #fff; }
+.ep-badge.showroom     { background: #e67e22; color: #fff; }
+.ep-badge.restaurant   { background: #c0392b; color: #fff; }
+.ep-badge.logistics    { background: #34495e; color: #fff; }
+.ep-badge.medical      { background: #1abc9c; color: #000; }
+.ep-badge.new          { background: #27ae60; color: #fff; }
+
+/* Category label (Residential / Commercial) */
+.ep-cat-label {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 12px;
+  z-index: 10;
+  pointer-events: none;
+  letter-spacing: 0.03em;
+}
+
+.ep-cat--residential { background: rgba(197,164,126,0.85); color: #000; }
+.ep-cat--commercial  { background: rgba(52,152,219,0.85);  color: #fff; }
+
+/* ── Sold overlay ─────────────────────────────────────────── */
+.ep-sold-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  border-radius: 12px;
+}
+
+.ep-sold-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ff4444;
+  letter-spacing: 3px;
+  transform: rotate(-12deg);
+  margin-bottom: 8px;
+}
+
+.ep-sold-overlay p {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* ── Card body ────────────────────────────────────────────── */
+.ep-card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ep-card-title {
+  font-size: 1.1rem;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.ep-card-desc {
+  font-size: 0.88rem;
+  color: #aaa;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.ep-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ep-price {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #c5a47e;
+}
+
+.ep-old-price {
+  font-size: 0.9rem;
+  color: #666;
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+.ep-card-btn {
+  padding: 9px 18px;
+  background: #c5a47e;
+  border: none;
+  border-radius: 6px;
+  color: #000;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+}
+
+.ep-card-btn:hover:not(:disabled) { background: #b59670; }
+.ep-card-btn:disabled { background: #555; cursor: not-allowed; }
+
+/* ── Empty state ──────────────────────────────────────────── */
+.ep-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: #888;
+}
+
+.ep-empty-icon { font-size: 3rem; margin-bottom: 16px; }
+.ep-empty h3   { color: #ccc; margin-bottom: 8px; }
+.ep-empty p    { margin-bottom: 24px; }
+
+.ep-reset-btn {
+  padding: 10px 24px;
+  background: transparent;
+  border: 2px solid #c5a47e;
+  color: #c5a47e;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.25s;
+  font-family: 'Inter', sans-serif;
+}
+
+.ep-reset-btn:hover { background: #c5a47e; color: #000; }
+
+/* ── Load more ────────────────────────────────────────────── */
+.ep-load-more {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ep-grid { grid-template-columns: 1fr; }
+  .ep-tabs { gap: 8px; }
+  .ep-tab  { padding: 9px 18px; font-size: 0.88rem; }
+  .ep-controls { flex-direction: column; align-items: stretch; }
+  .ep-filters  { flex-direction: column; }
+  .ep-filters select, .ep-sort select { width: 100%; }
+  .ep-card-footer { flex-direction: column; align-items: flex-start; }
+  .ep-card-btn { width: 100%; text-align: center; }
+}
