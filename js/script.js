@@ -1,557 +1,481 @@
 // ==============================
-// MOBILE NAV TOGGLE
+// CIVIUM ESTATE — MAIN SCRIPT
+// Data-driven via data/properties.json
 // ==============================
+
+
+// ─────────────────────────────────────────
+// 1. MOBILE NAV TOGGLE
+// ─────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".nav-toggle");
-  const backdrop = document.querySelector(".nav-backdrop");
-  const navLinks = document.querySelectorAll(".nav-links a");
+  const backdrop  = document.querySelector(".nav-backdrop");
+  const navLinks  = document.querySelectorAll(".nav-links a");
 
   if (!toggleBtn || !backdrop) return;
 
-  const openNav = () => {
-    document.body.classList.add("nav-open");
-    toggleBtn.setAttribute("aria-expanded", "true");
-  };
+  const openNav  = () => { document.body.classList.add("nav-open");    toggleBtn.setAttribute("aria-expanded", "true");  };
+  const closeNav = () => { document.body.classList.remove("nav-open"); toggleBtn.setAttribute("aria-expanded", "false"); };
 
-  const closeNav = () => {
-    document.body.classList.remove("nav-open");
-    toggleBtn.setAttribute("aria-expanded", "false");
-  };
-
-  toggleBtn.addEventListener("click", () => {
-    document.body.classList.contains("nav-open") ? closeNav() : openNav();
-  });
-
-  backdrop.addEventListener("click", closeNav);
-
-  navLinks.forEach(link => {
-    link.addEventListener("click", closeNav);
-  });
-
-  // Close on ESC key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeNav();
-  });
+  toggleBtn.addEventListener("click",    () => document.body.classList.contains("nav-open") ? closeNav() : openNav());
+  backdrop.addEventListener("click",     closeNav);
+  navLinks.forEach(link => link.addEventListener("click", closeNav));
+  document.addEventListener("keydown",   e => e.key === "Escape" && closeNav());
 });
 
 
-// ==============================
-// CIVIUM ESTATE - MAIN SCRIPT
-// ==============================
-
-
-// 1️⃣ Smooth Scroll for Anchor Links
+// ─────────────────────────────────────────
+// 2. SMOOTH SCROLL
+// ─────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
-
     const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
 
-// 2️⃣ Navbar Background Change on Scroll
-window.addEventListener("scroll", function () {
+// ─────────────────────────────────────────
+// 3. NAVBAR SCROLL EFFECT
+// ─────────────────────────────────────────
+window.addEventListener("scroll", () => {
   const header = document.querySelector(".header");
-
-  if (window.scrollY > 60) {
-    header.style.background = "rgba(0, 0, 0, 0.9)";
-  } else {
-    header.style.background = "rgba(0, 0, 0, 0.7)";
-  }
+  header.style.background = window.scrollY > 60 ? "rgba(0,0,0,0.9)" : "rgba(0,0,0,0.7)";
 });
 
 
-// 3️⃣ Initialize AOS (Animate On Scroll)
-document.addEventListener("DOMContentLoaded", function () {
+// ─────────────────────────────────────────
+// 4. AOS INIT
+// ─────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
   if (typeof AOS !== "undefined") {
-    AOS.init({
-      duration: 1000,      // Animation speed
-      easing: "ease-in-out",
-      once: true,          // Only animate once
-      offset: 100          // Trigger slightly before element enters view
-    });
+    AOS.init({ duration: 1000, easing: "ease-in-out", once: true, offset: 100 });
   }
 });
 
-// 4️⃣ Subtle Parallax Effect for Hero
-window.addEventListener("scroll", function () {
+
+// ─────────────────────────────────────────
+// 5. HERO PARALLAX
+// ─────────────────────────────────────────
+window.addEventListener("scroll", () => {
   const hero = document.querySelector(".hero-overlay");
-  let scrollPosition = window.scrollY;
-
-  if (hero) {
-    hero.style.transform = "translateY(" + scrollPosition * 0.2 + "px)";
-  }
+  if (hero) hero.style.transform = `translateY(${window.scrollY * 0.2}px)`;
 });
 
-// 5️⃣ Animated Number Counter
-const counters = document.querySelectorAll('.counter');
-const speed = 200;
 
-const startCounter = () => {
+// ─────────────────────────────────────────
+// 6. ANIMATED COUNTER
+// ─────────────────────────────────────────
+const counters = document.querySelectorAll(".counter");
+
+const startCounters = () => {
   counters.forEach(counter => {
-    const updateCount = () => {
-      const target = +counter.getAttribute('data-target');
-      const count = +counter.innerText;
-
-      const increment = target / speed;
-
-      if (count < target) {
-        counter.innerText = Math.ceil(count + increment);
-        setTimeout(updateCount, 10);
+    const target = +counter.getAttribute("data-target");
+    const step   = target / 200;
+    const tick   = () => {
+      const current = +counter.innerText;
+      if (current < target) {
+        counter.innerText = Math.ceil(current + step);
+        setTimeout(tick, 10);
       } else {
         counter.innerText = target;
       }
     };
-
-    updateCount();
+    tick();
   });
 };
 
-// Trigger when section is visible
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      startCounter();
-      observer.disconnect();
-    }
-  });
-});
-
-observer.observe(document.querySelector('.credibility'));
-
-// 6️⃣ Simple Testimonial Slider
-let currentSlide = 0;
-const testimonials = document.querySelectorAll('.testimonial');
-
-function showSlide(index) {
-  testimonials.forEach(slide => slide.classList.remove('active'));
-  testimonials[index].classList.add('active');
+const credibilitySection = document.querySelector(".credibility");
+if (credibilitySection) {
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { startCounters(); obs.disconnect(); }
+    });
+  }).observe(credibilitySection);
 }
 
-function nextSlide() {
+
+// ─────────────────────────────────────────
+// 7. TESTIMONIAL SLIDER
+// ─────────────────────────────────────────
+let currentSlide = 0;
+const testimonials = document.querySelectorAll(".testimonial");
+
+const showSlide = index => {
+  testimonials.forEach(s => s.classList.remove("active"));
+  testimonials[index].classList.add("active");
+};
+
+if (testimonials.length) setInterval(() => {
   currentSlide = (currentSlide + 1) % testimonials.length;
   showSlide(currentSlide);
-}
+}, 4000);
 
-setInterval(nextSlide, 4000);
 
-// PROPERTY FILTERING
-const budgetFilter = document.getElementById('budgetFilter');
-const locationFilter = document.getElementById('locationFilter');
-const typeFilter = document.getElementById('typeFilter');
-const properties = document.querySelectorAll('.property-card');
+// ─────────────────────────────────────────
+// 8. POPUP LOGIC (shared by all buttons)
+// ─────────────────────────────────────────
+const popup      = document.getElementById("leadPopup");
+const closePopup = document.getElementById("closePopup");
 
-function filterProperties() {
-  properties.forEach(property => {
-    const budget = property.getAttribute('data-budget');
-    const location = property.getAttribute('data-location');
-    const type = property.getAttribute('data-type');
+const openPopup  = () => { if (popup) popup.style.display = "flex"; };
+const closePopupFn = () => { if (popup) popup.style.display = "none"; };
 
-    const matchBudget = budgetFilter.value === "all" || budget === budgetFilter.value;
-    const matchLocation = locationFilter.value === "all" || location === locationFilter.value;
-    const matchType = typeFilter.value === "all" || type === typeFilter.value;
+if (closePopup) closePopup.addEventListener("click", closePopupFn);
 
-    if (matchBudget && matchLocation && matchType) {
-      property.style.display = "block";
-    } else {
-      property.style.display = "none";
+// Delegate popup opening to any .price-btn or .deal-btn (including dynamically created ones)
+document.addEventListener("click", e => {
+  if (e.target.matches(".price-btn") || (e.target.matches(".deal-btn") && !e.target.disabled)) {
+    openPopup();
+  }
+});
+
+
+// ─────────────────────────────────────────
+// 9. CONTACT FORM
+// ─────────────────────────────────────────
+const contactForm    = document.getElementById("contactForm");
+const successMessage = document.getElementById("successMessage");
+
+const validateForm = formData => {
+  let isValid = true;
+  const errors = {};
+
+  const name = formData.get("fullName")?.trim();
+  if (!name || name.length < 2) { errors.fullName = "Please enter a valid name"; isValid = false; }
+
+  const email = formData.get("email")?.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errors.email = "Please enter a valid email address"; isValid = false; }
+
+  const phone = formData.get("phone")?.trim().replace(/[\s\-\(\)]/g, "");
+  if (!/^[\+]?[0-9]{10,15}$/.test(phone)) { errors.phone = "Please enter a valid phone number"; isValid = false; }
+
+  if (!formData.get("propertyInterest")) { errors.propertyInterest = "Please select your area of interest"; isValid = false; }
+
+  const message = formData.get("message")?.trim();
+  if (!message || message.length < 10) { errors.message = "Please enter a message (at least 10 characters)"; isValid = false; }
+
+  return { isValid, errors };
+};
+
+const displayErrors = errors => {
+  document.querySelectorAll(".form-group").forEach(group => {
+    group.classList.remove("error");
+    const err = group.querySelector(".error-message");
+    if (err) err.textContent = "";
+  });
+  Object.keys(errors).forEach(field => {
+    const input = document.getElementById(field);
+    if (input) {
+      const group = input.closest(".form-group");
+      group.classList.add("error");
+      const err = group.querySelector(".error-message");
+      if (err) err.textContent = errors[field];
     }
   });
+};
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async e => {
+    e.preventDefault();
+    const formData   = new FormData(contactForm);
+    const validation = validateForm(formData);
+    if (!validation.isValid) { displayErrors(validation.errors); return; }
+    displayErrors({});
+
+    const submitBtn = contactForm.querySelector(".submit-btn");
+    const btnText   = submitBtn.querySelector(".btn-text");
+    const btnLoader = submitBtn.querySelector(".btn-loader");
+    submitBtn.disabled = true;
+    btnText.style.display   = "none";
+    btnLoader.style.display = "inline-block";
+
+    try {
+      console.log("Form submitted:", Object.fromEntries(formData));
+      await new Promise(r => setTimeout(r, 1500));
+      contactForm.style.display    = "none";
+      successMessage.style.display = "block";
+      contactForm.reset();
+      setTimeout(() => {
+        successMessage.style.display = "none";
+        contactForm.style.display    = "flex";
+        submitBtn.disabled = false;
+        btnText.style.display   = "inline-block";
+        btnLoader.style.display = "none";
+      }, 5000);
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again or contact us directly.");
+      submitBtn.disabled = false;
+      btnText.style.display   = "inline-block";
+      btnLoader.style.display = "none";
+    }
+  });
+
+  contactForm.querySelectorAll("input, select, textarea").forEach(field => {
+    field.addEventListener("blur", function () {
+      const validation = validateForm(new FormData(contactForm));
+      if (validation.errors[this.id]) {
+        const group = this.closest(".form-group");
+        group.classList.add("error");
+        group.querySelector(".error-message").textContent = validation.errors[this.id];
+      } else {
+        const group = this.closest(".form-group");
+        group.classList.remove("error");
+        group.querySelector(".error-message").textContent = "";
+      }
+    });
+  });
 }
 
-budgetFilter.addEventListener('change', filterProperties);
-locationFilter.addEventListener('change', filterProperties);
-typeFilter.addEventListener('change', filterProperties);
 
-// POPUP LOGIC
-const popup = document.getElementById("leadPopup");
-const closePopup = document.getElementById("closePopup");
-const priceButtons = document.querySelectorAll(".price-btn");
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  DATA-DRIVEN PROPERTY RENDERING (reads data/properties.json) ║
+// ╚══════════════════════════════════════════════════════════════╝
 
-priceButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    popup.style.display = "flex";
+// ─────────────────────────────────────────
+// 10. FETCH JSON & BOOT RENDERING
+// ─────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("data/properties.json")
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      renderPropertyListings(data.propertyListings);
+      renderHotDeals(data.hotDeals);
+    })
+    .catch(err => {
+      console.error("Could not load properties.json:", err);
+      // Show a friendly fallback message in each grid
+      const grids = ["propertyGrid", "residentialDeals", "commercialDeals"];
+      grids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = `<p class="loading-text" style="color:#c5a47e;">Unable to load properties. Please try again later.</p>`;
+      });
+    });
+});
+
+
+// ─────────────────────────────────────────
+// 11. RENDER — PROPERTY LISTINGS SECTION
+// ─────────────────────────────────────────
+function renderPropertyListings(listings) {
+  const grid = document.getElementById("propertyGrid");
+  if (!grid) return;
+
+  grid.innerHTML = listings.map(p => `
+    <div class="property-card"
+         data-budget="${p.budget}"
+         data-location="${p.location}"
+         data-type="${p.type}">
+      <img src="${p.image}" alt="${p.title}" loading="lazy">
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+      <button class="price-btn">Get Exact Price</button>
+    </div>
+  `).join("");
+
+  // Wire up the existing filter selects
+  const budgetFilter   = document.getElementById("budgetFilter");
+  const locationFilter = document.getElementById("locationFilter");
+  const typeFilter     = document.getElementById("typeFilter");
+
+  const filterProperties = () => {
+    document.querySelectorAll(".property-card").forEach(card => {
+      const matchBudget   = budgetFilter.value   === "all" || card.dataset.budget   === budgetFilter.value;
+      const matchLocation = locationFilter.value === "all" || card.dataset.location === locationFilter.value;
+      const matchType     = typeFilter.value     === "all" || card.dataset.type     === typeFilter.value;
+      card.style.display  = (matchBudget && matchLocation && matchType) ? "block" : "none";
+    });
+  };
+
+  [budgetFilter, locationFilter, typeFilter].forEach(sel => {
+    if (sel) sel.addEventListener("change", filterProperties);
   });
-});
+}
 
-closePopup.addEventListener("click", () => {
-  popup.style.display = "none";
-});
 
-// Code Generated by Sidekick is for learning and experimentation purposes only.
+// ─────────────────────────────────────────
+// 12. BUILD A SINGLE DEAL CARD (HTML string)
+// ─────────────────────────────────────────
+function buildDealCard(deal, index) {
+  const soldClass    = deal.soldOut ? " sold-out" : "";
+  const soldOverlay  = deal.soldOut
+    ? `<div class="sold-overlay">
+         <div class="sold-text">SOLD OUT</div>
+         <p>This property has been successfully sold</p>
+       </div>` : "";
 
-// ==============================
-// HOT DEALS TAB SWITCHING
-// ==============================
+  const featuredBadge = deal.featured
+    ? `<div class="deal-badge featured">⭐ FEATURED</div>` : "";
 
-const tabButtons = document.querySelectorAll('.tab-btn');
-const dealSliders = document.querySelectorAll('.deal-slider');
+  const btnDisabled = deal.soldOut ? " disabled" : "";
 
-tabButtons.forEach(btn => {
-  btn.addEventListener('click', function() {
-    // Remove active class from all buttons and sliders
-    tabButtons.forEach(b => b.classList.remove('active'));
-    dealSliders.forEach(slider => slider.classList.remove('active'));
+  return `
+    <div class="deal-card${soldClass}"
+         data-price="${deal.price}"
+         data-featured="${deal.featured}"
+         data-index="${index + 1}">
+      ${soldOverlay}
+      <div class="deal-badge ${deal.badgeClass}">${deal.badge}</div>
+      ${featuredBadge}
+      <img src="${deal.image}" alt="${deal.title}" loading="lazy">
+      <div class="deal-content">
+        <h3>${deal.title}</h3>
+        <p>${deal.description}</p>
+        <div class="deal-price">
+          ${deal.priceLabel}
+          <span class="old-price">${deal.oldPriceLabel}</span>
+        </div>
+        <button class="deal-btn"${btnDisabled}>${deal.buttonText}</button>
+      </div>
+    </div>`;
+}
 
-    // Add active class to clicked button
-    this.classList.add('active');
 
-    // Show corresponding slider
-    const category = this.getAttribute('data-category');
-    document.querySelector(`.${category}-deals`).classList.add('active');
+// ─────────────────────────────────────────
+// 13. RENDER — HOT DEALS (both tabs)
+// ─────────────────────────────────────────
+
+// State shared between both tabs
+let currentCategory    = "residential";
+let currentPriceFilter = "all";
+let currentSort        = "newest";
+let visibleDeals       = 6;
+
+function renderHotDeals(hotDeals) {
+  // Insert raw cards into each slider container
+  ["residential", "commercial"].forEach(cat => {
+    const container = document.getElementById(cat === "residential" ? "residentialDeals" : "commercialDeals");
+    if (!container) return;
+    container.innerHTML = hotDeals[cat].map((deal, i) => buildDealCard(deal, i)).join("");
   });
-});
 
-// ==============================
-// DEAL BUTTONS TRIGGER POPUP
-// ==============================
+  // Wire up tab buttons
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".deal-slider").forEach(s => s.classList.remove("active"));
 
-const dealButtons = document.querySelectorAll('.deal-btn');
+      this.classList.add("active");
+      currentCategory = this.getAttribute("data-category");
+      document.querySelector(`.${currentCategory}-deals`).classList.add("active");
 
-dealButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    popup.style.display = "flex";
+      visibleDeals = 6;
+      applyFiltersAndSort();
+    });
   });
-});
 
-// Code Generated by Sidekick is for learning and experimentation purposes only.
+  // Wire up price filter buttons
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      this.classList.add("active");
+      currentPriceFilter = this.getAttribute("data-price");
+      applyFiltersAndSort();
+    });
+  });
 
-// ==============================
-// ENHANCED DEALS FUNCTIONALITY
-// ==============================
+  // Wire up sort select
+  const sortSelect = document.getElementById("sortDeals");
+  if (sortSelect) {
+    sortSelect.addEventListener("change", function () {
+      currentSort = this.value;
+      applyFiltersAndSort();
+    });
+  }
 
-let currentCategory = 'residential';
-let currentPriceFilter = 'all';
-let currentSort = 'newest';
-let visibleDeals = 6; // Initially show 6 deals
+  // Wire up Load More
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", () => {
+      visibleDeals += 3;
+      applyFiltersAndSort();
+    });
+  }
 
-// Get active deal slider
+  // Run initial layout
+  applyFiltersAndSort();
+}
+
+
+// ─────────────────────────────────────────
+// 14. FILTER + SORT + SHOW/HIDE DEALS
+// ─────────────────────────────────────────
 function getActiveSlider() {
   return document.querySelector(`.${currentCategory}-deals`);
 }
 
-// Get all deal cards in active slider
-function getAllDeals() {
-  return getActiveSlider().querySelectorAll('.deal-card');
-}
-
-// 1️⃣ PRICE RANGE FILTERING
-const priceFilterButtons = document.querySelectorAll('.filter-btn');
-
-priceFilterButtons.forEach(btn => {
-  btn.addEventListener('click', function() {
-    // Update active button
-    priceFilterButtons.forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-
-    currentPriceFilter = this.getAttribute('data-price');
-    applyFiltersAndSort();
-  });
-});
-
-// 2️⃣ SORTING FUNCTIONALITY
-const sortSelect = document.getElementById('sortDeals');
-
-sortSelect.addEventListener('change', function() {
-  currentSort = this.value;
-  applyFiltersAndSort();
-});
-
-// 3️⃣ APPLY FILTERS AND SORTING
 function applyFiltersAndSort() {
-  const deals = Array.from(getAllDeals());
-  
-  // Reset visibility
-  deals.forEach(deal => {
-    deal.style.display = 'none';
-    deal.classList.remove('hidden-deal');
-  });
+  const slider = getActiveSlider();
+  if (!slider) return;
 
-  // Filter by price
-  let filteredDeals = deals.filter(deal => {
-    const price = parseFloat(deal.getAttribute('data-price'));
-    
-    if (currentPriceFilter === 'all') return true;
-    if (currentPriceFilter === '0-50') return price < 50;
-    if (currentPriceFilter === '50-100') return price >= 50 && price <= 100;
-    if (currentPriceFilter === '100-999') return price > 100;
-    
+  let deals = Array.from(slider.querySelectorAll(".deal-card"));
+
+  // 1. Filter by price
+  const filtered = deals.filter(card => {
+    const price = parseFloat(card.getAttribute("data-price"));
+    if (currentPriceFilter === "all")     return true;
+    if (currentPriceFilter === "0-50")    return price < 50;
+    if (currentPriceFilter === "50-100")  return price >= 50 && price <= 100;
+    if (currentPriceFilter === "100-999") return price > 100;
     return true;
   });
 
-  // Sort deals
-  filteredDeals.sort((a, b) => {
-    const priceA = parseFloat(a.getAttribute('data-price'));
-    const priceB = parseFloat(b.getAttribute('data-price'));
-    const featuredA = a.getAttribute('data-featured') === 'true';
-    const featuredB = b.getAttribute('data-featured') === 'true';
+  // 2. Sort
+  filtered.sort((a, b) => {
+    const pA = parseFloat(a.getAttribute("data-price"));
+    const pB = parseFloat(b.getAttribute("data-price"));
+    const fA = a.getAttribute("data-featured") === "true";
+    const fB = b.getAttribute("data-featured") === "true";
+    const iA = parseInt(a.getAttribute("data-index"));
+    const iB = parseInt(b.getAttribute("data-index"));
 
-    switch(currentSort) {
-      case 'price-low':
-        return priceA - priceB;
-      case 'price-high':
-        return priceB - priceA;
-      case 'featured':
-        if (featuredA && !featuredB) return -1;
-        if (!featuredA && featuredB) return 1;
-        return 0;
-      case 'newest':
-      default:
-        return parseInt(a.getAttribute('data-index')) - parseInt(b.getAttribute('data-index'));
+    switch (currentSort) {
+      case "price-low":  return pA - pB;
+      case "price-high": return pB - pA;
+      case "featured":   return (fA === fB) ? 0 : fA ? -1 : 1;
+      default:           return iA - iB;   // newest = original JSON order
     }
   });
 
-  // Re-append in sorted order
-  const slider = getActiveSlider();
-  filteredDeals.forEach(deal => slider.appendChild(deal));
-
-  // Show only first 'visibleDeals' number of deals
-  filteredDeals.forEach((deal, index) => {
-    if (index < visibleDeals) {
-      deal.style.display = 'block';
-    } else {
-      deal.classList.add('hidden-deal');
-    }
+  // 3. Re-append in new order and set visibility
+  filtered.forEach((card, i) => {
+    slider.appendChild(card);
+    card.style.display = i < visibleDeals ? "block" : "none";
+    card.classList.toggle("hidden-deal", i >= visibleDeals);
   });
 
-  updateLoadMoreButton(filteredDeals.length);
-  updateShowingCount(filteredDeals.length);
+  // 4. Hide cards that didn't match the filter
+  deals.filter(c => !filtered.includes(c)).forEach(c => {
+    c.style.display = "none";
+    c.classList.add("hidden-deal");
+  });
+
+  updateLoadMoreButton();
+  updateShowingCount(filtered.length);
 }
 
-// 4️⃣ LOAD MORE FUNCTIONALITY
-const loadMoreBtn = document.getElementById('loadMoreBtn');
-
-loadMoreBtn.addEventListener('click', function() {
-  const deals = Array.from(getAllDeals());
-  const hiddenDeals = deals.filter(deal => deal.classList.contains('hidden-deal'));
-  
-  // Show next 3 deals
-  hiddenDeals.slice(0, 3).forEach(deal => {
-    deal.style.display = 'block';
-    deal.classList.remove('hidden-deal');
-  });
-
-  visibleDeals += 3;
-  
-  const remainingHidden = deals.filter(deal => deal.classList.contains('hidden-deal')).length;
-  updateLoadMoreButton(deals.length);
-  updateShowingCount(deals.length);
-});
-
-// Update Load More button state
-function updateLoadMoreButton(totalDeals) {
-  const hiddenDeals = Array.from(getAllDeals()).filter(deal => deal.classList.contains('hidden-deal'));
-  
-  if (hiddenDeals.length === 0) {
-    loadMoreBtn.textContent = 'All Deals Loaded';
+function updateLoadMoreButton() {
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
+  if (!loadMoreBtn) return;
+  const hidden = Array.from(getActiveSlider().querySelectorAll(".deal-card.hidden-deal")).length;
+  if (hidden === 0) {
+    loadMoreBtn.textContent = "All Deals Loaded";
     loadMoreBtn.disabled = true;
   } else {
-    loadMoreBtn.textContent = `Load More Deals (${hiddenDeals.length} remaining)`;
+    loadMoreBtn.textContent = `Load More Deals (${hidden} remaining)`;
     loadMoreBtn.disabled = false;
   }
 }
 
-// Update showing count
-function updateShowingCount(totalDeals) {
-  const visibleCount = Array.from(getAllDeals()).filter(deal => deal.style.display === 'block').length;
-  const countElement = document.querySelector('.showing-count');
-  countElement.textContent = `Showing ${visibleCount} of ${totalDeals} deals`;
+function updateShowingCount(totalFiltered) {
+  const countEl = document.querySelector(".showing-count");
+  if (!countEl) return;
+  const visible = Array.from(getActiveSlider().querySelectorAll(".deal-card"))
+                       .filter(c => c.style.display === "block").length;
+  countEl.textContent = `Showing ${visible} of ${totalFiltered} deals`;
 }
-
-// 5️⃣ CATEGORY TAB SWITCHING (Enhanced)
-const enhancedTabButtons = document.querySelectorAll('.tab-btn');
-
-enhancedTabButtons.forEach(btn => {
-  btn.addEventListener('click', function() {
-    // Remove active class from all buttons and sliders
-    enhancedTabButtons.forEach(b => b.classList.remove('active'));
-    dealSliders.forEach(slider => slider.classList.remove('active'));
-
-    // Add active class to clicked button
-    this.classList.add('active');
-
-    // Update current category
-    currentCategory = this.getAttribute('data-category');
-
-    // Show corresponding slider
-    document.querySelector(`.${currentCategory}-deals`).classList.add('active');
-
-    // Reset filters and visibility
-    visibleDeals = 6;
-    applyFiltersAndSort();
-  });
-});
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  applyFiltersAndSort();
-});
-
-// Code Generated by Sidekick is for learning and experimentation purposes only.
-
-// ==============================
-// CONTACT FORM HANDLING
-// ==============================
-
-const contactForm = document.getElementById('contactForm');
-const successMessage = document.getElementById('successMessage');
-
-// Form validation
-function validateForm(formData) {
-  let isValid = true;
-  const errors = {};
-
-  // Name validation
-  const fullName = formData.get('fullName').trim();
-  if (fullName.length < 2) {
-    errors.fullName = 'Please enter a valid name';
-    isValid = false;
-  }
-
-  // Email validation
-  const email = formData.get('email').trim();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    errors.email = 'Please enter a valid email address';
-    isValid = false;
-  }
-
-  // Phone validation (Indian format)
-  const phone = formData.get('phone').trim();
-  const phoneRegex = /^[\+]?[0-9]{10,15}$/;
-  if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
-    errors.phone = 'Please enter a valid phone number';
-    isValid = false;
-  }
-
-  // Property interest validation
-  const propertyInterest = formData.get('propertyInterest');
-  if (!propertyInterest) {
-    errors.propertyInterest = 'Please select your area of interest';
-    isValid = false;
-  }
-
-  // Message validation
-  const message = formData.get('message').trim();
-  if (message.length < 10) {
-    errors.message = 'Please enter a message (at least 10 characters)';
-    isValid = false;
-  }
-
-  return { isValid, errors };
-}
-
-// Display errors
-function displayErrors(errors) {
-  // Clear previous errors
-  document.querySelectorAll('.form-group').forEach(group => {
-    group.classList.remove('error');
-    group.querySelector('.error-message').textContent = '';
-  });
-
-  // Display new errors
-  Object.keys(errors).forEach(fieldName => {
-    const input = document.getElementById(fieldName);
-    if (input) {
-      const formGroup = input.closest('.form-group');
-      formGroup.classList.add('error');
-      formGroup.querySelector('.error-message').textContent = errors[fieldName];
-    }
-  });
-}
-
-// Handle form submission
-contactForm.addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(contactForm);
-  const validation = validateForm(formData);
-
-  if (!validation.isValid) {
-    displayErrors(validation.errors);
-    return;
-  }
-
-  // Clear errors if validation passed
-  displayErrors({});
-
-  // Show loading state
-  const submitBtn = contactForm.querySelector('.submit-btn');
-  const btnText = submitBtn.querySelector('.btn-text');
-  const btnLoader = submitBtn.querySelector('.btn-loader');
-  
-  submitBtn.disabled = true;
-  btnText.style.display = 'none';
-  btnLoader.style.display = 'inline-block';
-
-  // Simulate API call (replace with actual backend integration)
-  try {
-    // Option 1: Log to console (for testing)
-    console.log('Form Data Submitted:', Object.fromEntries(formData));
-
-    // Option 2: Send to your backend API
-    // const response = await fetch('YOUR_API_ENDPOINT', {
-    //   method: 'POST',
-    //   body: formData
-    // });
-
-    // Option 3: Use a service like Formspree or EmailJS
-    // const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    //   method: 'POST',
-    //   body: formData,
-    //   headers: { 'Accept': 'application/json' }
-    // });
-
-    // Simulate delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // Show success message
-    contactForm.style.display = 'none';
-    successMessage.style.display = 'block';
-
-    // Reset form
-    contactForm.reset();
-
-    // Optional: Hide success message and show form again after 5 seconds
-    setTimeout(() => {
-      successMessage.style.display = 'none';
-      contactForm.style.display = 'flex';
-      submitBtn.disabled = false;
-      btnText.style.display = 'inline-block';
-      btnLoader.style.display = 'none';
-    }, 5000);
-
-  } catch (error) {
-    console.error('Form submission error:', error);
-    alert('Something went wrong. Please try again or contact us directly.');
-    
-    submitBtn.disabled = false;
-    btnText.style.display = 'inline-block';
-    btnLoader.style.display = 'none';
-  }
-});
-
-// Real-time validation on blur
-contactForm.querySelectorAll('input, select, textarea').forEach(field => {
-  field.addEventListener('blur', function() {
-    const formData = new FormData(contactForm);
-    const validation = validateForm(formData);
-    
-    if (validation.errors[this.id]) {
-      const formGroup = this.closest('.form-group');
-      formGroup.classList.add('error');
-      formGroup.querySelector('.error-message').textContent = validation.errors[this.id];
-    } else {
-      const formGroup = this.closest('.form-group');
-      formGroup.classList.remove('error');
-      formGroup.querySelector('.error-message').textContent = '';
-    }
-  });
-});
