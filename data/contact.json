@@ -1,0 +1,22 @@
+{
+  "contact": {
+    "email": "info@civiumestate.com",
+    "phone": "+91 98300 12345",
+    "phoneRaw": "+919830012345",
+    "address": {
+      "line1": "Salt Lake Sector V",
+      "line2": "Kolkata - 700091",
+      "line3": "West Bengal, India"
+    },
+    "hours": {
+      "weekdays": "Monday - Saturday: 9:00 AM - 7:00 PM",
+      "weekend": "Sunday: 10:00 AM - 4:00 PM"
+    },
+    "social": {
+      "facebook":  "#",
+      "instagram": "#",
+      "linkedin":  "#",
+      "whatsapp":  "#"
+    }
+  }
+}
