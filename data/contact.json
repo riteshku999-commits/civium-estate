@@ -1,15 +1,15 @@
 {
   "contact": {
-    "email": "info@civiumestate.com",
-    "phone": "+91 98300 12345",
-    "phoneRaw": "+919830012345",
+    "email": "sales@civiumestate.com",
+    "phone": "+91 6290781373",
+    "phoneRaw": "+916290781373",
     "address": {
-      "line1": "Salt Lake Sector V",
+      "line1": "Unit-1703, Sidco Global Tower, CN-8/2, Salt Lake Sector V",
       "line2": "Kolkata - 700091",
       "line3": "West Bengal, India"
     },
     "hours": {
-      "weekdays": "Monday - Saturday: 9:00 AM - 7:00 PM",
+      "weekdays": "Monday - Saturday: 10:00 AM - 7:00 PM",
       "weekend": "Sunday: 10:00 AM - 4:00 PM"
     },
     "social": {
