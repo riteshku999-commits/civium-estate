@@ -29,7 +29,35 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "facing": "East",
+        "vastu": true,
+        "floor": 8,
+        "totalFloors": 14,
+        "parking": "2 Covered",
+        "furnished": "Semi-furnished",
+        "ageOfProperty": "2 years",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "Salt Lake Sector V",
+          "distanceKm": 0.4
+        },
+        "nearestRailway": {
+          "name": "Ultadanga",
+          "distanceKm": 3.2
+        },
+        "nearestHospital": {
+          "name": "Charnock Hospital",
+          "distanceKm": 2.1
+        },
+        "nearestSchool": {
+          "name": "DPS Ruby Park",
+          "distanceKm": 1.8
+        },
+        "mapLink": "Salt Lake Sector V, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-002",
@@ -60,7 +88,30 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "facing": "North-East",
+        "vastu": true,
+        "floor": 4,
+        "totalFloors": 10,
+        "parking": "1 Covered",
+        "furnished": "Unfurnished",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "New Town",
+          "distanceKm": 0.6
+        },
+        "nearestHospital": {
+          "name": "AMRI Hospital",
+          "distanceKm": 2.8
+        },
+        "nearestSchool": {
+          "name": "Orchids International",
+          "distanceKm": 1.2
+        },
+        "mapLink": "Action Area II, New Town, Kolkata"
+      }
     },
     {
       "id": "p-003",
@@ -91,7 +142,25 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "facing": "South",
+        "vastu": false,
+        "parking": "3 Covered + Open",
+        "furnished": "Unfurnished",
+        "ageOfProperty": "New",
+        "possession": "Ready",
+        "nearestRailway": {
+          "name": "Rajarhat Gopalpur",
+          "distanceKm": 1.5
+        },
+        "nearestHospital": {
+          "name": "Apollo Gleneagles",
+          "distanceKm": 5.2
+        },
+        "mapLink": "Rajarhat Main Road, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-004",
@@ -122,7 +191,27 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "facing": "West",
+        "vastu": false,
+        "floor": 3,
+        "totalFloors": 8,
+        "parking": "1 Open",
+        "furnished": "Semi-furnished",
+        "ageOfProperty": "5 years",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "Ruby",
+          "distanceKm": 1.1
+        },
+        "nearestHospital": {
+          "name": "Medica Superspecialty",
+          "distanceKm": 1.4
+        },
+        "mapLink": "Kasba, EM Bypass, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-005",
@@ -153,7 +242,35 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "facing": "East",
+        "vastu": true,
+        "floor": 12,
+        "totalFloors": 12,
+        "parking": "3 Covered",
+        "furnished": "Fully Furnished",
+        "ageOfProperty": "3 years",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "Rabindra Sarobar",
+          "distanceKm": 0.9
+        },
+        "nearestRailway": {
+          "name": "Ballygunge Junction",
+          "distanceKm": 0.7
+        },
+        "nearestHospital": {
+          "name": "AMRI Dhakuria",
+          "distanceKm": 1.2
+        },
+        "nearestSchool": {
+          "name": "South Point School",
+          "distanceKm": 0.5
+        },
+        "mapLink": "Ballygunge Place, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-006",
@@ -184,7 +301,30 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "facing": "North",
+        "vastu": true,
+        "floor": 6,
+        "totalFloors": 12,
+        "parking": "1 Covered",
+        "furnished": "Unfurnished",
+        "possession": "Dec 2025",
+        "nearestMetro": {
+          "name": "New Town",
+          "distanceKm": 0.8
+        },
+        "nearestHospital": {
+          "name": "Fortis Anandapur",
+          "distanceKm": 3.5
+        },
+        "nearestSchool": {
+          "name": "The Newtown School",
+          "distanceKm": 0.4
+        },
+        "mapLink": "Action Area III, New Town, Kolkata"
+      }
     },
     {
       "id": "p-007",
@@ -211,7 +351,31 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "facing": "South-East",
+        "vastu": true,
+        "floor": 2,
+        "totalFloors": 4,
+        "parking": "2 Covered",
+        "furnished": "Semi-furnished",
+        "ageOfProperty": "45 years (Heritage)",
+        "possession": "Ready",
+        "nearestRailway": {
+          "name": "Ballygunge",
+          "distanceKm": 1.8
+        },
+        "nearestHospital": {
+          "name": "SSKM Hospital",
+          "distanceKm": 2.3
+        },
+        "nearestSchool": {
+          "name": "La Martiniere",
+          "distanceKm": 1.1
+        },
+        "mapLink": "Alipore Road, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-008",
@@ -242,7 +406,31 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "facing": "East",
+        "vastu": true,
+        "floor": 1,
+        "totalFloors": 5,
+        "parking": "None",
+        "furnished": "Unfurnished",
+        "ageOfProperty": "8 years",
+        "possession": "Ready",
+        "nearestRailway": {
+          "name": "Behala Chowrasta Tram",
+          "distanceKm": 0.2
+        },
+        "nearestHospital": {
+          "name": "AMRI Mukundapur",
+          "distanceKm": 4.1
+        },
+        "nearestSchool": {
+          "name": "Behala High School",
+          "distanceKm": 0.3
+        },
+        "mapLink": "Behala Chowrasta, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-009",
@@ -273,7 +461,31 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "facing": "North-East",
+        "vastu": true,
+        "floor": 5,
+        "totalFloors": 10,
+        "parking": "2 Covered",
+        "furnished": "Semi-furnished",
+        "ageOfProperty": "4 years",
+        "possession": "Ready",
+        "nearestRailway": {
+          "name": "New Alipore",
+          "distanceKm": 0.6
+        },
+        "nearestHospital": {
+          "name": "Woodlands Hospital",
+          "distanceKm": 2.7
+        },
+        "nearestSchool": {
+          "name": "Lakshmipat Singhania Academy",
+          "distanceKm": 1.3
+        },
+        "mapLink": "New Alipore Block H, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-013",
@@ -304,7 +516,24 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "furnished": "Shell & Core",
+        "ageOfProperty": "3 years",
+        "parking": "20 Public spots nearby",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "Park Street",
+          "distanceKm": 0.3
+        },
+        "nearestRailway": {
+          "name": "Park Street (tram)",
+          "distanceKm": 0.2
+        },
+        "powerBackup": "100% Generator",
+        "mapLink": "Park Street, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-014",
@@ -335,7 +564,20 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "furnished": "Fully Furnished",
+        "ageOfProperty": "6 years",
+        "parking": "Basement (40 cars)",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "Salt Lake Sector V",
+          "distanceKm": 0.2
+        },
+        "powerBackup": "100% UPS + Generator",
+        "mapLink": "Eco Space, Sector V, Salt Lake, Kolkata"
+      }
     },
     {
       "id": "p-015",
@@ -362,7 +604,20 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "furnished": "Bare Shell",
+        "ageOfProperty": "New",
+        "parking": "Truck bay + 15 cars",
+        "possession": "Ready",
+        "nearestRailway": {
+          "name": "Dankuni",
+          "distanceKm": 2.1
+        },
+        "powerBackup": "3-phase supply",
+        "mapLink": "NH2 Dankuni, West Bengal"
+      }
     },
     {
       "id": "p-016",
@@ -393,7 +648,20 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "furnished": "Fully Managed",
+        "ageOfProperty": "2 years",
+        "parking": "Shared basement",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "New Town",
+          "distanceKm": 0.5
+        },
+        "powerBackup": "100% Backup",
+        "mapLink": "Uniworld City, New Town, Kolkata"
+      }
     },
     {
       "id": "p-017",
@@ -424,7 +692,24 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "furnished": "Shell & Core",
+        "ageOfProperty": "5 years",
+        "parking": "Street + paid parking nearby",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "Park Street",
+          "distanceKm": 0.7
+        },
+        "nearestRailway": {
+          "name": "Ballygunge",
+          "distanceKm": 1.5
+        },
+        "powerBackup": "Generator",
+        "mapLink": "Camac Street, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-018",
@@ -455,7 +740,20 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "furnished": "Bare Shell",
+        "ageOfProperty": "New",
+        "parking": "200 car basement",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "New Town",
+          "distanceKm": 1.2
+        },
+        "powerBackup": "100% DG Backup",
+        "mapLink": "Rajarhat IT Hub, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-019",
@@ -482,7 +780,24 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "furnished": "Shell & Core",
+        "ageOfProperty": "12 years",
+        "parking": "Street parking",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "Maidan",
+          "distanceKm": 1.4
+        },
+        "nearestRailway": {
+          "name": "Ballygunge",
+          "distanceKm": 2.1
+        },
+        "powerBackup": "Generator",
+        "mapLink": "Elgin Road, Kolkata, West Bengal"
+      }
     },
     {
       "id": "p-020",
@@ -513,7 +828,20 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "furnished": "Bare Shell",
+        "ageOfProperty": "New",
+        "parking": "20 trucks + 50 cars",
+        "possession": "Ready",
+        "nearestRailway": {
+          "name": "Barasat",
+          "distanceKm": 1.8
+        },
+        "powerBackup": "3-phase + DG",
+        "mapLink": "Barasat Highway, West Bengal"
+      }
     },
     {
       "id": "p-021",
@@ -544,7 +872,24 @@
           "type": "image",
           "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
         }
-      ]
+      ],
+      "active": true,
+      "attributes": {
+        "furnished": "Shell & Core",
+        "ageOfProperty": "4 years",
+        "parking": "5 covered",
+        "possession": "Ready",
+        "nearestMetro": {
+          "name": "Salt Lake Sector V",
+          "distanceKm": 0.6
+        },
+        "nearestHospital": {
+          "name": "Charnock Hospital",
+          "distanceKm": 1.8
+        },
+        "powerBackup": "Generator",
+        "mapLink": "BD Block, Salt Lake, Kolkata, West Bengal"
+      }
     }
   ]
 }
