@@ -7,13 +7,27 @@
 // 1. MOBILE NAV TOGGLE
 // ─────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.querySelector(".nav-toggle");
-  const backdrop  = document.querySelector(".nav-backdrop");
-  const navLinks  = document.querySelectorAll(".nav-links a");
+  const toggleBtn  = document.querySelector(".nav-toggle");
+  const closeBtn   = document.querySelector(".nav-close");
+  const backdrop   = document.querySelector(".nav-backdrop");
+  const navLinks   = document.querySelectorAll(".nav-links a");
   if (!toggleBtn || !backdrop) return;
-  const openNav  = () => { document.body.classList.add("nav-open");    toggleBtn.setAttribute("aria-expanded", "true");  };
-  const closeNav = () => { document.body.classList.remove("nav-open"); toggleBtn.setAttribute("aria-expanded", "false"); };
-  toggleBtn.addEventListener("click",  () => document.body.classList.contains("nav-open") ? closeNav() : openNav());
+
+  const openNav = () => {
+    document.body.classList.add("nav-open");
+    toggleBtn.setAttribute("aria-expanded", "true");
+    toggleBtn.setAttribute("aria-hidden", "true");
+    closeBtn?.removeAttribute("aria-hidden");
+  };
+  const closeNav = () => {
+    document.body.classList.remove("nav-open");
+    toggleBtn.setAttribute("aria-expanded", "false");
+    toggleBtn.removeAttribute("aria-hidden");
+    closeBtn?.setAttribute("aria-hidden", "true");
+  };
+
+  toggleBtn.addEventListener("click",  openNav);
+  closeBtn?.addEventListener("click",  closeNav);
   backdrop.addEventListener("click",   closeNav);
   navLinks.forEach(l => l.addEventListener("click", closeNav));
   document.addEventListener("keydown", e => e.key === "Escape" && closeNav());
@@ -450,8 +464,10 @@ function openDrawer(property) {
   const drawerEl    = document.getElementById("epDrawer");
   const drawerInner = document.getElementById("epDrawerInner");
   const drawerClose = document.getElementById("epDrawerClose");
+  const topbarTitle = document.querySelector(".ep-drawer-topbar-title");
   if (!drawerEl || !drawerInner) { console.error("Drawer elements not found in DOM"); return; }
 
+  if (topbarTitle) topbarTitle.textContent = property.title;
   drawerInner.innerHTML = buildDrawerHTML(property);
   attachHoverSlideshow(drawerEl);
   drawerEl.classList.add("ep-drawer--open");
@@ -731,3 +747,16 @@ function renderContactInfo(c) {
       </div>
     </div>`;
 }
+
+// ── Partners tab switching ────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".ptab").forEach(btn => {
+    btn.addEventListener("click", function() {
+      document.querySelectorAll(".ptab").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".partners-track").forEach(t => t.classList.remove("active"));
+      this.classList.add("active");
+      const target = document.getElementById("ptab-" + this.dataset.ptab);
+      if (target) target.classList.add("active");
+    });
+  });
+});
