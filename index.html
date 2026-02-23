@@ -106,55 +106,13 @@
         <button class="ep-tab ep-tab--hot" data-tab="hotdeals">🔥 Hot Deals</button>
       </div>
 
-      <!-- Filters + sort bar -->
+      <!-- Filters + sort bar — options injected dynamically by script.js -->
       <div class="ep-controls" data-aos="fade-up">
         <div class="ep-filters">
-
-          <select id="epBudget">
-            <option value="all">All Budgets</option>
-            <option value="30-50">₹30L – ₹50L</option>
-            <option value="50-80">₹50L – ₹80L</option>
-            <option value="1cr">₹1 Cr+</option>
-          </select>
-
-          <select id="epLocation">
-            <option value="all">All Locations</option>
-            <optgroup label="Residential">
-              <option value="newtown">New Town</option>
-              <option value="rajarhat">Rajarhat</option>
-              <option value="embypass">EM Bypass</option>
-              <option value="saltlake">Salt Lake</option>
-              <option value="ballygunge">Ballygunge</option>
-              <option value="alipore">Alipore / New Alipore</option>
-              <option value="behala">Behala</option>
-            </optgroup>
-            <optgroup label="Commercial">
-              <option value="parkstreet">Park Street</option>
-              <option value="camacstreet">Camac Street</option>
-              <option value="elginroad">Elgin Road</option>
-              <option value="dankuni">Dankuni</option>
-              <option value="barasat">Barasat</option>
-            </optgroup>
-          </select>
-
-          <select id="epType">
-            <option value="all">All Types</option>
-            <optgroup label="Residential">
-              <option value="2bhk">2 BHK</option>
-              <option value="3bhk">3 BHK</option>
-              <option value="4bhk">4 BHK</option>
-              <option value="5bhk">5 BHK</option>
-              <option value="villa">Villa</option>
-            </optgroup>
-            <optgroup label="Commercial">
-              <option value="office">Office / Co-working</option>
-              <option value="retail">Retail / Showroom</option>
-              <option value="warehouse">Warehouse / Storage</option>
-            </optgroup>
-          </select>
-
+          <select id="epBudget"><option value="all">All Budgets</option></select>
+          <select id="epLocation"><option value="all">All Locations</option></select>
+          <select id="epType"><option value="all">All Types</option></select>
         </div>
-
         <div class="ep-sort">
           <select id="epSort">
             <option value="default">Sort: Default</option>
