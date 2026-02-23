@@ -13,12 +13,17 @@
   <!-- Header -->
   <header class="header">
     <div class="container nav-container">
-      <h1 class="logo">Civium Estate</h1>
+      <a href="#home" class="logo" aria-label="Civium Estate home">
+        <img src="images/logo.png" alt="Civium Estate" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="logo-text" style="display:none">Civium Estate</span>
+      </a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
+      <!-- Close button shown when nav is open -->
+      <button class="nav-close" aria-label="Close menu" aria-hidden="true">&#x2715;</button>
       <nav class="nav" id="primaryNav">
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
@@ -223,26 +228,207 @@
   </section>
 
   <!-- Partners -->
-  <section class="partners">
-    <div class="container">
-      <h2 data-aos="fade-up">Financing Partners We Connect You With</h2>
-      <p class="partner-subtitle" data-aos="fade-up">Get competitive home loans through our banking partnerships</p>
-      <div class="partner-logos" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/HDFC_Bank_Logo.svg" alt="HDFC Bank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/ICICI_Bank_Logo.svg" alt="ICICI Bank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/SBI-logo.svg" alt="SBI">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Axis_Bank_logo.svg" alt="Axis Bank">
+  <section class="partners-revamp">
+    <div class="partners-header" data-aos="fade-up">
+      <div class="partners-eyebrow">Our Trusted Network</div>
+      <h2>Financing &amp; Builder Partners</h2>
+      <p>We connect you with India's leading banks and top developers for seamless transactions</p>
+    </div>
+
+    <div class="partners-tabs" data-aos="fade-up">
+      <button class="ptab active" data-ptab="banks">🏦 Banking Partners</button>
+      <button class="ptab" data-ptab="builders">🏗️ Builder Partners</button>
+    </div>
+
+    <div class="partners-track-wrap">
+      <!-- Banks track -->
+      <div class="partners-track active" id="ptab-banks">
+        <div class="partners-scroll">
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏦</div>
+            <div class="partner-chip-name">HDFC Bank</div>
+            <div class="partner-chip-tag">Home Loans from 8.4%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">💳</div>
+            <div class="partner-chip-name">ICICI Bank</div>
+            <div class="partner-chip-tag">Home Loans from 8.5%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏛️</div>
+            <div class="partner-chip-name">State Bank of India</div>
+            <div class="partner-chip-tag">Home Loans from 8.15%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">⚡</div>
+            <div class="partner-chip-name">Axis Bank</div>
+            <div class="partner-chip-tag">Home Loans from 8.6%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🔵</div>
+            <div class="partner-chip-name">Kotak Mahindra</div>
+            <div class="partner-chip-tag">Home Loans from 8.65%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🟠</div>
+            <div class="partner-chip-name">PNB Housing</div>
+            <div class="partner-chip-tag">Home Loans from 8.5%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🟢</div>
+            <div class="partner-chip-name">LIC Housing Finance</div>
+            <div class="partner-chip-tag">Home Loans from 8.35%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏦</div>
+            <div class="partner-chip-name">Bank of Baroda</div>
+            <div class="partner-chip-tag">Home Loans from 8.4%</div>
+          </div>
+          <!-- Duplicates for seamless infinite scroll -->
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏦</div>
+            <div class="partner-chip-name">HDFC Bank</div>
+            <div class="partner-chip-tag">Home Loans from 8.4%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">💳</div>
+            <div class="partner-chip-name">ICICI Bank</div>
+            <div class="partner-chip-tag">Home Loans from 8.5%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏛️</div>
+            <div class="partner-chip-name">State Bank of India</div>
+            <div class="partner-chip-tag">Home Loans from 8.15%</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">⚡</div>
+            <div class="partner-chip-name">Axis Bank</div>
+            <div class="partner-chip-tag">Home Loans from 8.6%</div>
+          </div>
+        </div>
       </div>
+
+      <!-- Builders track -->
+      <div class="partners-track" id="ptab-builders">
+        <div class="partners-scroll partners-scroll--reverse">
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏢</div>
+            <div class="partner-chip-name">Godrej Properties</div>
+            <div class="partner-chip-tag">Premium Residences</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🌆</div>
+            <div class="partner-chip-name">PS Group</div>
+            <div class="partner-chip-tag">Kolkata's Finest</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏗️</div>
+            <div class="partner-chip-name">Merlin Group</div>
+            <div class="partner-chip-tag">Landmark Projects</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏙️</div>
+            <div class="partner-chip-name">Ambuja Realty</div>
+            <div class="partner-chip-tag">Integrated Townships</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🌇</div>
+            <div class="partner-chip-name">Unitech Group</div>
+            <div class="partner-chip-tag">Commercial &amp; Residential</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏛️</div>
+            <div class="partner-chip-name">Hiland Group</div>
+            <div class="partner-chip-tag">New Town Specialists</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">⭐</div>
+            <div class="partner-chip-name">Bengal Shelter</div>
+            <div class="partner-chip-tag">Affordable Luxury</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏢</div>
+            <div class="partner-chip-name">Godrej Properties</div>
+            <div class="partner-chip-tag">Premium Residences</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🌆</div>
+            <div class="partner-chip-name">PS Group</div>
+            <div class="partner-chip-tag">Kolkata's Finest</div>
+          </div>
+          <div class="partner-chip">
+            <div class="partner-chip-logo">🏗️</div>
+            <div class="partner-chip-name">Merlin Group</div>
+            <div class="partner-chip-tag">Landmark Projects</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="partners-cta" data-aos="fade-up">
+      <p>Need help comparing loan options?</p>
+      <a href="#contact" class="partners-cta-btn">Get Free Loan Consultation →</a>
     </div>
   </section>
 
   <!-- RERA -->
-  <section class="rera">
+  <section class="rera-revamp">
     <div class="container">
-      <div class="rera-box" data-aos="zoom-in">
-        <h3>RERA Compliant Broker</h3>
-        <p>All our listed properties comply with Real Estate Regulatory Authority standards for your protection.</p>
-        <span class="rera-number">Broker RERA Reg. No: WBRERA/A/KOL/2024/000123</span>
+      <div class="rera-inner" data-aos="fade-up">
+
+        <div class="rera-badge-col">
+          <div class="rera-shield">
+            <div class="rera-shield-inner">
+              <div class="rera-shield-icon">🛡️</div>
+              <div class="rera-shield-text">RERA</div>
+              <div class="rera-shield-sub">VERIFIED</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rera-content-col">
+          <div class="rera-eyebrow">Government Registered &amp; Regulated</div>
+          <h2 class="rera-title">Your Transaction is <span class="rera-highlight">Protected by Law</span></h2>
+          <p class="rera-desc">
+            Civium Estate is a fully RERA-registered brokerage under the West Bengal Real Estate Regulatory Authority.
+            Every property we list, every deal we close — is backed by legal compliance, transparent pricing
+            and your right to accurate information.
+          </p>
+
+          <div class="rera-reg-card">
+            <div class="rera-reg-label">Broker Registration Number</div>
+            <div class="rera-reg-number">WBRERA / A / KOL / 2024 / 000123</div>
+            <a class="rera-verify-link"
+               href="https://wbrera.in" target="_blank" rel="noopener">
+              Verify on WBRERA Portal ↗
+            </a>
+          </div>
+
+          <div class="rera-pillars">
+            <div class="rera-pillar">
+              <div class="rera-pillar-icon">📋</div>
+              <div>
+                <strong>Full Disclosure</strong>
+                <p>All project details, approvals and timelines disclosed upfront</p>
+              </div>
+            </div>
+            <div class="rera-pillar">
+              <div class="rera-pillar-icon">💰</div>
+              <div>
+                <strong>No Hidden Charges</strong>
+                <p>Transparent brokerage — what we quote is what you pay</p>
+              </div>
+            </div>
+            <div class="rera-pillar">
+              <div class="rera-pillar-icon">⚖️</div>
+              <div>
+                <strong>Grievance Redressal</strong>
+                <p>Legal recourse available through RERA tribunal if needed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -329,7 +515,13 @@
   <!-- Property Detail Drawer -->
   <div class="ep-drawer-backdrop" id="epDrawerBackdrop" aria-hidden="true"></div>
   <aside class="ep-drawer" id="epDrawer" role="dialog" aria-modal="true" aria-label="Property Details">
-    <button class="ep-drawer-close" id="epDrawerClose" aria-label="Close">&#x2715;</button>
+    <div class="ep-drawer-topbar">
+      <span class="ep-drawer-topbar-title">Property Details</span>
+      <button class="ep-drawer-close" id="epDrawerClose" aria-label="Close details panel">
+        <span class="ep-drawer-close-icon">&#x2715;</span>
+        <span class="ep-drawer-close-label">Close</span>
+      </button>
+    </div>
     <div class="ep-drawer-inner" id="epDrawerInner"></div>
   </aside>
 
