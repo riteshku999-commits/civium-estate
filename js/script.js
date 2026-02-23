@@ -445,30 +445,36 @@ function buildDrawerHTML(p) {
 }
 
 // Open / close drawer
-const drawerEl    = document.getElementById("epDrawer");
-const drawerInner = document.getElementById("epDrawerInner");
-const drawerClose = document.getElementById("epDrawerClose");
-const drawerBack  = document.getElementById("epDrawerBackdrop");
-
+// Elements looked up at call-time (not at script load) to avoid null refs
 function openDrawer(property) {
+  const drawerEl    = document.getElementById("epDrawer");
+  const drawerInner = document.getElementById("epDrawerInner");
+  const drawerClose = document.getElementById("epDrawerClose");
+  if (!drawerEl || !drawerInner) { console.error("Drawer elements not found in DOM"); return; }
+
   drawerInner.innerHTML = buildDrawerHTML(property);
-  // Attach slideshow to the drawer's media stack
   attachHoverSlideshow(drawerEl);
   drawerEl.classList.add("ep-drawer--open");
   document.body.classList.add("ep-drawer-active");
-  // Focus close button for accessibility
   setTimeout(() => drawerClose?.focus(), 50);
 }
 
 function closeDrawer() {
+  const drawerEl    = document.getElementById("epDrawer");
+  const drawerInner = document.getElementById("epDrawerInner");
+  if (!drawerEl) return;
   drawerEl.classList.remove("ep-drawer--open");
   document.body.classList.remove("ep-drawer-active");
-  drawerInner.innerHTML = "";
+  if (drawerInner) drawerInner.innerHTML = "";
 }
 
-if (drawerClose) drawerClose.addEventListener("click", closeDrawer);
-if (drawerBack)  drawerBack.addEventListener("click",  closeDrawer);
+// Wire close button and backdrop — safe to do at DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("epDrawerClose")?.addEventListener("click", closeDrawer);
+  document.getElementById("epDrawerBackdrop")?.addEventListener("click", closeDrawer);
+});
 document.addEventListener("keydown", e => {
+  const drawerEl = document.getElementById("epDrawer");
   if (e.key === "Escape" && drawerEl?.classList.contains("ep-drawer--open")) closeDrawer();
 });
 
