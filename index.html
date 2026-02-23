@@ -4,25 +4,21 @@
   <meta charset="UTF-8">
   <title>Civium Estate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
-
 <body>
 
   <!-- Header -->
   <header class="header">
     <div class="container nav-container">
       <h1 class="logo">Civium Estate</h1>
-
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
-
       <nav class="nav" id="primaryNav">
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
@@ -32,7 +28,6 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-
       <div class="nav-backdrop" aria-hidden="true"></div>
     </div>
   </header>
@@ -48,7 +43,7 @@
     </div>
   </section>
 
-  <!-- Services Section -->
+  <!-- Services -->
   <section class="services" id="services">
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">How We Help You</h2>
@@ -87,9 +82,7 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       EXPLORE PROPERTIES — unified section (injected by script.js)
-  ============================================================ -->
+  <!-- Properties & Deals — unified section -->
   <section class="explore-properties" id="properties">
     <div class="container">
 
@@ -98,7 +91,7 @@
         <p class="section-subtitle">Discover residential &amp; commercial properties — including this month's exclusive hot deals</p>
       </div>
 
-      <!-- Primary category tabs -->
+      <!-- Tabs -->
       <div class="ep-tabs" data-aos="fade-up">
         <button class="ep-tab active" data-tab="all">All Properties</button>
         <button class="ep-tab" data-tab="residential">Residential</button>
@@ -106,7 +99,7 @@
         <button class="ep-tab ep-tab--hot" data-tab="hotdeals">🔥 Hot Deals</button>
       </div>
 
-      <!-- Filters + sort bar — options injected dynamically by script.js -->
+      <!-- Filters + sort — options injected dynamically by script.js -->
       <div class="ep-controls" data-aos="fade-up">
         <div class="ep-filters">
           <select id="epBudget"><option value="all">All Budgets</option></select>
@@ -116,8 +109,8 @@
         <div class="ep-sort">
           <select id="epSort">
             <option value="default">Sort: Default</option>
-            <option value="price-low">Price: Low → High</option>
-            <option value="price-high">Price: High → Low</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
             <option value="featured">Featured First</option>
           </select>
         </div>
@@ -259,8 +252,8 @@
     <div class="container">
       <h2 class="section-title">Get In Touch</h2>
       <p class="contact-intro">Have a question or looking for your perfect property? We're here to help!</p>
-
       <div class="contact-wrapper">
+
         <div class="contact-form-container" data-aos="fade-right">
           <h3>Send Us a Message</h3>
           <form id="contactForm" class="contact-form">
@@ -313,28 +306,32 @@
             </div>
             <button type="submit" class="submit-btn">
               <span class="btn-text">Send Message</span>
-              <span class="btn-loader" style="display: none;">Sending...</span>
+              <span class="btn-loader" style="display:none;">Sending...</span>
             </button>
             <p class="form-note">* Required fields. We'll respond within 24 hours.</p>
           </form>
-
-          <div id="successMessage" class="success-message" style="display: none;">
+          <div id="successMessage" class="success-message" style="display:none;">
             <div class="success-icon">✓</div>
             <h3>Thank You!</h3>
             <p>Your message has been received. Our team will contact you within 24 hours.</p>
           </div>
         </div>
 
-        <!-- Contact info — injected by script.js from data/contact.json -->
+        <!-- Contact info injected by script.js from data/contact.json -->
         <div class="contact-info-container" id="contactInfoPanel" data-aos="fade-left">
           <p class="loading-text" style="color:#c5a47e;">Loading contact info…</p>
         </div>
+
       </div>
     </div>
   </section>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script src="js/script.js"></script>
+  <!-- Property Detail Drawer -->
+  <div class="ep-drawer-backdrop" id="epDrawerBackdrop" aria-hidden="true"></div>
+  <aside class="ep-drawer" id="epDrawer" role="dialog" aria-modal="true" aria-label="Property Details">
+    <button class="ep-drawer-close" id="epDrawerClose" aria-label="Close">&#x2715;</button>
+    <div class="ep-drawer-inner" id="epDrawerInner"></div>
+  </aside>
 
   <!-- Lead Popup -->
   <div id="leadPopup" class="popup">
@@ -357,3 +354,17 @@
         </select>
         <select required>
           <option value="">Buying Timeline</option>
+          <option>Immediate</option>
+          <option>3–6 Months</option>
+          <option>Just Exploring</option>
+        </select>
+        <button type="submit">Submit &amp; Get Price</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/script.js"></script>
+
+</body>
+</html>
