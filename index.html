@@ -14,8 +14,22 @@
   <header class="header">
     <div class="container nav-container">
       <a href="#home" class="logo" aria-label="Civium Estate home">
-        <img src="images/logo.png" alt="Civium Estate" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <span class="logo-text" style="display:none">Civium Estate</span>
+        <!-- Primary: combined CE icon + wordmark PNG -->
+        <img
+          src="images/logo.png"
+          alt="Civium Estate"
+          class="logo-img"
+          onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';"
+        >
+        <!-- Fallback: CE icon + text when logo.png is missing -->
+        <span id="logo-fallback" class="logo-fallback" style="display:none;">
+          <img src="images/logo-icon.png" alt="" class="logo-icon-only"
+               onerror="this.style.display='none'">
+          <span class="logo-fallback-text">
+            <span class="logo-name">CIVIUM ESTATE</span>
+            <span class="logo-tagline">Real Estate Professional</span>
+          </span>
+        </span>
       </a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar"></span>
