@@ -1678,3 +1678,63 @@ body.nav-open .nav-toggle { display: none; }
   .rera-pillar   { text-align: left; }
   .partners-scroll { animation-duration: 18s; }
 }
+
+
+/* ============================
+   LOGO — combined icon + text
+   (fallback when logo.png missing)
+============================ */
+
+.logo-img {
+  height: 44px;
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-fallback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-icon-only {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logo-fallback-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.logo-tagline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: #c5a47e;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .logo-img       { height: 36px; max-width: 200px; }
+  .logo-icon-only { height: 32px; width: 32px; }
+  .logo-name      { font-size: 1rem; }
+  .logo-tagline   { font-size: 0.55rem; }
+}
