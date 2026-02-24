@@ -232,6 +232,148 @@ function attachHoverSlideshow(card) {
 
 
 // ╔══════════════════════════════════════════════════════════════╗
+// ║  DRAWER MANUAL SLIDESHOW — arrows, no auto-advance           ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+function attachDrawerSlideshow(drawerEl) {
+  const stack  = drawerEl.querySelector(".ep-drawer-media .media-stack");
+  if (!stack) return;
+  const layers = Array.from(stack.querySelectorAll(".media-layer"));
+  const dots   = Array.from(stack.querySelectorAll(".media-dot"));
+  if (layers.length <= 1) return;  // single image — no arrows needed
+
+  let idx = 0;
+
+  function goTo(i) {
+    layers[idx].classList.remove("media-layer--active");
+    dots[idx]?.classList.remove("media-dot--active");
+    if (layers[idx].tagName === "VIDEO") layers[idx].pause();
+    idx = (i + layers.length) % layers.length;
+    layers[idx].classList.add("media-layer--active");
+    dots[idx]?.classList.add("media-dot--active");
+    if (layers[idx].tagName === "VIDEO") { layers[idx].currentTime = 0; layers[idx].play().catch(()=>{}); }
+    const counter = stack.querySelector(".drawer-slide-counter");
+    if (counter) counter.textContent = `${idx + 1} / ${layers.length}`;
+  }
+
+  // Inject arrow buttons + counter
+  stack.insertAdjacentHTML("beforeend", `
+    <button class="drawer-arrow drawer-arrow--prev" aria-label="Previous image">&#8592;</button>
+    <button class="drawer-arrow drawer-arrow--next" aria-label="Next image">&#8594;</button>
+    <span class="drawer-slide-counter">1 / ${layers.length}</span>
+  `);
+
+  stack.querySelector(".drawer-arrow--prev").addEventListener("click", e => { e.stopPropagation(); goTo(idx - 1); });
+  stack.querySelector(".drawer-arrow--next").addEventListener("click", e => { e.stopPropagation(); goTo(idx + 1); });
+
+  // Keyboard left/right when drawer is open
+  function onKey(e) {
+    if (!document.getElementById("epDrawer")?.classList.contains("ep-drawer--open")) return;
+    if (e.key === "ArrowLeft")  goTo(idx - 1);
+    if (e.key === "ArrowRight") goTo(idx + 1);
+  }
+  document.addEventListener("keydown", onKey);
+
+  // Touch swipe
+  let touchStartX = 0;
+  stack.addEventListener("touchstart", e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+  stack.addEventListener("touchend",   e => {
+    const diff = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(diff) > 40) goTo(diff < 0 ? idx + 1 : idx - 1);
+  });
+
+  // Dot clicks
+  dots.forEach((dot, i) => dot.addEventListener("click", e => { e.stopPropagation(); goTo(i); }));
+
+  // Remove keyboard listener when drawer closes
+  const removeKey = () => document.removeEventListener("keydown", onKey);
+  document.getElementById("epDrawerClose")?.addEventListener("click",   removeKey, { once: true });
+  document.getElementById("epDrawerBackdrop")?.addEventListener("click", removeKey, { once: true });
+}
+
+
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  SELL YOUR PROPERTY — multi-step form                        ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form    = document.getElementById("sellForm");
+  const steps   = Array.from(document.querySelectorAll(".sp-step"));
+  const barSegs = Array.from(document.querySelectorAll(".sp-bar-seg"));
+  const barLbls = Array.from(document.querySelectorAll(".sp-bar-label"));
+  const success = document.getElementById("sellSuccess");
+  if (!form || !steps.length) return;
+
+  let current = 0;
+
+  function showStep(n) {
+    steps.forEach((s, i) => {
+      s.classList.toggle("sp-step--active", i === n);
+      s.classList.toggle("sp-step--done",   i < n);
+    });
+    barSegs.forEach((b, i) => b.classList.toggle("sp-bar-seg--active", i <= n));
+    barLbls.forEach((l, i) => l.classList.toggle("sp-bar-label--active", i === n));
+    current = n;
+  }
+
+  function validateStep(n) {
+    let ok = true;
+    steps[n].querySelectorAll("[required]").forEach(field => {
+      const err = field.closest(".sp-field")?.querySelector(".sp-error");
+      if (!field.value.trim()) {
+        ok = false;
+        field.classList.add("sp-invalid");
+        if (err) err.textContent = "This field is required";
+      } else {
+        field.classList.remove("sp-invalid");
+        if (err) err.textContent = "";
+      }
+    });
+    // Extra phone check on step 3
+    if (n === 2) {
+      const ph  = steps[n].querySelector("#spPhone");
+      const err = ph?.closest(".sp-field")?.querySelector(".sp-error");
+      if (ph?.value.trim()) {
+        const clean = ph.value.trim().replace(/[\s\-\(\)]/g, "");
+        if (!/^[\+]?[0-9]{10,15}$/.test(clean)) {
+          ok = false; ph.classList.add("sp-invalid");
+          if (err) err.textContent = "Enter a valid phone number";
+        }
+      }
+    }
+    return ok;
+  }
+
+  document.querySelectorAll(".sp-next").forEach(btn =>
+    btn.addEventListener("click", () => { if (validateStep(current)) showStep(current + 1); })
+  );
+  document.querySelectorAll(".sp-back").forEach(btn =>
+    btn.addEventListener("click", () => showStep(current - 1))
+  );
+
+  form.querySelectorAll("input,select,textarea").forEach(field => {
+    field.addEventListener("input", () => {
+      field.classList.remove("sp-invalid");
+      const err = field.closest(".sp-field")?.querySelector(".sp-error");
+      if (err) err.textContent = "";
+    });
+  });
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!validateStep(current)) return;
+    const btn = form.querySelector(".sp-submit");
+    btn.disabled = true; btn.textContent = "Submitting…";
+    await new Promise(r => setTimeout(r, 1500));
+    form.closest(".sp-form-wrap").style.display = "none";
+    success.style.display = "block";
+  });
+
+  showStep(0);
+});
+
+
+// ╔══════════════════════════════════════════════════════════════╗
 // ║  DATA BOOTSTRAP                                              ║
 // ╚══════════════════════════════════════════════════════════════╝
 
@@ -470,7 +612,7 @@ function openDrawer(property) {
 
   if (topbarTitle) topbarTitle.textContent = property.title;
   drawerInner.innerHTML = buildDrawerHTML(property);
-  attachHoverSlideshow(drawerEl);
+  attachDrawerSlideshow(drawerEl);
   drawerEl.classList.add("ep-drawer--open");
   document.body.classList.add("ep-drawer-active");
   setTimeout(() => drawerClose?.focus(), 50);
