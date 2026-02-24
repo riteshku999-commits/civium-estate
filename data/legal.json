@@ -1,0 +1,113 @@
+{
+  "company": {
+    "name": "Civium Estate",
+    "legalName": "Civium Estate (Proprietorship)",
+    "reraNumber": "WBRERA / A / KOL / 2024 / 000123",
+    "address": "Kolkata, West Bengal, India",
+    "email": "contact@civiumestate.com",
+    "phone": "+91 98300 12345",
+    "website": "https://civiumestate.com",
+    "jurisdiction": "West Bengal, India",
+    "governingLaw": "Indian law, including the Real Estate (Regulation and Development) Act, 2016 (RERA)"
+  },
+
+  "termsOfService": {
+    "lastUpdated": "January 1, 2025",
+    "effectiveDate": "January 1, 2025",
+    "intro": "Please read these Terms of Service carefully before using our website or engaging with our services. By accessing this website or contacting us, you agree to be bound by these terms.",
+    "sections": [
+      {
+        "title": "1. About Us",
+        "content": "Civium Estate is a RERA-registered real estate brokerage firm operating in Kolkata, West Bengal. We provide property brokerage, advisory, rental management, and related real estate services. Our RERA Broker Registration Number is WBRERA / A / KOL / 2024 / 000123, registered under the West Bengal Real Estate Regulatory Authority."
+      },
+      {
+        "title": "2. Scope of Services",
+        "content": "Our services include facilitating property transactions between buyers, sellers, tenants and landlords; providing market valuation and investment advisory; assisting with home loan referrals; and offering legal documentation support through empanelled professionals. We act as intermediaries and do not hold title to any property listed on this website. Property listings are provided for informational purposes and are subject to availability and change without notice."
+      },
+      {
+        "title": "3. Website Use",
+        "content": "This website is intended for individuals and businesses seeking real estate services in Kolkata and surrounding areas. You agree not to use this site for any unlawful purpose, to submit false or misleading information, to attempt to gain unauthorised access to any part of the site, or to reproduce, distribute or commercially exploit any content without written permission. We reserve the right to suspend or terminate access for users who violate these terms."
+      },
+      {
+        "title": "4. Property Information & Accuracy",
+        "content": "While we strive to ensure all property information — including pricing, availability, area, and attributes — is accurate and up to date, we make no warranties regarding completeness or accuracy. Property prices are subject to change without notice. Floor plans, images and videos are for representational purposes only and actual properties may differ. You are advised to conduct your own due diligence and site visits before making any purchase or rental decision."
+      },
+      {
+        "title": "5. Brokerage & Fees",
+        "content": "Brokerage fees, if applicable, will be communicated transparently before any agreement is executed. Our fee structure complies with RERA guidelines and applicable state regulations. No fee is collected from property seekers for basic inquiry or listing services. Any applicable charges for premium services will be disclosed in advance and confirmed in writing."
+      },
+      {
+        "title": "6. Third-Party Links & Partners",
+        "content": "Our website may contain links to third-party websites including banks, builders, and legal partners. These are provided for convenience only. We do not control, endorse or accept responsibility for the content or practices of any third-party websites. Visiting external links is at your own risk."
+      },
+      {
+        "title": "7. Intellectual Property",
+        "content": "All content on this website — including the Civium Estate name, CE logo, written content, photographs, videos and design — is the property of Civium Estate unless otherwise stated. Reproduction, modification or commercial use of any content without prior written consent is strictly prohibited."
+      },
+      {
+        "title": "8. Limitation of Liability",
+        "content": "To the maximum extent permitted by law, Civium Estate shall not be liable for any indirect, incidental or consequential damages arising from your use of this website or our services, including loss of profits, data, or goodwill. Our total liability in any matter shall not exceed the brokerage fee actually paid by you to us in the relevant transaction."
+      },
+      {
+        "title": "9. Dispute Resolution",
+        "content": "Any disputes arising out of or relating to these Terms or our services shall first be attempted to be resolved through good-faith negotiation. If unresolved, disputes may be referred to the West Bengal Real Estate Regulatory Authority (WBRERA) where applicable, or to the courts of competent jurisdiction in Kolkata, West Bengal."
+      },
+      {
+        "title": "10. Amendments",
+        "content": "We reserve the right to modify these Terms at any time. Changes will be posted on this page with an updated effective date. Continued use of our website or services after such changes constitutes your acceptance of the revised Terms."
+      },
+      {
+        "title": "11. Contact",
+        "content": "For any questions regarding these Terms of Service, please contact us at contact@civiumestate.com or call us at +91 98300 12345."
+      }
+    ]
+  },
+
+  "privacyPolicy": {
+    "lastUpdated": "January 1, 2025",
+    "effectiveDate": "January 1, 2025",
+    "intro": "At Civium Estate, your privacy matters. This Privacy Policy explains what personal information we collect, why we collect it, how we use it, and your rights over your data. By using our website or submitting any form, you consent to this policy.",
+    "sections": [
+      {
+        "title": "1. Information We Collect",
+        "content": "We collect information you voluntarily provide through our contact forms, enquiry forms, and property sell submission forms. This includes your name, phone number, email address, property details (type, location, size, age), budget range, timeline and any notes you choose to share. We also collect basic technical data automatically — such as your browser type, IP address, and pages visited — to improve website performance. We do not collect sensitive personal data such as financial account numbers, Aadhaar, or PAN unless explicitly required for a specific transaction and with your written consent."
+      },
+      {
+        "title": "2. How We Use Your Information",
+        "content": "Your information is used to respond to your enquiries and provide requested services; to share relevant property listings or valuation estimates; to connect you with our banking or builder partners when you request loan or developer information; to improve our website and service quality; and to send important service communications. We do not use your data for unsolicited mass marketing. You may opt out of any non-essential communication at any time."
+      },
+      {
+        "title": "3. Data Sharing",
+        "content": "We do not sell, rent or trade your personal data to third parties. We may share your information with: (a) our internal team members processing your request; (b) banking or builder partners only with your explicit consent and only for the purpose you requested; (c) legal or regulatory authorities when required by law; (d) IT service providers who help operate our website and data systems, under strict confidentiality agreements. All third parties we work with are bound by data protection obligations consistent with this policy."
+      },
+      {
+        "title": "4. Data Retention",
+        "content": "We retain your personal data for as long as necessary to fulfil the purpose for which it was collected, or as required by applicable law. Enquiry data is typically retained for up to 24 months after your last interaction with us. You may request deletion of your data at any time by writing to us at contact@civiumestate.com."
+      },
+      {
+        "title": "5. Cookies",
+        "content": "Our website may use essential cookies to remember your session preferences and improve navigation. We do not currently use advertising or tracking cookies. If this changes, we will update this policy and seek appropriate consent. You can disable cookies in your browser settings, though some site features may not function correctly as a result."
+      },
+      {
+        "title": "6. Data Security",
+        "content": "We take reasonable technical and organisational measures to protect your personal data from unauthorised access, misuse or disclosure. However, no internet transmission is completely secure, and we cannot guarantee absolute security. We encourage you not to share sensitive financial information over email or contact forms."
+      },
+      {
+        "title": "7. Your Rights",
+        "content": "You have the right to access the personal data we hold about you; request correction of inaccurate data; request deletion of your data (subject to legal obligations); withdraw consent at any time where processing is based on consent; and lodge a complaint with the relevant data protection authority. To exercise any of these rights, please contact us at contact@civiumestate.com. We will respond within 30 days."
+      },
+      {
+        "title": "8. Children's Privacy",
+        "content": "Our services are not directed at individuals under the age of 18. We do not knowingly collect personal data from minors. If you believe we have inadvertently collected information from a minor, please contact us and we will promptly delete it."
+      },
+      {
+        "title": "9. Changes to This Policy",
+        "content": "We may update this Privacy Policy from time to time to reflect changes in our practices or applicable law. The updated version will always be available on our website with the revised effective date. We encourage you to review this page periodically."
+      },
+      {
+        "title": "10. Contact Us",
+        "content": "If you have any questions, concerns or requests regarding this Privacy Policy or your personal data, please reach out to us at contact@civiumestate.com or write to us at our registered office in Kolkata, West Bengal."
+      }
+    ]
+  }
+}
