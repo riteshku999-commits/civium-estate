@@ -371,6 +371,69 @@ function populateFilters(properties) {
 
 
 // ╔══════════════════════════════════════════════════════════════╗
+// ║  DRAWER GALLERY — manual arrow navigator (no auto-play)      ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+function attachDrawerGallery(drawerEl) {
+  const stack  = drawerEl.querySelector(".ep-drawer-media .media-stack");
+  if (!stack) return;
+  const layers = Array.from(stack.querySelectorAll(".media-layer"));
+  const dots   = Array.from(stack.querySelectorAll(".media-dot"));
+  if (layers.length <= 1) return;   // single image — arrows not needed
+
+  let idx = 0;
+
+  function goTo(i) {
+    // Pause any playing video at current index
+    if (layers[idx].tagName === "VIDEO") layers[idx].pause();
+    layers[idx].classList.remove("media-layer--active");
+    dots[idx]?.classList.remove("media-dot--active");
+
+    idx = (i + layers.length) % layers.length;
+
+    layers[idx].classList.add("media-layer--active");
+    dots[idx]?.classList.add("media-dot--active");
+
+    // If new layer is a video, play it
+    if (layers[idx].tagName === "VIDEO") {
+      layers[idx].currentTime = 0;
+      layers[idx].play().catch(() => {});
+    }
+
+    // Update counter label
+    const counter = stack.querySelector(".drawer-gallery-counter");
+    if (counter) counter.textContent = `${idx + 1} / ${layers.length}`;
+  }
+
+  // Inject arrow buttons + counter into the stack
+  stack.insertAdjacentHTML("beforeend", `
+    <button class="drawer-gallery-arrow drawer-gallery-prev" aria-label="Previous image">&#8249;</button>
+    <button class="drawer-gallery-arrow drawer-gallery-next" aria-label="Next image">&#8250;</button>
+    <span class="drawer-gallery-counter">${idx + 1} / ${layers.length}</span>
+  `);
+
+  stack.querySelector(".drawer-gallery-prev").addEventListener("click", e => { e.stopPropagation(); goTo(idx - 1); });
+  stack.querySelector(".drawer-gallery-next").addEventListener("click", e => { e.stopPropagation(); goTo(idx + 1); });
+
+  // Keyboard left/right while drawer is open
+  function onKey(e) {
+    if (e.key === "ArrowLeft")  goTo(idx - 1);
+    if (e.key === "ArrowRight") goTo(idx + 1);
+  }
+  document.addEventListener("keydown", onKey);
+
+  // Clean up key listener when drawer closes
+  const observer = new MutationObserver(() => {
+    if (!drawerEl.classList.contains("ep-drawer--open")) {
+      document.removeEventListener("keydown", onKey);
+      observer.disconnect();
+    }
+  });
+  observer.observe(drawerEl, { attributes: true, attributeFilter: ["class"] });
+}
+
+
+// ╔══════════════════════════════════════════════════════════════╗
 // ║  PROPERTY DETAIL DRAWER                                      ║
 // ╚══════════════════════════════════════════════════════════════╝
 
@@ -469,7 +532,7 @@ function openDrawer(property) {
 
   if (topbarTitle) topbarTitle.textContent = property.title;
   drawerInner.innerHTML = buildDrawerHTML(property);
-  attachHoverSlideshow(drawerEl);
+  attachDrawerGallery(drawerEl);   // manual arrows — no auto-play in drawer
   drawerEl.classList.add("ep-drawer--open");
   document.body.classList.add("ep-drawer-active");
   setTimeout(() => drawerClose?.focus(), 50);
@@ -758,5 +821,155 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.getElementById("ptab-" + this.dataset.ptab);
       if (target) target.classList.add("active");
     });
+  });
+});
+
+
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  SELL YOUR PROPERTY — multi-step form                        ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form      = document.getElementById("sellForm");
+  const successEl = document.getElementById("sellSuccess");
+  const againBtn  = document.getElementById("sellAgain");
+  if (!form) return;
+
+  // ── Step navigation helpers ───────────────────────────────────
+  function showStep(n) {
+    document.querySelectorAll(".sell-panel").forEach(p => p.classList.remove("active"));
+    document.getElementById(`sellStep${n}`)?.classList.add("active");
+
+    // Update step indicator
+    document.querySelectorAll(".sell-step").forEach(s => {
+      const num = +s.dataset.step;
+      s.classList.toggle("active",    num === n);
+      s.classList.toggle("completed", num < n);
+    });
+
+    if (n === 3) buildSummary();
+  }
+
+  // ── Validate each step ────────────────────────────────────────
+  function validateStep(n) {
+    let ok = true;
+
+    if (n === 1) {
+      const chosen = form.querySelector("input[name='propType']:checked");
+      setErr("errPropType", chosen ? "" : "Please select a property type");
+      if (!chosen) ok = false;
+    }
+
+    if (n === 2) {
+      const loc = form.querySelector("#sellLocation").value;
+      const age = form.querySelector("#sellAge").value;
+      setErr("errSellLocation", loc ? "" : "Please select a location");
+      setErr("errSellAge",      age ? "" : "Please select property age");
+      if (!loc || !age) ok = false;
+    }
+
+    if (n === 3) {
+      const name  = form.querySelector("#sellName").value.trim();
+      const phone = form.querySelector("#sellPhone").value.trim().replace(/[\s\-\(\)]/g, "");
+      setErr("errSellName",  name.length >= 2 ? "" : "Please enter your name");
+      setErr("errSellPhone", /^[\+]?[0-9]{10,15}$/.test(phone) ? "" : "Please enter a valid phone number");
+      if (name.length < 2 || !/^[\+]?[0-9]{10,15}$/.test(phone)) ok = false;
+    }
+
+    return ok;
+  }
+
+  function setErr(id, msg) {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = msg; el.style.display = msg ? "block" : "none"; }
+  }
+
+  // ── Summary card on step 3 ────────────────────────────────────
+  const PROP_TYPE_LABELS = {
+    apartment: "Apartment / Flat", villa: "Villa / Independent House",
+    land: "Land / Plot", office: "Office Space",
+    retail: "Shop / Retail", warehouse: "Warehouse / Godown"
+  };
+
+  function buildSummary() {
+    const summaryEl = document.getElementById("sellSummary");
+    if (!summaryEl) return;
+    const type     = form.querySelector("input[name='propType']:checked")?.value;
+    const loc      = form.querySelector("#sellLocation");
+    const age      = form.querySelector("#sellAge");
+    const sqft     = form.querySelector("#sellSqft").value;
+    const price    = form.querySelector("#sellExpectedPrice");
+
+    summaryEl.innerHTML = `
+      <div class="sell-summary-title">📋 Your Property Summary</div>
+      <div class="sell-summary-row"><span>Type</span><strong>${PROP_TYPE_LABELS[type] || type || "—"}</strong></div>
+      <div class="sell-summary-row"><span>Location</span><strong>${loc.options[loc.selectedIndex]?.text || "—"}</strong></div>
+      <div class="sell-summary-row"><span>Age</span><strong>${age.options[age.selectedIndex]?.text || "—"}</strong></div>
+      ${sqft ? `<div class="sell-summary-row"><span>Area</span><strong>${sqft} sq ft</strong></div>` : ""}
+      ${price.value ? `<div class="sell-summary-row"><span>Expected Price</span><strong>${price.options[price.selectedIndex].text}</strong></div>` : ""}
+    `;
+  }
+
+  // ── Wire Next / Back buttons ──────────────────────────────────
+  form.addEventListener("click", e => {
+    const nextBtn = e.target.closest(".sell-btn-next");
+    const backBtn = e.target.closest(".sell-btn-back");
+
+    if (nextBtn) {
+      const currentStep = +nextBtn.closest(".sell-panel").id.replace("sellStep", "");
+      if (validateStep(currentStep)) showStep(+nextBtn.dataset.next);
+    }
+
+    if (backBtn) {
+      showStep(+backBtn.dataset.back);
+    }
+  });
+
+  // ── Show/hide BHK field based on property type ────────────────
+  form.querySelectorAll("input[name='propType']").forEach(radio => {
+    radio.addEventListener("change", () => {
+      const bhkField = document.getElementById("sellBhkField");
+      if (bhkField) {
+        const hiddenFor = ["land", "office", "warehouse"];
+        bhkField.style.opacity = hiddenFor.includes(radio.value) ? "0.35" : "1";
+        bhkField.style.pointerEvents = hiddenFor.includes(radio.value) ? "none" : "auto";
+      }
+    });
+  });
+
+  // ── Submit ────────────────────────────────────────────────────
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!validateStep(3)) return;
+
+    const submitBtn  = form.querySelector(".sell-btn-submit");
+    const btnText    = submitBtn.querySelector(".sell-btn-text");
+    const btnLoader  = submitBtn.querySelector(".sell-btn-loader");
+    submitBtn.disabled = true;
+    btnText.style.display  = "none";
+    btnLoader.style.display = "inline-block";
+
+    // Simulate API call (replace with real endpoint later)
+    await new Promise(r => setTimeout(r, 1800));
+
+    form.style.display          = "none";
+    successEl.style.display     = "flex";
+    document.querySelector(".sell-steps").style.display = "none";
+  });
+
+  // ── Reset / Submit Another ────────────────────────────────────
+  againBtn?.addEventListener("click", () => {
+    form.reset();
+    form.style.display = "flex";
+    successEl.style.display = "none";
+    document.querySelector(".sell-steps").style.display = "flex";
+
+    // Re-enable submit btn
+    const submitBtn = form.querySelector(".sell-btn-submit");
+    submitBtn.disabled = false;
+    submitBtn.querySelector(".sell-btn-text").style.display  = "inline-block";
+    submitBtn.querySelector(".sell-btn-loader").style.display = "none";
+
+    showStep(1);
   });
 });
