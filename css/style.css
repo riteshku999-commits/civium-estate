@@ -2132,3 +2132,305 @@ body.legal-modal-active { overflow: hidden; }
   .legal-modal-body   { padding: 20px; }
   .legal-modal-title  { font-size: 1.15rem; }
 }
+
+
+/* ============================================================
+   DRAWER — MANUAL ARROW SLIDESHOW
+============================================================ */
+
+.ep-drawer-media .media-stack { position: relative; }
+
+.drawer-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  backdrop-filter: blur(4px);
+  line-height: 1;
+}
+
+.drawer-arrow:hover {
+  background: rgba(197,164,126,0.85);
+  border-color: #c5a47e;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.drawer-arrow--prev { left: 12px; }
+.drawer-arrow--next { right: 12px; }
+
+.drawer-slide-counter {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  z-index: 20;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.04em;
+}
+
+/* Dots always visible in drawer, gold when active */
+.ep-drawer-media .media-dots       { opacity: 1; bottom: 12px; }
+.ep-drawer-media .media-dot        { width: 7px; height: 7px; cursor: pointer; }
+.ep-drawer-media .media-dot--active { background: #c5a47e; transform: scale(1.3); }
+
+
+/* ============================================================
+   NAV — SELL PROPERTY HIGHLIGHT
+============================================================ */
+
+.nav-sell-link {
+  color: #c5a47e !important;
+  font-weight: 500 !important;
+  border: 1px solid rgba(197,164,126,0.4);
+  padding: 6px 14px !important;
+  border-radius: 20px;
+  transition: background 0.2s, border-color 0.2s !important;
+}
+
+.nav-sell-link:hover {
+  background: rgba(197,164,126,0.15) !important;
+  border-color: #c5a47e;
+  opacity: 1 !important;
+}
+
+
+/* ============================================================
+   SELL YOUR PROPERTY SECTION
+============================================================ */
+
+.sell-property {
+  padding: 100px 20px;
+  background: linear-gradient(160deg, #0a0a0a 0%, #111 60%, #0d0d0d 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.sell-property::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(197,164,126,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197,164,126,0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+.sp-header { text-align: center; margin-bottom: 60px; position: relative; }
+
+.sp-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c5a47e;
+  margin-bottom: 14px;
+  padding: 4px 16px;
+  border: 1px solid rgba(197,164,126,0.35);
+  border-radius: 20px;
+}
+
+.sp-subtitle {
+  color: #999;
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.sp-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 60px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Value props */
+.sp-value-props { display: flex; flex-direction: column; gap: 28px; padding-top: 10px; }
+
+.sp-vp { display: flex; gap: 18px; align-items: flex-start; }
+
+.sp-vp-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  width: 52px; height: 52px;
+  background: rgba(197,164,126,0.1);
+  border: 1px solid rgba(197,164,126,0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sp-vp strong { display: block; color: #fff; font-size: 0.95rem; margin-bottom: 4px; }
+.sp-vp p      { color: #888; font-size: 0.85rem; line-height: 1.5; margin: 0; }
+
+/* Form card */
+.sp-form-wrap {
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 36px 32px;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* Progress bar */
+.sp-progress-bar  { margin-bottom: 28px; }
+.sp-bar-track     { display: flex; gap: 4px; margin-bottom: 8px; }
+
+.sp-bar-seg {
+  flex: 1; height: 4px;
+  background: #333;
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+
+.sp-bar-seg--active  { background: #c5a47e; }
+.sp-bar-labels       { display: flex; justify-content: space-between; }
+
+.sp-bar-label {
+  font-size: 0.72rem; color: #555;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  transition: color 0.3s;
+  flex: 1; text-align: center;
+}
+
+.sp-bar-label:first-child { text-align: left; }
+.sp-bar-label:last-child  { text-align: right; }
+.sp-bar-label--active { color: #c5a47e; font-weight: 600; }
+
+/* Steps */
+.sp-step        { display: none; }
+.sp-step--active { display: block; animation: spFadeIn 0.3s ease; }
+
+@keyframes spFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sp-step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; color: #fff;
+  margin-bottom: 22px;
+}
+
+/* Fields */
+.sp-field { margin-bottom: 16px; }
+
+.sp-field label {
+  display: block; font-size: 0.85rem;
+  color: #bbb; margin-bottom: 6px; font-weight: 500;
+}
+
+.sp-field input,
+.sp-field select,
+.sp-field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  background: #111;
+  border: 2px solid #2a2a2a;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.92rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.sp-field input:focus,
+.sp-field select:focus,
+.sp-field textarea:focus { outline: none; border-color: #c5a47e; background: #161616; }
+
+.sp-field textarea { resize: vertical; min-height: 80px; }
+.sp-field select option { background: #111; color: #fff; }
+
+.sp-field input.sp-invalid,
+.sp-field select.sp-invalid { border-color: #ff4444; }
+
+.sp-error { display: block; font-size: 0.78rem; color: #ff6666; margin-top: 4px; min-height: 18px; }
+
+.sp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* Buttons */
+.sp-actions        { margin-top: 24px; display: flex; justify-content: flex-end; }
+.sp-actions--split { justify-content: space-between; }
+
+.sp-next,
+.sp-submit {
+  padding: 12px 28px;
+  background: #c5a47e;
+  border: none; border-radius: 8px;
+  color: #000; font-weight: 700; font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+
+.sp-next:hover,
+.sp-submit:hover    { background: #b59670; transform: translateY(-1px); }
+.sp-submit:disabled { background: #555; cursor: not-allowed; transform: none; }
+
+.sp-back {
+  padding: 12px 20px;
+  background: transparent;
+  border: 2px solid #333; border-radius: 8px;
+  color: #aaa; font-weight: 500; font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.sp-back:hover { border-color: #c5a47e; color: #c5a47e; }
+
+.sp-privacy-note { font-size: 0.78rem; color: #666; margin-top: 12px; line-height: 1.5; }
+
+/* Success */
+.sp-success { text-align: center; padding: 50px 20px; animation: spFadeIn 0.5s ease; }
+
+.sp-success-icon {
+  width: 72px; height: 72px;
+  background: linear-gradient(135deg, #c5a47e, #b59670);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; color: #000; font-weight: 900;
+  margin: 0 auto 20px;
+}
+
+.sp-success h3  { color: #c5a47e; font-size: 1.5rem; margin-bottom: 12px; }
+.sp-success p   { color: #aaa; line-height: 1.7; margin-bottom: 8px; }
+.sp-success-sub { font-size: 0.85rem; color: #666; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sp-layout { grid-template-columns: 1fr; gap: 40px; }
+  .sp-value-props { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+
+@media (max-width: 600px) {
+  .sp-form-wrap { padding: 24px 20px; }
+  .sp-row { grid-template-columns: 1fr; }
+  .sp-value-props { grid-template-columns: 1fr; }
+}
