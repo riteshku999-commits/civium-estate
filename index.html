@@ -43,6 +43,7 @@
           <li><a href="#home">Home</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#properties">Properties &amp; Deals</a></li>
+          <li><a href="#sell" class="nav-sell-link">Sell Property</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -441,6 +442,249 @@
               </div>
             </div>
           </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SELL YOUR PROPERTY — multi-step form
+  ════════════════════════════════════════════════════════ -->
+  <section class="sell-property" id="sell">
+    <div class="container">
+
+      <div class="sell-header" data-aos="fade-up">
+        <div class="sell-eyebrow">Free Property Valuation</div>
+        <h2 class="section-title" style="margin-bottom:12px;">Want to Sell Your Property?</h2>
+        <p class="sell-subtitle">Tell us about your property and we'll get back with a free valuation and our best offer within 24 hours.</p>
+      </div>
+
+      <!-- Step indicator -->
+      <div class="sell-steps" data-aos="fade-up">
+        <div class="sell-step active" data-step="1">
+          <div class="sell-step-circle">1</div>
+          <div class="sell-step-label">Property Type</div>
+        </div>
+        <div class="sell-step-line"></div>
+        <div class="sell-step" data-step="2">
+          <div class="sell-step-circle">2</div>
+          <div class="sell-step-label">Details</div>
+        </div>
+        <div class="sell-step-line"></div>
+        <div class="sell-step" data-step="3">
+          <div class="sell-step-circle">3</div>
+          <div class="sell-step-label">Your Info</div>
+        </div>
+      </div>
+
+      <div class="sell-form-wrap" data-aos="fade-up">
+        <form id="sellForm" novalidate>
+
+          <!-- ── STEP 1: Property Type ─────────────────────── -->
+          <div class="sell-panel active" id="sellStep1">
+            <h3 class="sell-panel-title">What kind of property is it?</h3>
+
+            <div class="sell-type-grid">
+              <label class="sell-type-card">
+                <input type="radio" name="propType" value="apartment">
+                <span class="sell-type-inner">
+                  <span class="sell-type-icon">🏢</span>
+                  <span class="sell-type-label">Apartment / Flat</span>
+                </span>
+              </label>
+              <label class="sell-type-card">
+                <input type="radio" name="propType" value="villa">
+                <span class="sell-type-inner">
+                  <span class="sell-type-icon">🏡</span>
+                  <span class="sell-type-label">Villa / Independent House</span>
+                </span>
+              </label>
+              <label class="sell-type-card">
+                <input type="radio" name="propType" value="land">
+                <span class="sell-type-inner">
+                  <span class="sell-type-icon">🌿</span>
+                  <span class="sell-type-label">Land / Plot</span>
+                </span>
+              </label>
+              <label class="sell-type-card">
+                <input type="radio" name="propType" value="office">
+                <span class="sell-type-inner">
+                  <span class="sell-type-icon">💼</span>
+                  <span class="sell-type-label">Office Space</span>
+                </span>
+              </label>
+              <label class="sell-type-card">
+                <input type="radio" name="propType" value="retail">
+                <span class="sell-type-inner">
+                  <span class="sell-type-icon">🏪</span>
+                  <span class="sell-type-label">Shop / Retail</span>
+                </span>
+              </label>
+              <label class="sell-type-card">
+                <input type="radio" name="propType" value="warehouse">
+                <span class="sell-type-inner">
+                  <span class="sell-type-icon">🏭</span>
+                  <span class="sell-type-label">Warehouse / Godown</span>
+                </span>
+              </label>
+            </div>
+            <span class="sell-error" id="errPropType"></span>
+
+            <div class="sell-nav">
+              <span></span>
+              <button type="button" class="sell-btn-next" data-next="2">Next →</button>
+            </div>
+          </div>
+
+          <!-- ── STEP 2: Property Details ──────────────────── -->
+          <div class="sell-panel" id="sellStep2">
+            <h3 class="sell-panel-title">Tell us more about the property</h3>
+
+            <div class="sell-fields">
+              <div class="sell-row">
+                <div class="sell-field">
+                  <label>Location / Area *</label>
+                  <select name="sellLocation" id="sellLocation">
+                    <option value="">Select area in Kolkata</option>
+                    <option value="saltlake">Salt Lake</option>
+                    <option value="newtown">New Town / Rajarhat</option>
+                    <option value="ballygunge">Ballygunge</option>
+                    <option value="alipore">Alipore / New Alipore</option>
+                    <option value="parkstreet">Park Street</option>
+                    <option value="behala">Behala</option>
+                    <option value="embypass">EM Bypass</option>
+                    <option value="camacstreet">Camac Street / Elgin Road</option>
+                    <option value="dankuni">Dankuni</option>
+                    <option value="barasat">Barasat</option>
+                    <option value="other">Other (mention in notes)</option>
+                  </select>
+                  <span class="sell-error" id="errSellLocation"></span>
+                </div>
+                <div class="sell-field">
+                  <label>Property Age *</label>
+                  <select name="sellAge" id="sellAge">
+                    <option value="">Select age</option>
+                    <option value="new">Under construction / New</option>
+                    <option value="0-2">0–2 years</option>
+                    <option value="2-5">2–5 years</option>
+                    <option value="5-10">5–10 years</option>
+                    <option value="10-20">10–20 years</option>
+                    <option value="20+">20+ years</option>
+                  </select>
+                  <span class="sell-error" id="errSellAge"></span>
+                </div>
+              </div>
+
+              <div class="sell-row" id="sellSizeRow">
+                <div class="sell-field">
+                  <label>Built-up Area (sq ft)</label>
+                  <input type="number" name="sellSqft" id="sellSqft" placeholder="e.g. 1200" min="1">
+                </div>
+                <div class="sell-field" id="sellBhkField">
+                  <label>Configuration</label>
+                  <select name="sellBhk" id="sellBhk">
+                    <option value="">Select BHK / type</option>
+                    <option value="1bhk">1 BHK</option>
+                    <option value="2bhk">2 BHK</option>
+                    <option value="3bhk">3 BHK</option>
+                    <option value="4bhk">4 BHK</option>
+                    <option value="5bhk+">5 BHK+</option>
+                    <option value="studio">Studio</option>
+                    <option value="na">Not Applicable (Land / Commercial)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sell-row">
+                <div class="sell-field">
+                  <label>Expected Price (₹)</label>
+                  <select name="sellExpectedPrice" id="sellExpectedPrice">
+                    <option value="">Your expected price range</option>
+                    <option value="under-30">Under ₹30 Lakhs</option>
+                    <option value="30-50">₹30L – ₹50L</option>
+                    <option value="50-75">₹50L – ₹75L</option>
+                    <option value="75-1cr">₹75L – ₹1 Crore</option>
+                    <option value="1-2cr">₹1 – ₹2 Crores</option>
+                    <option value="2-5cr">₹2 – ₹5 Crores</option>
+                    <option value="5cr+">Above ₹5 Crores</option>
+                  </select>
+                </div>
+                <div class="sell-field">
+                  <label>Selling Timeline</label>
+                  <select name="sellTimeline" id="sellTimeline">
+                    <option value="">When do you want to sell?</option>
+                    <option value="asap">As soon as possible</option>
+                    <option value="1-3months">Within 1–3 months</option>
+                    <option value="3-6months">3–6 months</option>
+                    <option value="exploring">Just exploring options</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sell-field full-width">
+                <label>Additional Notes</label>
+                <textarea name="sellNotes" id="sellNotes" rows="3" placeholder="Any other details — floor number, parking, special features, renovation history, reason for selling…"></textarea>
+              </div>
+            </div>
+
+            <div class="sell-nav">
+              <button type="button" class="sell-btn-back" data-back="1">← Back</button>
+              <button type="button" class="sell-btn-next" data-next="3">Next →</button>
+            </div>
+          </div>
+
+          <!-- ── STEP 3: Contact Info ───────────────────────── -->
+          <div class="sell-panel" id="sellStep3">
+            <h3 class="sell-panel-title">How can we reach you?</h3>
+
+            <div class="sell-fields">
+              <div class="sell-field full-width">
+                <label>Full Name *</label>
+                <input type="text" name="sellName" id="sellName" placeholder="Your full name">
+                <span class="sell-error" id="errSellName"></span>
+              </div>
+              <div class="sell-row">
+                <div class="sell-field">
+                  <label>Phone Number *</label>
+                  <input type="tel" name="sellPhone" id="sellPhone" placeholder="+91 98300 12345">
+                  <span class="sell-error" id="errSellPhone"></span>
+                </div>
+                <div class="sell-field">
+                  <label>Email Address</label>
+                  <input type="email" name="sellEmail" id="sellEmail" placeholder="your.email@example.com (optional)">
+                </div>
+              </div>
+              <div class="sell-field full-width">
+                <label>Preferred Contact Time</label>
+                <select name="sellContactTime" id="sellContactTime">
+                  <option value="">Any time</option>
+                  <option value="morning">Morning (9am – 12pm)</option>
+                  <option value="afternoon">Afternoon (12pm – 4pm)</option>
+                  <option value="evening">Evening (4pm – 8pm)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="sell-summary" id="sellSummary"></div>
+
+            <div class="sell-nav">
+              <button type="button" class="sell-btn-back" data-back="2">← Back</button>
+              <button type="submit" class="sell-btn-submit">
+                <span class="sell-btn-text">🏷️ Submit Property Details</span>
+                <span class="sell-btn-loader" style="display:none;">Submitting…</span>
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+        <!-- Success state -->
+        <div class="sell-success" id="sellSuccess" style="display:none;">
+          <div class="sell-success-icon">✓</div>
+          <h3>Property Details Received!</h3>
+          <p>Thank you! Our team will review your property and contact you within <strong>24 hours</strong> with a free valuation.</p>
+          <button class="sell-btn-again" id="sellAgain">Submit Another Property</button>
         </div>
 
       </div>
