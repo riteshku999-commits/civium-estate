@@ -14,12 +14,12 @@
       "oldPriceLabel": "₹1.5 Cr",
       "location": "saltlake",
       "type": "4bhk",
-      "soldOut": true,
+      "soldOut": false,
       "active": true,
       "media": [
         {
           "type": "image",
-          "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+          "src": "https://drive.google.com/uc?export=view&id=1DUKndT3LKfzQZfQaIu58XPpKepLQu76R"
         },
         {
           "type": "image",
@@ -72,7 +72,7 @@
       "oldPriceLabel": "₹85 Lac",
       "location": "newtown",
       "type": "3bhk",
-      "soldOut": true,
+      "soldOut": false,
       "active": true,
       "media": [
         {
@@ -125,7 +125,7 @@
       "oldPriceLabel": "₹2.4 Cr",
       "location": "rajarhat",
       "type": "villa",
-      "soldOut": true,
+      "soldOut": false,
       "active": true,
       "media": [
         {
@@ -173,7 +173,7 @@
       "oldPriceLabel": "₹60 Lac",
       "location": "embypass",
       "type": "2bhk",
-      "soldOut": true,
+      "soldOut": false,
       "active": true,
       "media": [
         {
