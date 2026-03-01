@@ -12,10 +12,10 @@
       "price": 120,
       "priceLabel": "₹1.2 Cr",
       "oldPriceLabel": "₹1.5 Cr",
-      "budget": "1cr",
       "location": "saltlake",
       "type": "4bhk",
-      "soldOut": false,
+      "soldOut": true,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -30,7 +30,6 @@
           "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
         "facing": "East",
         "vastu": true,
@@ -71,10 +70,10 @@
       "price": 75,
       "priceLabel": "₹75 Lac",
       "oldPriceLabel": "₹85 Lac",
-      "budget": "50-80",
       "location": "newtown",
       "type": "3bhk",
-      "soldOut": false,
+      "soldOut": true,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -89,7 +88,6 @@
           "src": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
         "facing": "North-East",
         "vastu": true,
@@ -125,10 +123,10 @@
       "price": 210,
       "priceLabel": "₹2.1 Cr",
       "oldPriceLabel": "₹2.4 Cr",
-      "budget": "1cr",
       "location": "rajarhat",
       "type": "villa",
-      "soldOut": false,
+      "soldOut": true,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -143,7 +141,6 @@
           "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
         "facing": "South",
         "vastu": false,
@@ -174,10 +171,10 @@
       "price": 52,
       "priceLabel": "₹52 Lac",
       "oldPriceLabel": "₹60 Lac",
-      "budget": "50-80",
       "location": "embypass",
       "type": "2bhk",
-      "soldOut": false,
+      "soldOut": true,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -192,7 +189,6 @@
           "src": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
         "facing": "West",
         "vastu": false,
@@ -225,10 +221,10 @@
       "price": 450,
       "priceLabel": "₹4.5 Cr",
       "oldPriceLabel": "₹5.2 Cr",
-      "budget": "1cr",
       "location": "ballygunge",
       "type": "5bhk",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -243,7 +239,6 @@
           "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
         "facing": "East",
         "vastu": true,
@@ -284,10 +279,10 @@
       "price": 68,
       "priceLabel": "₹68 Lac",
       "oldPriceLabel": "₹78 Lac",
-      "budget": "50-80",
       "location": "newtown",
       "type": "3bhk",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -302,7 +297,6 @@
           "src": "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
         "facing": "North",
         "vastu": true,
@@ -338,10 +332,10 @@
       "price": 320,
       "priceLabel": "₹3.2 Cr",
       "oldPriceLabel": "₹3.8 Cr",
-      "budget": "1cr",
       "location": "alipore",
       "type": "3bhk",
       "soldOut": true,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -352,7 +346,6 @@
           "src": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
         "facing": "South-East",
         "vastu": true,
@@ -389,10 +382,10 @@
       "price": 38,
       "priceLabel": "₹38 Lac",
       "oldPriceLabel": "₹45 Lac",
-      "budget": "30-50",
       "location": "behala",
       "type": "2bhk",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -407,7 +400,6 @@
           "src": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
         "facing": "East",
         "vastu": true,
@@ -444,10 +436,10 @@
       "price": 280,
       "priceLabel": "₹2.8 Cr",
       "oldPriceLabel": "₹3.3 Cr",
-      "budget": "1cr",
       "location": "alipore",
       "type": "4bhk",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -462,7 +454,6 @@
           "src": "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
         "facing": "North-East",
         "vastu": true,
@@ -499,10 +490,10 @@
       "price": 350,
       "priceLabel": "₹3.5 Cr",
       "oldPriceLabel": "₹4 Cr",
-      "budget": "1cr",
       "location": "parkstreet",
       "type": "retail",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -517,12 +508,12 @@
           "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
+        "parking": "20 Public spots nearby",
         "furnished": "Shell & Core",
         "ageOfProperty": "3 years",
-        "parking": "20 Public spots nearby",
         "possession": "Ready",
+        "powerBackup": "100% Generator",
         "nearestMetro": {
           "name": "Park Street",
           "distanceKm": 0.3
@@ -531,7 +522,6 @@
           "name": "Park Street (tram)",
           "distanceKm": 0.2
         },
-        "powerBackup": "100% Generator",
         "mapLink": "Park Street, Kolkata, West Bengal"
       }
     },
@@ -547,10 +537,10 @@
       "price": 280,
       "priceLabel": "₹2.8 Cr",
       "oldPriceLabel": "₹3.2 Cr",
-      "budget": "1cr",
       "location": "saltlake",
       "type": "office",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -565,17 +555,16 @@
           "src": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
+        "parking": "Basement (40 cars)",
         "furnished": "Fully Furnished",
         "ageOfProperty": "6 years",
-        "parking": "Basement (40 cars)",
         "possession": "Ready",
+        "powerBackup": "100% UPS + Generator",
         "nearestMetro": {
           "name": "Salt Lake Sector V",
           "distanceKm": 0.2
         },
-        "powerBackup": "100% UPS + Generator",
         "mapLink": "Eco Space, Sector V, Salt Lake, Kolkata"
       }
     },
@@ -591,10 +580,10 @@
       "price": 150,
       "priceLabel": "₹1.5 Cr",
       "oldPriceLabel": "₹1.8 Cr",
-      "budget": "1cr",
       "location": "dankuni",
       "type": "warehouse",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -605,17 +594,16 @@
           "src": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
+        "parking": "Truck bay + 15 cars",
         "furnished": "Bare Shell",
         "ageOfProperty": "New",
-        "parking": "Truck bay + 15 cars",
         "possession": "Ready",
+        "powerBackup": "3-phase supply",
         "nearestRailway": {
           "name": "Dankuni",
           "distanceKm": 2.1
         },
-        "powerBackup": "3-phase supply",
         "mapLink": "NH2 Dankuni, West Bengal"
       }
     },
@@ -631,10 +619,10 @@
       "price": 120,
       "priceLabel": "₹1.2 Cr",
       "oldPriceLabel": "₹1.5 Cr",
-      "budget": "1cr",
       "location": "newtown",
       "type": "office",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -649,17 +637,16 @@
           "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
+        "parking": "Shared basement",
         "furnished": "Fully Managed",
         "ageOfProperty": "2 years",
-        "parking": "Shared basement",
         "possession": "Ready",
+        "powerBackup": "100% Backup",
         "nearestMetro": {
           "name": "New Town",
           "distanceKm": 0.5
         },
-        "powerBackup": "100% Backup",
         "mapLink": "Uniworld City, New Town, Kolkata"
       }
     },
@@ -675,10 +662,10 @@
       "price": 420,
       "priceLabel": "₹4.2 Cr",
       "oldPriceLabel": "₹4.8 Cr",
-      "budget": "1cr",
       "location": "camacstreet",
       "type": "retail",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -693,12 +680,12 @@
           "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
+        "parking": "Street + paid parking nearby",
         "furnished": "Shell & Core",
         "ageOfProperty": "5 years",
-        "parking": "Street + paid parking nearby",
         "possession": "Ready",
+        "powerBackup": "Generator",
         "nearestMetro": {
           "name": "Park Street",
           "distanceKm": 0.7
@@ -707,7 +694,6 @@
           "name": "Ballygunge",
           "distanceKm": 1.5
         },
-        "powerBackup": "Generator",
         "mapLink": "Camac Street, Kolkata, West Bengal"
       }
     },
@@ -723,10 +709,10 @@
       "price": 550,
       "priceLabel": "₹5.5 Cr",
       "oldPriceLabel": "₹6.2 Cr",
-      "budget": "1cr",
       "location": "rajarhat",
       "type": "office",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -741,17 +727,16 @@
           "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
+        "parking": "200 car basement",
         "furnished": "Bare Shell",
         "ageOfProperty": "New",
-        "parking": "200 car basement",
         "possession": "Ready",
+        "powerBackup": "100% DG Backup",
         "nearestMetro": {
           "name": "New Town",
           "distanceKm": 1.2
         },
-        "powerBackup": "100% DG Backup",
         "mapLink": "Rajarhat IT Hub, Kolkata, West Bengal"
       }
     },
@@ -767,10 +752,10 @@
       "price": 220,
       "priceLabel": "₹2.2 Cr",
       "oldPriceLabel": "₹2.6 Cr",
-      "budget": "1cr",
       "location": "elginroad",
       "type": "retail",
       "soldOut": true,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -781,12 +766,12 @@
           "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
+        "parking": "Street parking",
         "furnished": "Shell & Core",
         "ageOfProperty": "12 years",
-        "parking": "Street parking",
         "possession": "Ready",
+        "powerBackup": "Generator",
         "nearestMetro": {
           "name": "Maidan",
           "distanceKm": 1.4
@@ -795,7 +780,6 @@
           "name": "Ballygunge",
           "distanceKm": 2.1
         },
-        "powerBackup": "Generator",
         "mapLink": "Elgin Road, Kolkata, West Bengal"
       }
     },
@@ -811,10 +795,10 @@
       "price": 380,
       "priceLabel": "₹3.8 Cr",
       "oldPriceLabel": "₹4.5 Cr",
-      "budget": "1cr",
       "location": "barasat",
       "type": "warehouse",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -829,17 +813,16 @@
           "src": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
+        "parking": "20 trucks + 50 cars",
         "furnished": "Bare Shell",
         "ageOfProperty": "New",
-        "parking": "20 trucks + 50 cars",
         "possession": "Ready",
+        "powerBackup": "3-phase + DG",
         "nearestRailway": {
           "name": "Barasat",
           "distanceKm": 1.8
         },
-        "powerBackup": "3-phase + DG",
         "mapLink": "Barasat Highway, West Bengal"
       }
     },
@@ -855,10 +838,10 @@
       "price": 85,
       "priceLabel": "₹85 Lac",
       "oldPriceLabel": "₹95 Lac",
-      "budget": "50-80",
       "location": "saltlake",
       "type": "office",
       "soldOut": false,
+      "active": true,
       "media": [
         {
           "type": "image",
@@ -873,12 +856,12 @@
           "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
         }
       ],
-      "active": true,
       "attributes": {
+        "parking": "5 covered",
         "furnished": "Shell & Core",
         "ageOfProperty": "4 years",
-        "parking": "5 covered",
         "possession": "Ready",
+        "powerBackup": "Generator",
         "nearestMetro": {
           "name": "Salt Lake Sector V",
           "distanceKm": 0.6
@@ -887,7 +870,6 @@
           "name": "Charnock Hospital",
           "distanceKm": 1.8
         },
-        "powerBackup": "Generator",
         "mapLink": "BD Block, Salt Lake, Kolkata, West Bengal"
       }
     }
