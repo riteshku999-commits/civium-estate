@@ -973,3 +973,97 @@ document.addEventListener("DOMContentLoaded", () => {
     showStep(1);
   });
 });
+
+// ============================================================
+// SERVICE CARDS — Tap to expand on mobile
+// ============================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".service-card");
+
+  cards.forEach(card => {
+    card.addEventListener("click", () => {
+      // Only activate tap behaviour on mobile
+      if (window.innerWidth > 768) return;
+
+      const isOpen = card.classList.contains("open");
+
+      // Close all cards first
+      cards.forEach(c => c.classList.remove("open"));
+
+      // Toggle clicked card
+      if (!isOpen) card.classList.add("open");
+    });
+  });
+});
+
+// ============================================================
+// WHY CHOOSE — Carousel
+// ============================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const track     = document.querySelector(".why-carousel-track");
+  const outer     = document.querySelector(".why-carousel-track-outer");
+  const prevBtn   = document.querySelector(".why-carousel-prev");
+  const nextBtn   = document.querySelector(".why-carousel-next");
+  const dotsWrap  = document.querySelector(".why-carousel-dots");
+
+  if (!track) return;
+
+  const cards     = Array.from(track.querySelectorAll(".why-card"));
+  let current     = 0;
+
+  function getVisible() {
+    return window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 4;
+  }
+
+  function buildDots() {
+    dotsWrap.innerHTML = "";
+    const visible   = getVisible();
+    const totalDots = Math.ceil(cards.length / visible);
+    for (let i = 0; i < totalDots; i++) {
+      const dot = document.createElement("span");
+      dot.className = "why-dot" + (i === 0 ? " active" : "");
+      dot.addEventListener("click", () => goTo(i * visible));
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  function updateDots() {
+    const visible = getVisible();
+    const dots    = dotsWrap.querySelectorAll(".why-dot");
+    const idx     = Math.round(current / visible);
+    dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+  }
+
+  function goTo(idx) {
+    const visible = getVisible();
+    const max     = Math.max(0, cards.length - visible);
+    current       = Math.max(0, Math.min(idx, max));
+
+    // Card width + gap
+    const cardW   = cards[0].offsetWidth;
+    const gap     = 24;
+    track.style.transform = `translateX(-${current * (cardW + gap)}px)`;
+
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current >= max;
+    updateDots();
+  }
+
+  prevBtn.addEventListener("click", () => goTo(current - getVisible()));
+  nextBtn.addEventListener("click", () => goTo(current + getVisible()));
+
+  // Touch / swipe support
+  let startX = 0;
+  outer.addEventListener("touchstart", e => { startX = e.touches[0].clientX; }, { passive: true });
+  outer.addEventListener("touchend",   e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  // Init
+  buildDots();
+  goTo(0);
+
+  // Rebuild on resize
+  window.addEventListener("resize", () => { buildDots(); goTo(0); });
+});
