@@ -605,7 +605,7 @@ function buildPropertyCard(p, index) {
          aria-label="View details for ${p.title}">
       ${soldOverlay}
       <div class="ep-card-media">
-        ${buildMediaStack(p.media, p.title)}
+        ${buildMediaStack(p.media, `${p.title} – ${(p.type||"").toUpperCase()} ${p.category === "residential" ? "apartment" : "property"} for sale in ${(p.location||"").charAt(0).toUpperCase() + (p.location||"").slice(1)}, Kolkata`)}
         ${dealBadge}
         ${featBadge}
         <span class="ep-cat-label ${catClass}">${catLabel}</span>
