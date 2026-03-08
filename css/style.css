@@ -961,22 +961,39 @@ section {
 
 .contact-info-container h3 { margin-bottom: 30px; color: #c5a47e; font-size: 1.8rem; }
 
-.info-item { display: flex; gap: 15px; margin-bottom: 30px; align-items: flex-start; }
+.info-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
 
 .info-icon {
-  font-size: 2rem;
-  width: 50px; height: 50px;
+  font-size: 1.4rem;
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
   background: #0d0d0d;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  line-height: 1;
+  overflow: hidden;
 }
 
-.info-content h4   { color: #c5a47e; margin-bottom: 5px; font-size: 1.1rem; }
+.info-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 2px;
+}
+
+.info-content h4   { color: #c5a47e; margin-bottom: 4px; font-size: 1rem; font-weight: 600; }
 .info-content p,
-.info-content a    { color: #aaa; line-height: 1.6; text-decoration: none; }
+.info-content a    { color: #aaa; line-height: 1.6; text-decoration: none; font-size: 0.95rem; }
 .info-content a:hover { color: #c5a47e; }
 
 .social-links { margin-top: 40px; padding-top: 30px; border-top: 1px solid #333; }
