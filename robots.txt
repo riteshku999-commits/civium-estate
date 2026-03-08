@@ -1,0 +1,8 @@
+# robots.txt — Civium Estate
+# https://civiumestate.com
+
+User-agent: *
+Allow: /
+
+# Point crawlers to the sitemap
+Sitemap: https://civiumestate.com/sitemap.xml
