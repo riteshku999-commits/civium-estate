@@ -2436,3 +2436,88 @@ body.nav-open .nav-toggle { display: none; }
   .seo-footer-grid { grid-template-columns: 1fr; }
   .seo-footer-col:first-child { grid-column: auto; }
 }
+
+/* ============================
+   FOOTER RERA STRIP
+============================ */
+
+.footer-rera-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 40px;
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid #2a2a2a;
+}
+
+.footer-rera-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.footer-rera-shield { font-size: 1.6rem; }
+
+.footer-rera-badge-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-rera-title {
+  color: #C5A47E;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.footer-rera-sub {
+  color: #666;
+  font-size: 0.75rem;
+}
+
+.footer-rera-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-rera-label { color: #555; font-size: 0.78rem; }
+
+.footer-rera-number {
+  color: #C5A47E;
+  font-family: monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.footer-rera-verify {
+  color: #888;
+  font-size: 0.78rem;
+  text-decoration: none;
+  border-bottom: 1px dashed #555;
+  transition: color 0.2s;
+}
+.footer-rera-verify:hover { color: #C5A47E; }
+
+.footer-rera-pillars {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.footer-rera-pillars span {
+  color: #666;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .footer-rera-strip { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .footer-rera-pillars { margin-left: 0; }
+  .footer-rera-number { font-size: 0.78rem; }
+}
