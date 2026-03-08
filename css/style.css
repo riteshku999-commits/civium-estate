@@ -241,16 +241,21 @@ section {
 ============================ */
 
 .credibility {
-  padding: 100px 20px;
+  padding: 80px 20px;
   background: #111;
   text-align: center;
   color: #fff;
 }
 
-.credibility h2 { font-size: 2.5rem; margin-bottom: 60px; }
+.credibility h2 { font-size: 2.5rem; margin-bottom: 50px; }
 
-.stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; }
-.stat  { flex: 1 1 200px; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
 .stat h3 { font-size: 3rem; color: #c5a47e; margin-bottom: 10px; }
 .stat p  { font-size: 1rem; color: #ccc; }
 
@@ -816,6 +821,12 @@ section {
   /* Why carousel — 1 card visible at a time on mobile */
   .why-card { flex: 0 0 100%; }
   .why-carousel-arrow { width: 32px; height: 32px; font-size: 1.2rem; }
+
+  /* Stats — 2x2 grid on mobile */
+  .stats { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .credibility h2 { font-size: 1.6rem; margin-bottom: 32px; }
+  .stat h3 { font-size: 2.2rem; }
+  .stat p  { font-size: 0.85rem; }
 
   .deal-slider { grid-template-columns: 1fr; }
 
@@ -1526,20 +1537,21 @@ body.ep-drawer-active { overflow: hidden; }
 .nav-close {
   display: none;
   position: fixed;
-  top: 18px;
-  right: 18px;
-  z-index: 1100;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(197,164,126,0.15);
+  background: #1a1a1a;
   border: 2px solid #c5a47e;
   color: #c5a47e;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.25s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
 }
 
 .nav-close:hover { background: #c5a47e; color: #000; transform: rotate(90deg); }
