@@ -1816,7 +1816,25 @@ body.nav-open .nav-toggle { display: none; }
 }
 
 .partner-chip:hover { border-color: #c5a47e44; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
-.partner-chip-logo  { font-size: 2rem; margin-bottom: 8px; line-height: 1; }
+.partner-chip-logo {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 10px;
+  padding: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.partner-chip-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 .partner-chip-name  { font-size: 0.9rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
 .partner-chip-tag   { font-size: 0.72rem; color: #c5a47e; background: rgba(197,164,126,0.1); padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
 
