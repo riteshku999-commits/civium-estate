@@ -1102,12 +1102,77 @@ document.addEventListener("DOMContentLoaded", () => {
     btnText.style.display  = "none";
     btnLoader.style.display = "inline-block";
 
-    // Simulate API call (replace with real endpoint later)
-    await new Promise(r => setTimeout(r, 1800));
+    // ── Collect all form values ──────────────────────────────────
+    const propTypeMap = {
+      apartment: "Apartment / Flat", villa: "Villa / Independent House",
+      land: "Land / Plot", office: "Office Space",
+      retail: "Shop / Retail", warehouse: "Warehouse / Godown"
+    };
+    const priceMap = {
+      "under-30": "Under ₹30 Lakhs", "30-50": "₹30L – ₹50L",
+      "50-75": "₹50L – ₹75L", "75-1cr": "₹75L – ₹1 Crore",
+      "1-2cr": "₹1 – ₹2 Crores", "2-5cr": "₹2 – ₹5 Crores", "5cr+": "Above ₹5 Crores"
+    };
+    const timelineMap = {
+      asap: "As soon as possible", "1-3months": "Within 1–3 months",
+      "3-6months": "3–6 months", exploring: "Just exploring options"
+    };
+    const contactTimeMap = {
+      morning: "Morning (9am – 12pm)", afternoon: "Afternoon (12pm – 4pm)",
+      evening: "Evening (4pm – 8pm)"
+    };
 
-    form.style.display          = "none";
-    successEl.style.display     = "flex";
-    document.querySelector(".sell-steps").style.display = "none";
+    const rawType     = form.querySelector("input[name='propType']:checked")?.value || "";
+    const rawPrice    = form.querySelector("#sellExpectedPrice")?.value || "";
+    const rawTimeline = form.querySelector("#sellTimeline")?.value || "";
+    const rawContact  = form.querySelector("#sellContactTime")?.value || "";
+    const sqft        = form.querySelector("#sellSqft")?.value.trim();
+    const bhk         = form.querySelector("#sellBhk")?.value;
+
+    const sellerName  = form.querySelector("#sellName").value.trim();
+    const sellerPhone = form.querySelector("#sellPhone").value.trim();
+    const sellerEmail = form.querySelector("#sellEmail").value.trim() || "Not provided";
+    const propType    = propTypeMap[rawType]     || rawType     || "Not specified";
+    const propLoc     = form.querySelector("#sellLocation")?.value || "Not specified";
+    const propAge     = form.querySelector("#sellAge")?.value      || "Not specified";
+    const propSqft    = sqft ? sqft + " sq ft"                     : "Not specified";
+    const propBhk     = bhk && bhk !== "na" ? bhk.toUpperCase()    : "Not applicable";
+    const propPrice   = priceMap[rawPrice]       || rawPrice       || "Not specified";
+    const propTL      = timelineMap[rawTimeline] || rawTimeline    || "Not specified";
+    const propNotes   = form.querySelector("#sellNotes")?.value.trim() || "None";
+    const contTime    = contactTimeMap[rawContact] || "Any time";
+
+    // Pack everything into the contact template variables
+    const sellParams = {
+      from_name  : "[SELL] " + sellerName,
+      from_email : sellerEmail,
+      phone      : sellerPhone,
+      interest   : "Property Listing — " + propType + " in " + propLoc,
+      budget     : propPrice,
+      message    : "PROPERTY DETAILS\n" +
+                   "Type:             " + propType    + "\n" +
+                   "Location:         " + propLoc     + "\n" +
+                   "Age:              " + propAge     + "\n" +
+                   "Built-up Area:    " + propSqft    + "\n" +
+                   "BHK/Config:       " + propBhk     + "\n" +
+                   "Expected Price:   " + propPrice   + "\n" +
+                   "Selling Timeline: " + propTL      + "\n\n" +
+                   "OWNER NOTES\n" + propNotes + "\n\n" +
+                   "Preferred Contact Time: " + contTime
+    };
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CONTACT_TEMPLATE_ID, sellParams);
+      form.style.display          = "none";
+      successEl.style.display     = "flex";
+      document.querySelector(".sell-steps").style.display = "none";
+    } catch (err) {
+      console.error("EmailJS sell error:", err);
+      alert("Something went wrong. Please call us directly or email sales@civiumestate.com");
+      submitBtn.disabled = false;
+      btnText.style.display   = "inline-block";
+      btnLoader.style.display = "none";
+    }
   });
 
   // ── Reset / Submit Another ────────────────────────────────────
