@@ -2728,3 +2728,64 @@ body.nav-open .nav-toggle { display: none; }
 @media (max-width: 480px) {
   .social-icons .social-icon { width: 40px; height: 40px; }
 }
+
+/* ============================
+   UNIT TYPES — Property Drawer
+============================ */
+
+.ep-unit-types { margin: 20px 0; }
+
+.ep-unit-types-title {
+  color: #C5A47E;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.ep-unit-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.ep-unit-type-card {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: border-color 0.2s;
+}
+
+.ep-unit-type-card:hover { border-color: #C5A47E55; }
+
+.ep-unit-config {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.ep-unit-size {
+  color: #888;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.ep-unit-parking {
+  color: #777;
+  font-size: 0.75rem;
+}
+
+.ep-unit-price {
+  color: #C5A47E;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+@media (max-width: 480px) {
+  .ep-unit-types-grid { grid-template-columns: 1fr; }
+}
