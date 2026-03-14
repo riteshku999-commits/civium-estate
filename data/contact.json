@@ -4,8 +4,8 @@
     "phone": "+91 6290781373",
     "phoneRaw": "+916290781373",
     "address": {
-      "line1": "Unit-1703, Sidco Global Tower, CN-8/2, Salt Lake Sector V",
-      "line2": "Kolkata - 700091",
+      "line1": "Unit-1703, Sidco Global Tower",
+      "line2": "CN-8/2, Salt Lake Sector V, Kolkata - 700091",
       "line3": "West Bengal, India"
     },
     "hours": {
@@ -13,10 +13,11 @@
       "weekend": "Sunday: 10:00 AM - 4:00 PM"
     },
     "social": {
-      "facebook":  "#",
-      "instagram": "#",
-      "linkedin":  "#",
-      "whatsapp":  "#"
+      "whatsapp":  "https://wa.me/916290781373",
+      "instagram": "https://www.instagram.com/civiumestate",
+      "facebook":  "https://www.facebook.com/share/18ME9iTsCh/?mibextid=wwXIfr",
+      "linkedin":  "https://www.linkedin.com/in/civium-estate-9a21323a1",
+      "youtube":   "https://www.youtube.com/@civiumestate"
     }
   }
 }
