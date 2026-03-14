@@ -17,13 +17,22 @@
       "type": "3bhk",
       "soldOut": false,
       "media": [
-        { "type": "image", "src": "https://i.ibb.co/svLsKqkZ/Whats-App-Image-2026-03-14-at-2-29-49-PM-2.jpg" },
-        { "type": "image", "src": "https://i.ibb.co/QvYH8LJJ/Whats-App-Image-2026-03-14-at-2-29-49-PM.jpg" },
-        { "type": "image", "src": "https://i.ibb.co/B2fh303n/Whats-App-Image-2026-03-14-at-2-29-49-PM-1.jpg" }
+        {
+          "type": "image",
+          "src": "https://i.ibb.co/svLsKqkZ/Whats-App-Image-2026-03-14-at-2-29-49-PM-2.jpg"
+        },
+        {
+          "type": "image",
+          "src": "https://i.ibb.co/QvYH8LJJ/Whats-App-Image-2026-03-14-at-2-29-49-PM.jpg"
+        },
+        {
+          "type": "image",
+          "src": "https://i.ibb.co/B2fh303n/Whats-App-Image-2026-03-14-at-2-29-49-PM-1.jpg"
+        }
       ],
       "active": true,
       "attributes": {
-        "facing": "—",
+        "facing": null,
         "vastu": null,
         "floor": null,
         "totalFloors": 15,
@@ -35,14 +44,35 @@
         "landArea": "60 Cottah (1 Acre)",
         "towerElevation": "B+G+15",
         "totalUnits": 54,
-        "nearestRailway": { "name": "Salt Lake Sector V", "distanceKm": 0.5 },
-        "nearestHospital": { "name": "Apollo Gleneagles", "distanceKm": 5.2 },
+        "nearestRailway": {
+          "name": "Salt Lake Sector V",
+          "distanceKm": 0.5
+        },
+        "nearestHospital": {
+          "name": "Apollo Gleneagles",
+          "distanceKm": 5.2
+        },
         "mapLink": "Mahisbathan, Salt Lake Sector V, Kolkata, West Bengal"
       },
       "unitTypes": [
-        { "config": "3 BHK + 3T", "size": "2510 & 2519 Sq.Ft SBU", "parking": "2 Covered", "price": "₹3.25 Cr Onwards" },
-        { "config": "4 BHK + 4T", "size": "2946, 2951, 3137 & 3148 Sq.Ft SBU", "parking": "3 Covered", "price": "₹3.87 Cr & ₹4.18 Cr" },
-        { "config": "5 BHK + 6T", "size": "4540 & 4547 Sq.Ft SBU", "parking": "4 Covered", "price": "₹5.97 Cr Onwards" }
+        {
+          "config": "3 BHK + 3T",
+          "size": "2510 & 2519 Sq.Ft SBU",
+          "parking": "2 Covered",
+          "price": "₹3.25 Cr Onwards"
+        },
+        {
+          "config": "4 BHK + 4T",
+          "size": "2946, 2951, 3137 & 3148 Sq.Ft SBU",
+          "parking": "3 Covered",
+          "price": "₹3.87 Cr & ₹4.18 Cr"
+        },
+        {
+          "config": "5 BHK + 6T",
+          "size": "4540 & 4547 Sq.Ft SBU",
+          "parking": "4 Covered",
+          "price": "₹5.97 Cr Onwards"
+        }
       ]
     }
   ]
