@@ -452,12 +452,17 @@ function computeBudgetBrackets(properties) {
     prev = t;
   }
   // Final bracket: above last threshold up to max
-  if (prev < max) {
+  // Only add if prev > 0 (avoid "Above ₹0L" when no thresholds matched)
+  if (prev < max && prev > 0) {
     const count = properties.filter(p => p.price > prev).length;
     if (count > 0) {
       const label = `Above ₹${prev < 100 ? prev + "L" : (prev/100) + "Cr"}`;
       brackets.push({ value: `${prev}-99999`, label, min: prev, max: 99999 });
     }
+  } else if (prev === 0 && properties.length > 0) {
+    // All properties above all thresholds — show a single meaningful bracket
+    const label = `₹${max < 100 ? max + "L" : (max/100) + "Cr"}+`;
+    brackets.push({ value: `0-99999`, label, min: 0, max: 99999 });
   }
   return brackets;
 }
@@ -595,8 +600,8 @@ function attachDrawerGallery(drawerEl) {
 // Attribute config — icon, label, how to render value
 const ATTR_CONFIG = {
   facing:          { icon: "🧭", label: "Facing" },
-  vastu:           { icon: "🕉️",  label: "Vastu Compliant", render: v => v ? "Yes ✓" : "No ✗" },
-  floor:           { icon: "🏢", label: "Floor",          render: (v, a) => `${v} of ${a.totalFloors || "?"}` },
+  vastu:           { icon: "🕉️",  label: "Vastu Compliant", render: v => v === null ? null : v ? "Yes ✓" : "No ✗" },
+  floor:           { icon: "🏢", label: "Floor",          render: (v, a) => v ? `${v} of ${a.totalFloors || "?"}` : null },
   parking:         { icon: "🚗", label: "Parking" },
   furnished:       { icon: "🛋️",  label: "Furnished" },
   ageOfProperty:   { icon: "📅", label: "Age" },
@@ -622,6 +627,7 @@ function buildDrawerHTML(p) {
     .map(([key, val]) => {
       const cfg      = ATTR_CONFIG[key];
       const rendered = cfg.render ? cfg.render(val, attrs) : val;
+      if (rendered === null || rendered === undefined || rendered === "—") return ""; // skip empty
       const isNegative = key === "vastu" && val === false;
       return `
         <div class="ep-attr-pill${isNegative ? " ep-attr-pill--negative" : ""}">
@@ -743,7 +749,7 @@ let epSort          = "default";
 
 function buildPropertyCard(p, index) {
   const soldClass   = p.soldOut ? " ep-card--sold" : "";
-  const featBadge   = p.featured ? `<div class="ep-badge ep-badge--featured">⭐ Featured</div>` : "";
+  const featBadge   = ""; // featured shown on card only, not duplicated in drawer
   const dealBadge   = `<div class="ep-badge ep-badge--deal ${p.badgeClass}">${p.badge}</div>`;
   const soldOverlay = p.soldOut
     ? `<div class="ep-sold-overlay"><div class="ep-sold-text">SOLD OUT</div><p>Successfully sold</p></div>` : "";
