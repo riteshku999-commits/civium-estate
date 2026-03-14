@@ -106,15 +106,116 @@ if (testimonials.length) {
 
 
 // ─────────────────────────────────────────
-// 8. LEAD POPUP (Enquire Now button)
+// 8. PROPERTY ENQUIRY MODAL
 // ─────────────────────────────────────────
-const popup = document.getElementById("leadPopup");
-const closePopupBtn = document.getElementById("closePopup");
-if (closePopupBtn) closePopupBtn.addEventListener("click", () => popup.style.display = "none");
-// Delegated — works for dynamically rendered buttons
+const enqModal       = document.getElementById("enquiryModal");
+const enqBackdrop    = document.getElementById("enqBackdrop");
+const enqCloseBtn    = document.getElementById("enqClose");
+const enqForm        = document.getElementById("enquiryForm");
+const enqSuccess     = document.getElementById("enqSuccess");
+const enqPropertyName = document.getElementById("enqPropertyName");
+const enqPropertyRef  = document.getElementById("enqPropertyRef");
+const enqSuccessProp  = document.getElementById("enqSuccessProperty");
+
+function openEnquiryModal(propertyTitle) {
+  // Close the property drawer first
+  closeDrawer();
+  // Small delay so drawer close animation doesn't clash
+  setTimeout(() => {
+    const title = propertyTitle || "this property";
+    enqPropertyName.textContent = title;
+    if (enqPropertyRef) enqPropertyRef.value = title;
+    if (enqSuccessProp) enqSuccessProp.textContent = title;
+    // Reset form to clean state
+    enqForm.style.display = "flex";
+    enqSuccess.style.display = "none";
+    enqForm.reset();
+    enqPropertyRef.value = title;
+    clearEnqErrors();
+    enqModal.classList.add("enq-modal--open");
+    document.body.classList.add("enq-modal-active");
+  }, 300);
+}
+
+function closeEnquiryModal() {
+  enqModal.classList.remove("enq-modal--open");
+  document.body.classList.remove("enq-modal-active");
+}
+
+function clearEnqErrors() {
+  document.querySelectorAll(".enq-error").forEach(e => e.textContent = "");
+}
+
+// Open on Enquire Now click — capture property title from drawer
 document.addEventListener("click", e => {
-  if (e.target.matches(".ep-enquire-btn") && !e.target.disabled)
-    popup.style.display = "flex";
+  const btn = e.target.closest(".ep-enquire-btn");
+  if (btn && !btn.disabled) {
+    // Get property title from drawer heading
+    const drawerTitle = document.querySelector(".ep-drawer-title")?.textContent?.trim()
+      || btn.dataset.title || "this property";
+    openEnquiryModal(drawerTitle);
+  }
+});
+
+// Close handlers
+enqCloseBtn?.addEventListener("click", closeEnquiryModal);
+enqBackdrop?.addEventListener("click", closeEnquiryModal);
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeEnquiryModal();
+});
+
+// Form submission
+enqForm?.addEventListener("submit", async e => {
+  e.preventDefault();
+  clearEnqErrors();
+
+  // Validate required fields
+  const name  = document.getElementById("enqName").value.trim();
+  const phone = document.getElementById("enqPhone").value.trim().replace(/[\s\-\(\)]/g, "");
+  let valid = true;
+  if (!name || name.length < 2) {
+    document.getElementById("errEnqName").textContent = "Please enter your name";
+    valid = false;
+  }
+  if (!/^[\+]?[0-9]{10,15}$/.test(phone)) {
+    document.getElementById("errEnqPhone").textContent = "Please enter a valid phone number";
+    valid = false;
+  }
+  if (!valid) return;
+
+  const submitBtn = document.getElementById("enqSubmitBtn");
+  submitBtn.disabled = true;
+  submitBtn.querySelector(".enq-btn-text").style.display  = "none";
+  submitBtn.querySelector(".enq-btn-loader").style.display = "inline-block";
+
+  const templateParams = {
+    from_name    : name,
+    from_email   : document.getElementById("enqEmail").value.trim() || "Not provided",
+    phone        : document.getElementById("enqPhone").value.trim(),
+    interest     : enqPropertyRef.value || "Property enquiry",
+    budget       : document.getElementById("enqBudget").value || "Not specified",
+    message      : `Property: ${enqPropertyRef.value}
+Timeline: ${document.getElementById("enqTimeline").value || "Not specified"}
+
+${document.getElementById("enqMessage").value.trim() || "No additional message"}`
+  };
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+    enqForm.style.display    = "none";
+    enqSuccess.style.display = "flex";
+    submitBtn.disabled = false;
+    submitBtn.querySelector(".enq-btn-text").style.display   = "inline-block";
+    submitBtn.querySelector(".enq-btn-loader").style.display = "none";
+    // Auto close after 4 seconds
+    setTimeout(closeEnquiryModal, 4000);
+  } catch (err) {
+    console.error("EmailJS error:", err);
+    alert("Something went wrong. Please call us or email sales@civiumestate.com directly.");
+    submitBtn.disabled = false;
+    submitBtn.querySelector(".enq-btn-text").style.display   = "inline-block";
+    submitBtn.querySelector(".enq-btn-loader").style.display = "none";
+  }
 });
 
 
