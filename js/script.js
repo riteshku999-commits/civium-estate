@@ -117,20 +117,20 @@ const enqPropertyName = document.getElementById("enqPropertyName");
 const enqPropertyRef  = document.getElementById("enqPropertyRef");
 const enqSuccessProp  = document.getElementById("enqSuccessProperty");
 
-function openEnquiryModal(propertyTitle) {
+function openEnquiryModal(property) {
   // Close the property drawer first
   closeDrawer();
   // Small delay so drawer close animation doesn't clash
   setTimeout(() => {
-    const title = propertyTitle || "this property";
+    const title = (typeof property === "object" ? property.title : property) || "this property";
     enqPropertyName.textContent = title;
-    if (enqPropertyRef) enqPropertyRef.value = title;
     if (enqSuccessProp) enqSuccessProp.textContent = title;
+    // Store full property object on form for submission
+    enqForm.dataset.property = typeof property === "object" ? JSON.stringify(property) : JSON.stringify({ title });
     // Reset form to clean state
     enqForm.style.display = "flex";
     enqSuccess.style.display = "none";
     enqForm.reset();
-    enqPropertyRef.value = title;
     clearEnqErrors();
     enqModal.classList.add("enq-modal--open");
     document.body.classList.add("enq-modal-active");
@@ -146,14 +146,11 @@ function clearEnqErrors() {
   document.querySelectorAll(".enq-error").forEach(e => e.textContent = "");
 }
 
-// Open on Enquire Now click — capture property title from drawer
+// Open on Enquire Now click — pass full property object
 document.addEventListener("click", e => {
   const btn = e.target.closest(".ep-enquire-btn");
   if (btn && !btn.disabled) {
-    // Get property title from drawer heading
-    const drawerTitle = document.querySelector(".ep-drawer-title")?.textContent?.trim()
-      || btn.dataset.title || "this property";
-    openEnquiryModal(drawerTitle);
+    openEnquiryModal(_activeProperty || document.querySelector(".ep-drawer-title")?.textContent?.trim() || "this property");
   }
 });
 
@@ -188,16 +185,37 @@ enqForm?.addEventListener("submit", async e => {
   submitBtn.querySelector(".enq-btn-text").style.display  = "none";
   submitBtn.querySelector(".enq-btn-loader").style.display = "inline-block";
 
-  const templateParams = {
-    from_name    : name,
-    from_email   : document.getElementById("enqEmail").value.trim() || "Not provided",
-    phone        : document.getElementById("enqPhone").value.trim(),
-    interest     : enqPropertyRef.value || "Property enquiry",
-    budget       : document.getElementById("enqBudget").value || "Not specified",
-    message      : `Property: ${enqPropertyRef.value}
-Timeline: ${document.getElementById("enqTimeline").value || "Not specified"}
+  // Parse stored property object for rich email
+  let prop = {};
+  try { prop = JSON.parse(enqForm.dataset.property || "{}"); } catch(ex) {}
 
-${document.getElementById("enqMessage").value.trim() || "No additional message"}`
+  const purpose  = document.getElementById("enqPurpose").value  || "Not specified";
+  const timeline = document.getElementById("enqTimeline").value || "Not specified";
+  const userMsg  = document.getElementById("enqMessage").value.trim() || "No additional message";
+  const attr     = prop.attributes || {};
+
+  const propLines = [
+    ["Property",   prop.title           || "—"],
+    ["Price",      prop.priceLabel      || "—"],
+    ["Type",       (prop.type||"—").toUpperCase()],
+    ["Category",   prop.category ? prop.category.charAt(0).toUpperCase() + prop.category.slice(1) : "—"],
+    ["Location",   prop.location ? prop.location.charAt(0).toUpperCase() + prop.location.slice(1) : "—"],
+    ["Facing",     attr.facing          || "—"],
+    ["Floor",      attr.floor           ? attr.floor + " / " + attr.totalFloors : "—"],
+    ["Parking",    attr.parking         || "—"],
+    ["Furnished",  attr.furnished       || "—"],
+    ["Age",        attr.ageOfProperty   || "—"],
+    ["Possession", attr.possession      || "—"],
+    ["Vastu",      attr.vastu === true  ? "Yes" : attr.vastu === false ? "No" : "—"],
+  ].map(function(r){ return r[0] + ": " + r[1]; }).join("\n");
+
+  const templateParams = {
+    from_name  : name,
+    from_email : document.getElementById("enqEmail").value.trim() || "Not provided",
+    phone      : document.getElementById("enqPhone").value.trim(),
+    interest   : prop.title || "Property enquiry",
+    budget     : purpose,
+    message    : "ENQUIRY DETAILS\nPurpose: " + purpose + "\nTimeline: " + timeline + "\n\nMessage: " + userMsg + "\n\n---\nPROPERTY DETAILS\n" + propLines
   };
 
   try {
@@ -653,7 +671,11 @@ function buildDrawerHTML(p) {
 
 // Open / close drawer
 // Elements looked up at call-time (not at script load) to avoid null refs
+// Currently open property — used by enquiry modal
+let _activeProperty = null;
+
 function openDrawer(property) {
+  _activeProperty = property;
   const drawerEl    = document.getElementById("epDrawer");
   const drawerInner = document.getElementById("epDrawerInner");
   const drawerClose = document.getElementById("epDrawerClose");
