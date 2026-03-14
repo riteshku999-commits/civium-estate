@@ -416,7 +416,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Pretty-print location keys → readable labels
 const LOCATION_LABELS = {
   saltlake: "Salt Lake", newtown: "New Town", rajarhat: "Rajarhat",
-  embypass: "EM Bypass", ballygunge: "Ballygunge", alipore: "Alipore / New Alipore",
+  embypass: "EM Bypass", howrah: "Howrah", ballygunge: "Ballygunge", alipore: "Alipore / New Alipore",
   behala: "Behala", parkstreet: "Park Street", camacstreet: "Camac Street",
   elginroad: "Elgin Road", dankuni: "Dankuni", barasat: "Barasat"
 };
