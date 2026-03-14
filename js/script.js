@@ -242,9 +242,10 @@ enqForm?.addEventListener("submit", async e => {
 // ─────────────────────────────────────────
 
 // ── EmailJS credentials ──────────────────
-const EMAILJS_SERVICE_ID  = "service_tgcfhw2";
-const EMAILJS_TEMPLATE_ID = "template_7k362il";
-const EMAILJS_PUBLIC_KEY  = "lyKpG1clXdqatOcBq";
+const EMAILJS_SERVICE_ID          = "service_tgcfhw2";
+const EMAILJS_TEMPLATE_ID         = "template_7k362il";   // Property enquiry modal
+const EMAILJS_CONTACT_TEMPLATE_ID = "template_ffznhgn";   // Contact Us form
+const EMAILJS_PUBLIC_KEY          = "lyKpG1clXdqatOcBq";
 
 // Initialise EmailJS
 if (typeof emailjs !== "undefined") {
@@ -305,7 +306,7 @@ if (contactForm) {
     };
 
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CONTACT_TEMPLATE_ID, templateParams);
       contactForm.style.display    = "none";
       successMessage.style.display = "block";
       contactForm.reset();
