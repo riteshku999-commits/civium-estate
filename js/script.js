@@ -665,6 +665,21 @@ function buildDrawerHTML(p) {
         ${oldPrice}
       </div>
 
+      ${p.unitTypes && p.unitTypes.length ? `
+      <div class="ep-unit-types">
+        <h4 class="ep-unit-types-title">Unit Configurations</h4>
+        <div class="ep-unit-types-grid">
+          ${p.unitTypes.map(u => `
+            <div class="ep-unit-type-card">
+              <div class="ep-unit-config">${u.config}</div>
+              <div class="ep-unit-size">${u.size}</div>
+              <div class="ep-unit-parking">🚗 ${u.parking}</div>
+              <div class="ep-unit-price">${u.price}</div>
+            </div>
+          `).join("")}
+        </div>
+      </div>` : ""}
+
       ${pills ? `<div class="ep-attrs-grid">${pills}</div>` : ""}
 
       ${mapBtn}
