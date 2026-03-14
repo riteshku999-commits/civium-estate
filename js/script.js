@@ -248,9 +248,15 @@ const EMAILJS_CONTACT_TEMPLATE_ID = "template_ffznhgn";   // Contact Us form
 const EMAILJS_PUBLIC_KEY          = "lyKpG1clXdqatOcBq";
 
 // Initialise EmailJS
-if (typeof emailjs !== "undefined") {
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-}
+// Init EmailJS once window + all scripts are fully loaded
+window.addEventListener("load", () => {
+  if (typeof emailjs !== "undefined") {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    console.log("EmailJS initialised");
+  } else {
+    console.error("EmailJS SDK not found — check script tag in HTML");
+  }
+});
 
 const contactForm    = document.getElementById("contactForm");
 const successMessage = document.getElementById("successMessage");
@@ -1162,13 +1168,16 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
+      if (typeof emailjs === "undefined") throw new Error("EmailJS not loaded");
+      console.log("Sending sell form via EmailJS...", sellParams);
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CONTACT_TEMPLATE_ID, sellParams);
+      console.log("Sell form email sent successfully");
       form.style.display          = "none";
       successEl.style.display     = "flex";
       document.querySelector(".sell-steps").style.display = "none";
     } catch (err) {
       console.error("EmailJS sell error:", err);
-      alert("Something went wrong. Please call us directly or email sales@civiumestate.com");
+      alert("Something went wrong sending your details. Please call us or email sales@civiumestate.com directly.");
       submitBtn.disabled = false;
       btnText.style.display   = "inline-block";
       btnLoader.style.display = "none";
