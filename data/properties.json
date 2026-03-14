@@ -74,6 +74,74 @@
           "price": "₹5.97 Cr Onwards"
         }
       ]
+    },
+    {
+      "id": "p-002",
+      "title": "DTC Still Waters - New Town",
+      "description": "📍 Behind Infosys Business Park, Action Area III, New Town | Just 3 mins from Infosys",
+      "category": "residential",
+      "isHotDeal": false,
+      "featured": true,
+      "badge": "FEATURED",
+      "badgeClass": "featured",
+      "price": 92,
+      "priceLabel": "₹92 Lac Onwards",
+      "oldPriceLabel": "",
+      "budget": "50-100",
+      "location": "newtown",
+      "type": "3bhk",
+      "soldOut": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "https://i.ibb.co/RTkrCzPC/Pic.jpg"
+        }
+      ],
+      "active": true,
+      "attributes": {
+        "facing": null,
+        "vastu": null,
+        "floor": null,
+        "totalFloors": 23,
+        "parking": "Covered",
+        "furnished": "Unfurnished",
+        "ageOfProperty": "Under Construction",
+        "possession": "2030",
+        "developer": "DTC Group",
+        "landArea": "Phase I - 5.1 Acres",
+        "towerElevation": "G+22 & G+23",
+        "totalUnits": 452,
+        "reraApproved": true,
+        "nearestRailway": {
+          "name": "New Town",
+          "distanceKm": 2.0
+        },
+        "nearestHospital": {
+          "name": "Charnock Hospital",
+          "distanceKm": 6.0
+        },
+        "mapLink": "Action Area III, New Town, Kolkata, West Bengal"
+      },
+      "unitTypes": [
+        {
+          "config": "3 BHK Smart (2T)",
+          "size": "1160 Sq.Ft Super Built-up",
+          "parking": "Covered",
+          "price": "₹92 Lac Onwards"
+        },
+        {
+          "config": "3 BHK (2T & 3T)",
+          "size": "1340 & 1550 Sq.Ft Super Built-up",
+          "parking": "Covered",
+          "price": "₹1 Cr Onwards"
+        },
+        {
+          "config": "4 BHK (4T)",
+          "size": "2030 Sq.Ft Super Built-up",
+          "parking": "Covered",
+          "price": "₹1.48 Cr Onwards"
+        }
+      ]
     }
   ]
 }
