@@ -847,32 +847,85 @@
   </aside>
 
   <!-- Lead Popup -->
-  <div id="leadPopup" class="popup">
-    <div class="popup-content">
-      <span id="closePopup">&times;</span>
-      <h3>Get Exact Price Details</h3>
-      <form>
-        <input type="text" placeholder="Full Name" required>
-        <input type="tel" placeholder="Phone Number" required>
-        <select required>
-          <option value="">Budget Range</option>
-          <option>₹30L–50L</option>
-          <option>₹50L–80L</option>
-          <option>₹1Cr+</option>
-        </select>
-        <select required>
-          <option value="">Purpose</option>
-          <option>End Use</option>
-          <option>Investment</option>
-        </select>
-        <select required>
-          <option value="">Buying Timeline</option>
-          <option>Immediate</option>
-          <option>3–6 Months</option>
-          <option>Just Exploring</option>
-        </select>
-        <button type="submit">Submit &amp; Get Price</button>
+  <!-- Property Enquiry Modal -->
+  <div id="enquiryModal" class="enq-modal" aria-modal="true" role="dialog" aria-label="Property Enquiry">
+    <div class="enq-backdrop" id="enqBackdrop"></div>
+    <div class="enq-box">
+
+      <button class="enq-close" id="enqClose" aria-label="Close">&#x2715;</button>
+
+      <div class="enq-header">
+        <div class="enq-header-icon">📞</div>
+        <div>
+          <h3 class="enq-title">Enquire About This Property</h3>
+          <p class="enq-property-name" id="enqPropertyName"></p>
+        </div>
+      </div>
+
+      <form id="enquiryForm" class="enq-form" novalidate>
+        <input type="hidden" id="enqPropertyRef" name="property_ref">
+
+        <div class="enq-row">
+          <div class="enq-field">
+            <label for="enqName">Full Name *</label>
+            <input type="text" id="enqName" name="enq_name" placeholder="Your full name" autocomplete="name">
+            <span class="enq-error" id="errEnqName"></span>
+          </div>
+          <div class="enq-field">
+            <label for="enqPhone">Phone Number *</label>
+            <input type="tel" id="enqPhone" name="enq_phone" placeholder="+91 98300 12345" autocomplete="tel">
+            <span class="enq-error" id="errEnqPhone"></span>
+          </div>
+        </div>
+
+        <div class="enq-field">
+          <label for="enqEmail">Email Address</label>
+          <input type="email" id="enqEmail" name="enq_email" placeholder="your.email@example.com (optional)" autocomplete="email">
+        </div>
+
+        <div class="enq-row">
+          <div class="enq-field">
+            <label for="enqBudget">Budget Range</label>
+            <select id="enqBudget" name="enq_budget">
+              <option value="">Select budget (optional)</option>
+              <option value="Under ₹50 Lakhs">Under ₹50 Lakhs</option>
+              <option value="₹50L - ₹1 Crore">₹50L - ₹1 Crore</option>
+              <option value="₹1 - ₹2 Crores">₹1 - ₹2 Crores</option>
+              <option value="₹2 - ₹5 Crores">₹2 - ₹5 Crores</option>
+              <option value="Above ₹5 Crores">Above ₹5 Crores</option>
+            </select>
+          </div>
+          <div class="enq-field">
+            <label for="enqTimeline">Buying Timeline</label>
+            <select id="enqTimeline" name="enq_timeline">
+              <option value="">Select timeline (optional)</option>
+              <option value="Immediate">Immediate</option>
+              <option value="Within 3 months">Within 3 months</option>
+              <option value="3–6 months">3–6 months</option>
+              <option value="Just exploring">Just exploring</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="enq-field">
+          <label for="enqMessage">Message</label>
+          <textarea id="enqMessage" name="enq_message" rows="3" placeholder="Any specific requirements, questions or preferred visit time..."></textarea>
+        </div>
+
+        <button type="submit" class="enq-submit-btn" id="enqSubmitBtn">
+          <span class="enq-btn-text">Send Enquiry</span>
+          <span class="enq-btn-loader" style="display:none;">Sending…</span>
+        </button>
+        <p class="enq-note">We'll get back to you within a few hours.</p>
       </form>
+
+      <!-- Success state -->
+      <div class="enq-success" id="enqSuccess" style="display:none;">
+        <div class="enq-success-icon">✅</div>
+        <h3>Enquiry Sent!</h3>
+        <p>Thank you. Our team will contact you shortly regarding <strong id="enqSuccessProperty"></strong>.</p>
+      </div>
+
     </div>
   </div>
 
