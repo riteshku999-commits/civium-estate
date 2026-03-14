@@ -1601,7 +1601,26 @@ body.ep-drawer-active { overflow: hidden; }
 .ep-drawer-close-icon  { font-size: 0.9rem; line-height: 1; }
 .ep-drawer-close-label { font-weight: 500; }
 
-.ep-drawer-media .media-stack { height: 300px; border-radius: 0; }
+.ep-drawer-media .media-stack {
+  height: auto;
+  max-height: 480px;
+  border-radius: 0;
+  background: #0d0d0d;
+}
+
+.ep-drawer-media .media-layer {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  opacity: 1;
+}
+
+.ep-drawer-media .media-layer:not(.media-layer--active) {
+  display: none;
+}
 
 .ep-drawer-info { padding: 24px 28px; }
 
@@ -1672,7 +1691,7 @@ body.ep-drawer-active { overflow: hidden; }
 @media (max-width: 600px) {
   .ep-drawer { width: 100vw; }
   .ep-attrs-grid { grid-template-columns: 1fr; }
-  .ep-drawer-media .media-stack { height: 220px; }
+  .ep-drawer-media .media-stack { max-height: 300px; }
 }
 
 
