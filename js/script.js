@@ -119,8 +119,19 @@ document.addEventListener("click", e => {
 
 
 // ─────────────────────────────────────────
-// 9. CONTACT FORM
+// 9. CONTACT FORM + EMAILJS
 // ─────────────────────────────────────────
+
+// ── EmailJS credentials ──────────────────
+const EMAILJS_SERVICE_ID  = "service_tgcfhw2";
+const EMAILJS_TEMPLATE_ID = "template_7k362il";
+const EMAILJS_PUBLIC_KEY  = "lyKpG1clXdqatOcBq";
+
+// Initialise EmailJS
+if (typeof emailjs !== "undefined") {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+
 const contactForm    = document.getElementById("contactForm");
 const successMessage = document.getElementById("successMessage");
 
@@ -158,12 +169,24 @@ if (contactForm) {
     const v  = validateForm(fd);
     if (!v.isValid) { displayErrors(v.errors); return; }
     displayErrors({});
+
     const btn = contactForm.querySelector(".submit-btn");
     btn.disabled = true;
     btn.querySelector(".btn-text").style.display   = "none";
     btn.querySelector(".btn-loader").style.display = "inline-block";
+
+    // ── Build template params matching EmailJS template variables ──
+    const templateParams = {
+      from_name  : fd.get("fullName")?.trim(),
+      from_email : fd.get("email")?.trim(),
+      phone      : fd.get("phone")?.trim(),
+      interest   : fd.get("propertyInterest") || "Not specified",
+      budget     : fd.get("budget") || "Not specified",
+      message    : fd.get("message")?.trim()
+    };
+
     try {
-      await new Promise(r => setTimeout(r, 1500));
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
       contactForm.style.display    = "none";
       successMessage.style.display = "block";
       contactForm.reset();
@@ -174,7 +197,13 @@ if (contactForm) {
         btn.querySelector(".btn-text").style.display   = "inline-block";
         btn.querySelector(".btn-loader").style.display = "none";
       }, 5000);
-    } catch { alert("Something went wrong. Please try again."); btn.disabled = false; }
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      alert("Something went wrong sending your message. Please try calling us directly or email sales@civiumestate.com");
+      btn.disabled = false;
+      btn.querySelector(".btn-text").style.display   = "inline-block";
+      btn.querySelector(".btn-loader").style.display = "none";
+    }
   });
 
   contactForm.querySelectorAll("input,select,textarea").forEach(field => {
