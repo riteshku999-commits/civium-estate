@@ -1193,7 +1193,6 @@ body.enq-modal-active { overflow: hidden; }
 .social-icons { display: flex; gap: 15px; }
 
 
-
 @media (max-width: 968px) {
   .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
   .form-row        { grid-template-columns: 1fr; }
@@ -2929,160 +2928,164 @@ body.nav-open .nav-toggle { display: none; }
 body.enq-modal-active .whatsapp-float,
 body.nav-open .whatsapp-float { opacity: 0; pointer-events: none; }
 
-.about {
-  padding: 90px 20px;
-  background: #fff;
+
+/* ── Photo column ── */
+
+
+/* Magicbricks floating badge */
+
+
+/* ── Bio column ── */
+
+
+/* Credentials */
+
+
+/* Mobile */
+@media (max-width: 900px) {
+  
+  
+  
+  
+  
+  
 }
 
-.about-inner {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 70px;
+@media (max-width: 480px) {
+  
+  
+}
+/* ============================
+   ABOUT — Compact Card
+============================ */
+
+.about {
+  padding: 40px 20px;
+  background: #f9f9f9;
+}
+
+.about-card {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px 28px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  border: 1px solid #eee;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-/* ── Photo column ── */
-.about-photo-col { position: relative; }
-
-.about-photo-wrap {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.about-photo {
-  width: 100%;
-  max-width: 360px;
-  border-radius: 16px;
-  display: block;
-  object-fit: cover;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-}
-
-/* Magicbricks floating badge */
-.about-mb-badge {
-  position: absolute;
-  bottom: -18px;
-  right: -18px;
-  background: #fff;
-  border-radius: 12px;
-  padding: 12px 16px;
+.about-card-left {
   display: flex;
   align-items: center;
-  gap: 10px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-  border: 1px solid #eee;
-  max-width: 220px;
+  gap: 18px;
+  flex: 1;
+  min-width: 0;
 }
 
-.about-mb-logo {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
+/* Avatar */
+.about-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 3px solid #C5A47E;
   flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
-.about-mb-text {
-  display: flex;
-  flex-direction: column;
-}
+/* Info block */
+.about-card-info { flex: 1; min-width: 0; }
 
-.about-mb-title {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #222;
-  line-height: 1.2;
-}
-
-.about-mb-sub {
-  font-size: 0.72rem;
-  color: #888;
-  margin-top: 2px;
-}
-
-/* ── Bio column ── */
-.about-eyebrow {
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #C5A47E;
-  margin-bottom: 10px;
-}
-
-.about-name {
+.about-card-name {
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
+  font-size: 1.1rem;
   color: #111;
-  margin: 0 0 6px;
-}
-
-.about-role {
-  color: #888;
-  font-size: 0.9rem;
-  margin: 0 0 24px;
-}
-
-.about-bio {
-  color: #555;
-  line-height: 1.8;
-  font-size: 0.95rem;
-  margin-bottom: 16px;
-}
-
-.about-bio strong { color: #222; }
-
-/* Credentials */
-.about-credentials {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid #eee;
-}
-
-.about-credential {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.about-credential-icon {
-  font-size: 1.3rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.about-credential strong {
-  display: block;
-  color: #222;
-  font-size: 0.9rem;
+  font-weight: 600;
   margin-bottom: 2px;
 }
 
-.about-credential span {
+.about-card-role {
+  font-size: 0.78rem;
+  color: #C5A47E;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.about-card-bio {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+
+.about-card-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.about-pill {
+  font-size: 0.72rem;
+  color: #555;
+  background: #f4f4f4;
+  border: 1px solid #e8e8e8;
+  border-radius: 20px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+/* Magicbricks chip */
+.about-mb-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 10px;
+  padding: 10px 16px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  white-space: nowrap;
+}
+
+.about-mb-chip-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.about-mb-chip-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #E84040;
+  line-height: 1.2;
+}
+
+.about-mb-chip-sub {
+  font-size: 0.7rem;
   color: #888;
-  font-size: 0.8rem;
+  margin-top: 1px;
 }
 
 /* Mobile */
-@media (max-width: 900px) {
-  .about-inner {
-    grid-template-columns: 1fr;
-    gap: 50px;
-    text-align: center;
+@media (max-width: 768px) {
+  .about-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+    gap: 16px;
   }
-  .about-photo { max-width: 280px; margin: 0 auto; }
-  .about-photo-wrap { display: flex; justify-content: center; }
-  .about-mb-badge { right: 10px; bottom: -14px; }
-  .about-credential { text-align: left; }
-  .about-name { font-size: 1.8rem; }
+  .about-mb-chip { align-self: flex-start; }
+  .about-card-bio { display: none; } /* Keep it tight on mobile */
 }
 
 @media (max-width: 480px) {
-  .about-mb-badge { position: static; margin: 20px auto 0; justify-content: center; max-width: 100%; }
-  .about-photo-wrap { flex-direction: column; align-items: center; }
+  .about-avatar { width: 58px; height: 58px; }
+  .about-card-name { font-size: 1rem; }
 }
