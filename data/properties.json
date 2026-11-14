@@ -11,7 +11,6 @@
       "badgeClass": "featured",
       "price": 325,
       "priceLabel": "₹3.25 Cr Onwards",
-      "oldPriceLabel": "",
       "budget": "2cr+",
       "location": "saltlake",
       "type": "3bhk",
@@ -28,13 +27,14 @@
         {
           "type": "image",
           "src": "https://i.ibb.co/B2fh303n/Whats-App-Image-2026-03-14-at-2-29-49-PM-1.jpg"
+        },
+        {
+          "type": "image",
+          "src": "images/properties/p-001-mwg7w0ty-1.jpg"
         }
       ],
       "active": true,
       "attributes": {
-        "facing": null,
-        "vastu": null,
-        "floor": null,
         "totalFloors": 15,
         "parking": "2–4 Covered",
         "furnished": "Unfurnished",
