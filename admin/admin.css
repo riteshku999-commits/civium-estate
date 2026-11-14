@@ -107,8 +107,8 @@ summary::-webkit-details-marker { display: none; }
 /* photos */
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin-bottom: 12px; }
 .ph { background: var(--panel2); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; position: relative; }
-.ph img, .ph .vid { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: #000; }
-.ph .vid { display: grid; place-items: center; font-size: 1.6rem; }
+.ph img, 
+.ph .vid { display: grid; place-content: center; text-align: center; font-size: 1.6rem; aspect-ratio: 4/3; background: #000; } .ph .vid small { font-size: .75rem; color: var(--muted); }
 .ph .cover { position: absolute; top: 6px; left: 6px; background: var(--gold); color: #111; font-size: .7rem; font-weight: 700; padding: 2px 7px; border-radius: 99px; }
 .ph .new { position: absolute; top: 6px; right: 6px; background: var(--ok); color: #fff; font-size: .7rem; padding: 2px 7px; border-radius: 99px; }
 .ph-ctl { display: grid; grid-template-columns: 1fr 1fr 1fr; }

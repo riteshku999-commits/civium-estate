@@ -39,6 +39,6 @@ The worker only answers callers whose GitHub token can edit the repo. Cost is a 
 
 - Distances are approximate by design (rounded to ½ km, OpenStreetMap data). The client should glance at them.
 - The site is republished by GitHub Pages about 1–2 minutes after each save. New photos may show a broken image for that minute.
-- Videos are not uploaded (too large for the repo): add a web link instead.
+- Videos are not uploaded (too large for the repo). Add a public **YouTube** (video or Short) or **Instagram** (reel or post) link, or a direct `.mp4` link, under “Add a video link”. On the site, visitors open the listing and tap the video to play it. If an Instagram post is private or has embedding turned off, it won't play inline; an “Open on Instagram” link is always shown as a fallback.
 - Property photo size is limited by the phone's memory; a huge number of photos in one save can be slow. 5–8 per listing is ideal.
 - If a new area or property type is added, the site shows its name automatically (derived from the key).

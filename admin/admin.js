@@ -378,10 +378,18 @@
   const SUGGEST_LABELS = {};
   Object.values(SUGGEST).flat().forEach(([k, l]) => { if (!(k in SUGGEST_LABELS)) SUGGEST_LABELS[k] = l; });
 
+  // ───────────────────────── video links ─────────────────────────
+  function videoKind(u) {
+    if (/(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|shorts\/|embed\/|live\/|v\/)|youtu\.be\/)[A-Za-z0-9_-]{11}/i.test(u)) return "YouTube";
+    if (/instagram\.com\/(?:[A-Za-z0-9_.]+\/)?(?:reels?|p|tv)\/[A-Za-z0-9_-]+/i.test(u)) return "Instagram";
+    if (/\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(u)) return "Video file";
+    return "";
+  }
+
   // ───────────────────────── form: photos ─────────────────────────
   function renderPhotos() {
     $("photoGrid").innerHTML = S.media.map((m, i) => {
-      const body = m.type === "video" ? '<div class="vid">🎬</div>' : `<img src="${esc(m.preview || imgSrc(m.src))}" alt="Photo ${i + 1}">`;
+      const body = m.type === "video" ? `<div class="vid">🎬<br><small>${esc(videoKind(m.src) || "Video")}</small></div>` : `<img src="${esc(m.preview || imgSrc(m.src))}" alt="Photo ${i + 1}">`;
       return `<div class="ph" data-i="${i}">${body}
         ${i === 0 && m.type === "image" ? '<span class="cover">COVER</span>' : ""}${m.pending ? '<span class="new">NEW</span>' : ""}
         <div class="ph-ctl"><button type="button" data-ph="left" ${i === 0 ? "disabled" : ""} aria-label="Move earlier">◀</button>
@@ -751,7 +759,9 @@
     $("linkAddBtn").addEventListener("click", () => {
       const u = $("linkInput").value.trim();
       if (!/^https?:\/\//i.test(u)) { toast("Enter a full web link starting with https://", true); return; }
-      S.media.push({ type: $("linkType").value, src: u }); $("linkInput").value = ""; renderPhotos();
+      const type = $("linkType").value;
+      if (type === "video" && !videoKind(u)) { toast("That video link isn't recognised. Use a YouTube or Instagram video/reel link, or a direct .mp4 link.", true); return; }
+      S.media.push({ type, src: u }); $("linkInput").value = ""; renderPhotos();
     });
     $("photoGrid").addEventListener("click", e => {
       const b = e.target.closest("button[data-ph]"); if (!b) return;

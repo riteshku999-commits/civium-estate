@@ -347,17 +347,77 @@ if (contactForm) {
 // ║  HOVER SLIDESHOW ENGINE                                      ║
 // ╚══════════════════════════════════════════════════════════════╝
 
-function buildMediaStack(media, altText) {
+// Video links: YouTube (watch / youtu.be / shorts / live) and Instagram (reel / post)
+// are shown with their official embed players; anything else is treated as a direct video file.
+function parseVideoSrc(src) {
+  const u = String(src || "").trim();
+  let m = u.match(/(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|shorts\/|embed\/|live\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+  if (m) return {
+    kind: "youtube", label: "YouTube",
+    embed: `https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&rel=0&playsinline=1`,
+    thumb: `https://i.ytimg.com/vi/${m[1]}/hqdefault.jpg`,
+    watch: `https://www.youtube.com/watch?v=${m[1]}`
+  };
+  m = u.match(/instagram\.com\/(?:[A-Za-z0-9_.]+\/)?(reels?|p|tv)\/([A-Za-z0-9_-]+)/i);
+  if (m) {
+    const path = m[1].toLowerCase() === "p" || m[1].toLowerCase() === "tv" ? "p" : "reel";
+    return {
+      kind: "instagram", label: "Instagram", thumb: "",
+      embed: `https://www.instagram.com/${path}/${m[2]}/embed/`,
+      watch: `https://www.instagram.com/${path}/${m[2]}/`
+    };
+  }
+  return { kind: "file", src: u };
+}
+
+function buildMediaStack(media, altText, interactive) {
   if (!media || !media.length) return "";
   const hasVideo = media.some(m => m.type === "video");
   const layers = media.map((item, i) => {
     const active = i === 0 ? " media-layer--active" : "";
-    if (item.type === "video")
-      return `<video class="media-layer${active}" src="${item.src}" muted loop playsinline preload="none" aria-label="${altText} – video tour"></video>`;
+    if (item.type === "video") {
+      const v = parseVideoSrc(item.src);
+      if (v.kind !== "file") {
+        const bg = v.thumb ? ` style="background-image:url('${escapeHtml(v.thumb)}')"` : "";
+        return `<div class="media-layer media-layer--embed${active}" data-kind="${v.kind}" data-embed="${escapeHtml(v.embed)}"${bg} role="button" aria-label="${escapeHtml(altText)} – play ${v.label} video">
+          <span class="embed-play">▶</span><span class="embed-label">${v.label} video</span>
+          ${interactive ? `<a class="embed-open" href="${escapeHtml(v.watch)}" target="_blank" rel="noopener">Open on ${v.label} ↗</a>` : ""}</div>`;
+      }
+      return `<video class="media-layer${active}" src="${escapeHtml(v.src)}" muted loop playsinline preload="none" aria-label="${altText} – video tour"></video>`;
+    }
     return `<img class="media-layer${active}" src="${item.src}" alt="${altText}${i > 0 ? ` – photo ${i+1}` : ""}" loading="${i === 0 ? "eager" : "lazy"}">`;
   }).join("");
   const dots = media.map((_, i) => `<span class="media-dot${i === 0 ? " media-dot--active" : ""}"></span>`).join("");
   return `<div class="media-stack"${hasVideo ? ' data-has-video="true"' : ""}>${layers}<div class="media-dots">${dots}</div></div>`;
+}
+
+// Drawer: click the poster to load the embedded player; stop it when leaving the slide / closing.
+function stopEmbeds(root) {
+  root.querySelectorAll(".media-layer--embed.is-playing").forEach(l => {
+    l.classList.remove("is-playing");
+    l.querySelector("iframe")?.remove();
+  });
+  root.querySelectorAll(".media-stack--tall").forEach(st => st.classList.remove("media-stack--tall"));
+}
+function attachEmbedPlayers(drawerEl) {
+  const stack = drawerEl.querySelector(".ep-drawer-media .media-stack");
+  if (!stack) return;
+  stack.addEventListener("click", e => {
+    if (e.target.closest(".embed-open")) return;           // normal link
+    const layer = e.target.closest(".media-layer--embed");
+    if (!layer || layer.classList.contains("is-playing")) return;
+    const f = document.createElement("iframe");
+    f.src = layer.dataset.embed;
+    f.title = "Property video";
+    f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    f.referrerPolicy = "strict-origin-when-cross-origin";
+    layer.appendChild(f);
+    layer.classList.add("is-playing");
+    if (layer.dataset.kind === "instagram") stack.classList.add("media-stack--tall");
+  });
+  new MutationObserver(() => { if (!drawerEl.classList.contains("ep-drawer--open")) stopEmbeds(drawerEl); })
+    .observe(drawerEl, { attributes: true, attributeFilter: ["class"] });
 }
 
 function attachHoverSlideshow(card) {
@@ -544,6 +604,7 @@ function attachDrawerGallery(drawerEl) {
   let idx = 0;
 
   function goTo(i) {
+    stopEmbeds(drawerEl);
     // Pause any playing video at current index
     if (layers[idx].tagName === "VIDEO") layers[idx].pause();
     layers[idx].classList.remove("media-layer--active");
@@ -691,7 +752,7 @@ function buildDrawerHTML(p) {
 
   return `
     <div class="ep-drawer-media">
-      ${buildMediaStack(p.media, p.title)}
+      ${buildMediaStack(p.media, p.title, true)}
     </div>
 
     <div class="ep-drawer-info">
@@ -750,6 +811,7 @@ function openDrawer(property) {
   if (topbarTitle) topbarTitle.textContent = property.title;
   drawerInner.innerHTML = buildDrawerHTML(property);
   attachDrawerGallery(drawerEl);   // manual arrows — no auto-play in drawer
+  attachEmbedPlayers(drawerEl);    // YouTube / Instagram click-to-play
   drawerEl.classList.add("ep-drawer--open");
   document.body.classList.add("ep-drawer-active");
   setTimeout(() => drawerClose?.focus(), 50);
