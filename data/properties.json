@@ -30,7 +30,7 @@
           "src": "https://i.ibb.co/B2fh303n/Whats-App-Image-2026-03-14-at-2-29-49-PM-1.jpg"
         }
       ],
-      "active": true,
+      "active": false,
       "attributes": {
         "facing": null,
         "vastu": null,
@@ -114,11 +114,11 @@
         "reraApproved": true,
         "nearestRailway": {
           "name": "New Town",
-          "distanceKm": 2.0
+          "distanceKm": 2
         },
         "nearestHospital": {
           "name": "Charnock Hospital",
-          "distanceKm": 6.0
+          "distanceKm": 6
         },
         "mapLink": "Action Area III, New Town, Kolkata, West Bengal"
       },
@@ -180,7 +180,7 @@
         "reraNo": "WBRERA/P/HOW/2025/003782",
         "nearestRailway": {
           "name": "Howrah Junction",
-          "distanceKm": 3.0
+          "distanceKm": 3
         },
         "nearestHospital": {
           "name": "CMRI Hospital",
