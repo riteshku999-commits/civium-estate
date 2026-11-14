@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0d0d">
+  <title>Civium Estate · Listings Manager</title>
+  <link rel="icon" type="image/png" href="../images/logo-icon.png">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ═══ LOGIN / SETTINGS ═══ -->
+  <main id="viewLogin" class="view">
+    <div class="login-card">
+      <img src="../images/logo.png" alt="Civium Estate" class="login-logo">
+      <h1>Listings Manager</h1>
+      <p class="muted">Add, edit and remove the properties shown on civiumestate.com.</p>
+
+      <label class="field">
+        <span>Access token</span>
+        <input id="tokenInput" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste the token you were given">
+      </label>
+      <p class="hint">You only need to do this once on this phone. Ask the site owner if you don't have a token.</p>
+
+      <details class="advanced">
+        <summary>Advanced settings</summary>
+        <label class="field"><span>GitHub repository</span><input id="repoInput" value="riteshku999-commits/civium-estate" autocapitalize="off" spellcheck="false"></label>
+        <label class="field"><span>Branch</span><input id="branchInput" value="main" autocapitalize="off" spellcheck="false"></label>
+        <label class="field"><span>AI helper address (optional)</span><input id="workerInput" type="url" placeholder="https://civium-ai.yourname.workers.dev" autocapitalize="off" spellcheck="false"></label>
+      </details>
+
+      <button id="loginBtn" class="btn btn-primary btn-block">Sign in</button>
+      <p id="loginError" class="error" hidden></p>
+    </div>
+  </main>
+
+  <!-- ═══ LISTINGS ═══ -->
+  <main id="viewList" class="view" hidden>
+    <header class="topbar">
+      <div class="topbar-title">
+        <strong>Listings</strong>
+        <span id="listCount" class="muted"></span>
+      </div>
+      <button id="logoutBtn" class="btn btn-ghost btn-sm">Sign out</button>
+    </header>
+
+    <div id="listNotice" class="notice" hidden></div>
+    <div id="propList" class="prop-list"></div>
+
+    <div class="fab-bar">
+      <button id="addBtn" class="btn btn-primary btn-block">＋ Add new property</button>
+    </div>
+  </main>
+
+  <!-- ═══ EDIT FORM ═══ -->
+  <main id="viewForm" class="view" hidden>
+    <header class="topbar">
+      <button id="backBtn" class="btn btn-ghost btn-sm">← Back</button>
+      <div class="topbar-title"><strong id="formTitle">New property</strong></div>
+    </header>
+
+    <form id="propForm" novalidate>
+
+      <details class="card" open>
+        <summary>1 · Basics</summary>
+        <label class="field"><span>Property name *</span><input id="fTitle" placeholder="e.g. Marina's Edge - Mahisbathan"></label>
+        <div class="row2">
+          <label class="field"><span>Category *</span>
+            <select id="fCategory"><option value="residential">Residential</option><option value="commercial">Commercial</option></select>
+          </label>
+          <label class="field"><span>Type *</span><select id="fType"></select></label>
+        </div>
+        <label class="field" id="fTypeCustomWrap" hidden><span>Custom type name</span><input id="fTypeCustom" placeholder="e.g. Penthouse"></label>
+        <label class="field"><span>Area / locality *</span><select id="fLocation"></select></label>
+        <label class="field" id="fLocationCustomWrap" hidden><span>New area name</span><input id="fLocationCustom" placeholder="e.g. Garia"></label>
+
+        <div class="row2">
+          <label class="field"><span>Price *</span><input id="fPrice" inputmode="decimal" placeholder="e.g. 92 or 3.25"></label>
+          <label class="field"><span>Unit</span>
+            <select id="fPriceUnit"><option value="lakh">Lakh</option><option value="crore">Crore</option></select>
+          </label>
+        </div>
+        <label class="check"><input type="checkbox" id="fOnwards" checked> Show “Onwards” after the price</label>
+        <label class="field"><span>Price as shown on the site</span><input id="fPriceLabel"></label>
+        <label class="field"><span>Old price, if reduced (optional)</span><input id="fOldPrice" placeholder="e.g. ₹1.2 Cr"></label>
+
+        <label class="field"><span>Short description *</span>
+          <textarea id="fDesc" rows="3" placeholder="📍 Locality | key selling points"></textarea>
+        </label>
+        <label class="field"><span>Badge on the photo</span>
+          <input id="fBadge" list="badgeList" placeholder="FEATURED">
+          <datalist id="badgeList"><option value="FEATURED"><option value="NEW LAUNCH"><option value="HOT DEAL"><option value="READY TO MOVE"><option value="LIMITED UNITS"></datalist>
+        </label>
+      </details>
+
+      <details class="card" open>
+        <summary>2 · Photos &amp; video</summary>
+        <p class="hint">The first photo is the cover. Photos are shrunk automatically before upload.</p>
+        <div id="photoGrid" class="photo-grid"></div>
+        <div class="row2">
+          <label class="btn btn-secondary btn-block file-btn">📷 Take photo<input id="camInput" type="file" accept="image/*" capture="environment" hidden></label>
+          <label class="btn btn-secondary btn-block file-btn">🖼️ From gallery<input id="galInput" type="file" accept="image/*" multiple hidden></label>
+        </div>
+        <details class="advanced">
+          <summary>Add by web link (photo or video)</summary>
+          <div class="row2-wide">
+            <input id="linkInput" type="url" placeholder="https://…" autocapitalize="off">
+            <select id="linkType"><option value="image">Photo</option><option value="video">Video</option></select>
+          </div>
+          <button type="button" id="linkAddBtn" class="btn btn-secondary btn-block">Add link</button>
+        </details>
+      </details>
+
+      <details class="card" open>
+        <summary>3 · Location &amp; nearby places</summary>
+        <label class="field"><span>Address / approximate location *</span>
+          <input id="fMapLink" placeholder="e.g. Action Area III, New Town, Kolkata">
+        </label>
+        <p class="hint">Shown as “View approximate location” on the site. Don't enter flat numbers.</p>
+        <div class="row2">
+          <button type="button" id="findBtn" class="btn btn-secondary btn-block">🔎 Find on map</button>
+          <button type="button" id="gpsBtn" class="btn btn-secondary btn-block">📍 I'm at the site</button>
+        </div>
+        <div id="geoPick" class="geo-pick" hidden></div>
+        <div id="geoChosen" class="notice" hidden></div>
+
+        <button type="button" id="nearbyBtn" class="btn btn-primary btn-block" disabled>✨ Fetch nearby details automatically</button>
+        <p class="hint">Looks up railway / metro, hospitals, schools, airport, malls and more from OpenStreetMap, with distances. Check the results — you can change or remove anything.</p>
+        <div id="nearbyStatus" class="hint" hidden></div>
+        <div id="nearbyList" class="nearby-list"></div>
+        <button type="button" id="aiBtn" class="btn btn-secondary btn-block" hidden>🤖 Ask AI for more suggestions</button>
+        <div id="aiBox" class="notice" hidden></div>
+      </details>
+
+      <details class="card" open>
+        <summary>4 · More details</summary>
+        <p class="hint">Tap a suggestion to add it, or add your own. Anything you add appears on the website automatically.</p>
+        <div id="suggestChips" class="chips"></div>
+        <div id="attrRows"></div>
+        <button type="button" id="attrAddBtn" class="btn btn-secondary btn-block">＋ Add another detail</button>
+      </details>
+
+      <details class="card">
+        <summary>5 · Unit configurations (optional)</summary>
+        <p class="hint">For projects with several flat sizes, e.g. 3 BHK, 4 BHK.</p>
+        <div id="unitRows"></div>
+        <button type="button" id="unitAddBtn" class="btn btn-secondary btn-block">＋ Add unit type</button>
+      </details>
+
+      <details class="card" open>
+        <summary>6 · Visibility</summary>
+        <label class="check"><input type="checkbox" id="fActive" checked> Show on the website</label>
+        <label class="check"><input type="checkbox" id="fFeatured"> Featured</label>
+        <label class="check"><input type="checkbox" id="fHot"> Hot deal</label>
+        <label class="check"><input type="checkbox" id="fSold"> Sold out</label>
+      </details>
+
+      <div class="fab-bar">
+        <button type="submit" id="saveBtn" class="btn btn-primary btn-block">💾 Save &amp; publish</button>
+      </div>
+    </form>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <div id="busy" class="busy" hidden><div class="spinner"></div><p id="busyText">Working…</p></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

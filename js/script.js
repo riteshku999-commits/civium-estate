@@ -486,7 +486,7 @@ function populateFilters(properties) {
     const grp = document.createElement("optgroup"); grp.label = "Residential";
     resCats.forEach(loc => {
       const opt = document.createElement("option");
-      opt.value = loc; opt.textContent = LOCATION_LABELS[loc] || loc;
+      opt.value = loc; opt.textContent = LOCATION_LABELS[loc] || prettifyKey(loc);
       grp.appendChild(opt);
     });
     locationSel.appendChild(grp);
@@ -495,7 +495,7 @@ function populateFilters(properties) {
     const grp = document.createElement("optgroup"); grp.label = "Commercial";
     commCats.forEach(loc => {
       const opt = document.createElement("option");
-      opt.value = loc; opt.textContent = LOCATION_LABELS[loc] || loc;
+      opt.value = loc; opt.textContent = LOCATION_LABELS[loc] || prettifyKey(loc);
       grp.appendChild(opt);
     });
     locationSel.appendChild(grp);
@@ -510,7 +510,7 @@ function populateFilters(properties) {
     const grp = document.createElement("optgroup"); grp.label = "Residential";
     resTypes.forEach(t => {
       const opt = document.createElement("option");
-      opt.value = t; opt.textContent = TYPE_LABELS[t] || t;
+      opt.value = t; opt.textContent = TYPE_LABELS[t] || prettifyKey(t);
       grp.appendChild(opt);
     });
     typeSel.appendChild(grp);
@@ -519,7 +519,7 @@ function populateFilters(properties) {
     const grp = document.createElement("optgroup"); grp.label = "Commercial";
     commTypes.forEach(t => {
       const opt = document.createElement("option");
-      opt.value = t; opt.textContent = TYPE_LABELS[t] || t;
+      opt.value = t; opt.textContent = TYPE_LABELS[t] || prettifyKey(t);
       grp.appendChild(opt);
     });
     typeSel.appendChild(grp);
@@ -618,22 +618,59 @@ const ATTR_CONFIG = {
 // Keys we explicitly skip when iterating (handled elsewhere or internal)
 const SKIP_KEYS = new Set(["mapLink", "totalFloors"]);
 
+// ── Helpers for generic attributes ────────────────────────────
+function escapeHtml(v) {
+  return String(v).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+}
+function prettifyKey(k) {
+  return String(k).replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+function guessAttrIcon(key) {
+  const k = key.toLowerCase();
+  const map = [
+    [/metro|subway/, "🚇"], [/rail|station/, "🚆"], [/hospital|clinic|medical/, "🏥"],
+    [/school|college|universit/, "🏫"], [/airport/, "✈️"], [/mall|market|shop/, "🛍️"],
+    [/park|garden|lake/, "🌳"], [/bus/, "🚌"], [/rera/, "📋"], [/develop|builder/, "🏗️"],
+    [/area|size|sqft|cottah|acre|plot/, "📐"], [/unit|tower|floor/, "🏢"],
+    [/park/, "🚗"], [/water|power|lift|elevator|security/, "🔧"], [/road|highway/, "🛣️"],
+    [/location|address/, "📍"]
+  ];
+  for (const [re, icon] of map) if (re.test(k)) return icon;
+  return "🔹";
+}
+function formatAttrValue(v) {
+  if (v === null || v === undefined) return null;
+  if (typeof v === "boolean") return v ? "Yes ✓" : "No ✗";
+  if (Array.isArray(v)) return v.length ? escapeHtml(v.join(", ")) : null;
+  if (typeof v === "object") {
+    if (v.name) return escapeHtml(v.name) + (v.distanceKm != null ? ` (${escapeHtml(v.distanceKm)} km)` : "");
+    return null;
+  }
+  return escapeHtml(v);
+}
+
 function buildDrawerHTML(p) {
   const attrs = p.attributes || {};
 
-  // Attribute pills
-  const pills = Object.entries(attrs)
-    .filter(([key]) => !SKIP_KEYS.has(key) && ATTR_CONFIG[key])
-    .map(([key, val]) => {
-      const cfg      = ATTR_CONFIG[key];
-      const rendered = cfg.render ? cfg.render(val, attrs) : val;
-      if (rendered === null || rendered === undefined || rendered === "—") return ""; // skip empty
+  // Attribute pills — known keys first (ATTR_CONFIG order/icons), then ANY other
+  // attribute found in the data is shown automatically with a prettified label.
+  // This is what lets the admin app / AI add new attributes with no code change.
+  const knownKeys = Object.keys(ATTR_CONFIG).filter(k => k in attrs);
+  const extraKeys = Object.keys(attrs).filter(k => !ATTR_CONFIG[k] && !SKIP_KEYS.has(k));
+  const pills = [...knownKeys, ...extraKeys]
+    .filter(key => !SKIP_KEYS.has(key))
+    .map(key => {
+      const val = attrs[key];
+      const cfg = ATTR_CONFIG[key] || { icon: guessAttrIcon(key), label: prettifyKey(key) };
+      const rendered = cfg.render ? cfg.render(val, attrs) : formatAttrValue(val);
+      if (rendered === null || rendered === undefined || rendered === "" || rendered === "—") return "";
       const isNegative = key === "vastu" && val === false;
       return `
         <div class="ep-attr-pill${isNegative ? " ep-attr-pill--negative" : ""}">
           <span class="ep-attr-icon">${cfg.icon}</span>
           <div class="ep-attr-text">
-            <span class="ep-attr-label">${cfg.label}</span>
+            <span class="ep-attr-label">${escapeHtml(cfg.label)}</span>
             <span class="ep-attr-value">${rendered}</span>
           </div>
         </div>`;

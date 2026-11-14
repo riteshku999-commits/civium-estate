@@ -19,6 +19,9 @@ It is a plain static site: no framework, no build step, no package manager. What
 | `js/script.js` | All behaviour (~1,300 lines, one file, organised by numbered/boxed section comments) |
 | `data/properties.json` | Property listings shown in the "Explore Properties" grid. **This is the file you edit to add or change listings** |
 | `data/contact.json` | Phone, email, address, hours and social links shown in the Contact section |
+| `admin/` | **Listings Manager**: phone-friendly admin page at `/admin/` for adding/editing/removing properties (see `admin/README.md`) |
+| `worker/worker.js` | Optional Cloudflare Worker for the admin page's AI suggestions (setup in `admin/README.md`) |
+| `images/properties/` | Photos uploaded through the admin page (created on first upload) |
 | `data/legal.json` | Terms of Service and Privacy Policy text. **Not currently used by the site** (see "Known issues") |
 | `images/logo.png`, `images/logo-icon.png` | Header logo and favicon / fallback icon |
 | `robots.txt`, `sitemap.xml` | Search engine files |
@@ -34,7 +37,7 @@ Libraries are loaded from CDNs in `index.html`: AOS (scroll animations), EmailJS
 1. **Properties are not in the HTML.** On load, `script.js` ("DATA BOOTSTRAP") fetches `data/properties.json` and `data/contact.json`.
 2. Properties with `"active": false` are dropped. The rest are rendered as cards in `#epGrid`, 6 at a time ("Load More").
 3. **Filters are generated from the data.** Budget brackets are computed from the actual prices. Location and type dropdowns are built from the values in use. Display names come from `LOCATION_LABELS` and `TYPE_LABELS` in `script.js`. If you use a new `location` or `type` value, add a label there or the raw key will show.
-4. Clicking a card opens a **detail drawer**. Its attribute pills come from `ATTR_CONFIG` in `script.js`. Hovering a card runs a photo slideshow.
+4. Clicking a card opens a **detail drawer**. Its attribute pills come from `ATTR_CONFIG` in `script.js` (known keys, in a fixed order with icons), followed by **every other attribute in the data**, shown automatically with a prettified label and a guessed icon. Hovering a card runs a photo slideshow.
 5. The contact details panel (`#contactInfoPanel`) is injected from `contact.json`. The footer contact block is hard-coded in `index.html`.
 
 ## The three forms (all send email through EmailJS)
@@ -51,7 +54,7 @@ Service ID is `service_tgcfhw2`. The public key sits in `script.js`, which is no
 
 ## Common tasks
 
-**Add / edit / hide a property.** Edit `data/properties.json` directly. Copy an existing entry (`p-003` is the most complete example) and give it a new unique `id`.
+**Add / edit / hide a property.** Easiest: use the admin page at `/admin/` (see `admin/README.md`). By hand: edit `data/properties.json` directly. Copy an existing entry (`p-003` is the most complete example) and give it a new unique `id`.
 - `active: false` hides it. `soldOut: true` shows it but disables Enquire.
 - `price` is a number in **lakhs** (325 = ₹3.25 Cr) used for filtering and sorting. `priceLabel` is the text shown.
 - `location` and `type` must match keys in `LOCATION_LABELS` / `TYPE_LABELS`.

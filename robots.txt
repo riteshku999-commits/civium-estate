@@ -6,3 +6,6 @@ Allow: /
 
 # Point crawlers to the sitemap
 Sitemap: https://civiumestate.com/sitemap.xml
+
+# Private listings manager
+Disallow: /admin/
