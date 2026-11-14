@@ -8,6 +8,8 @@ A phone-friendly page at **https://civiumestate.com/admin/** where the client ca
 - It signs in with a **GitHub access token** and edits `data/properties.json` directly in this repo. Every save is **one commit**: the listing data plus any new photos. GitHub Pages republishes the site in about a minute.
 - Photos are shrunk on the phone (max 1600 px, JPEG) and stored in `images/properties/`. Photos removed from a listing, or belonging to a deleted listing, are deleted from the repo in the same commit.
 - Every save is applied on top of the **latest** `properties.json`, so editing from two places will not overwrite each other.
+- **Privacy of the exact location:** the app never uses or stores the exact property position. The area search result is snapped to a ~0.5 km grid, nearby distances are rounded to the nearest ½ km, and the public address text is whatever the broker types (the form warns not to enter building or flat details). There is deliberately no "use my current location" button.
+- **Everything is editable before saving:** nearby results, AI suggestions and the description are only suggestions. Nothing is added unless the broker taps it, and every field can be changed or removed.
 - Nearby places (metro, railway, hospital, school, airport, mall, market, park, hotel, bank, fuel) come from **OpenStreetMap** (Nominatim for the address search, Overpass for places, OSRM for driving distance). Free, no keys. The set looked up depends on the property type (flats, offices, retail, warehouse). The client sees every result and can edit or remove it before saving.
 - Extra details: the client can add any "label + value" pair. Whatever is saved shows up on the property page automatically (`js/script.js` renders unknown attributes generically).
 - The page is `noindex` and listed in `robots.txt`, and it does nothing without a valid token.
@@ -35,7 +37,7 @@ The worker only answers callers whose GitHub token can edit the repo. Cost is a 
 
 ## Limits to know about
 
-- Distances are approximate (OpenStreetMap data for India is good in Kolkata but not perfect). The client should glance at them.
+- Distances are approximate by design (rounded to ½ km, OpenStreetMap data). The client should glance at them.
 - The site is republished by GitHub Pages about 1–2 minutes after each save. New photos may show a broken image for that minute.
 - Videos are not uploaded (too large for the repo): add a web link instead.
 - Property photo size is limited by the phone's memory; a huge number of photos in one save can be slow. 5–8 per listing is ideal.

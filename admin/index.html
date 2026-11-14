@@ -118,16 +118,13 @@
         <label class="field"><span>Address / approximate location *</span>
           <input id="fMapLink" placeholder="e.g. Action Area III, New Town, Kolkata">
         </label>
-        <p class="hint">Shown as “View approximate location” on the site. Don't enter flat numbers.</p>
-        <div class="row2">
-          <button type="button" id="findBtn" class="btn btn-secondary btn-block">🔎 Find on map</button>
-          <button type="button" id="gpsBtn" class="btn btn-secondary btn-block">📍 I'm at the site</button>
-        </div>
+        <p class="hint">Enter only the area or a nearby landmark, e.g. “Action Area III, New Town”. <strong>Do not enter the building name, tower or flat number</strong> — this text is public on the website.</p>
+        <button type="button" id="findBtn" class="btn btn-secondary btn-block">🔎 Find the area on map</button>
         <div id="geoPick" class="geo-pick" hidden></div>
         <div id="geoChosen" class="notice" hidden></div>
 
         <button type="button" id="nearbyBtn" class="btn btn-primary btn-block" disabled>✨ Fetch nearby details automatically</button>
-        <p class="hint">Looks up railway / metro, hospitals, schools, airport, malls and more from OpenStreetMap, with distances. Check the results — you can change or remove anything.</p>
+        <p class="hint">Looks up railway / metro, hospitals, schools, airport, malls and more from OpenStreetMap. Distances are rounded to the nearest ½ km and measured from an approximate area point, never the exact property. You can edit, remove or add anything before saving.</p>
         <div id="nearbyStatus" class="hint" hidden></div>
         <div id="nearbyList" class="nearby-list"></div>
         <button type="button" id="aiBtn" class="btn btn-secondary btn-block" hidden>🤖 Ask AI for more suggestions</button>

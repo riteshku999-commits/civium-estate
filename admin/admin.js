@@ -350,7 +350,7 @@
     // location / nearby
     const a = d.attributes || {};
     $("fMapLink").value = a.mapLink || "";
-    S.geo = a.geo && a.geo.lat ? { lat: a.geo.lat, lon: a.geo.lon, label: "Saved location" } : null;
+    S.geo = a.geo && a.geo.lat ? { lat: snap(a.geo.lat), lon: snap(a.geo.lon), label: "Saved approximate area" } : null;
     renderGeoChosen();
     $("geoPick").hidden = true; $("nearbyStatus").hidden = true; $("aiBox").hidden = true;
     $("aiBtn").hidden = !cfg.worker;
@@ -421,7 +421,7 @@
     const el = $("geoChosen");
     if (!S.geo) { el.hidden = true; return; }
     el.hidden = false; el.classList.add("ok");
-    el.innerHTML = `📍 Location set: <strong>${esc(S.geo.label || "")}</strong><br><span class="muted">${(+S.geo.lat).toFixed(4)}, ${(+S.geo.lon).toFixed(4)}</span>`;
+    el.innerHTML = `📍 Approximate area set: <strong>${esc(S.geo.label || "")}</strong><br><span class="muted">Only an area within about ½ km is used and saved — not the exact property.</span>`;
     $("nearbyBtn").disabled = false;
   }
 
@@ -433,33 +433,17 @@
       const r = await fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=in&q=" + encodeURIComponent(q));
       const res = await r.json();
       const box = $("geoPick");
-      if (!res.length) { box.hidden = false; box.innerHTML = '<div class="notice">Nothing found. Try a simpler name, e.g. “Action Area III, New Town” or use “I’m at the site”.</div>'; return; }
+      if (!res.length) { box.hidden = false; box.innerHTML = '<div class="notice">Nothing found. Try a simpler name, e.g. “Action Area III, New Town”.</div>'; return; }
       box.hidden = false;
       box.innerHTML = res.map((x, i) => `<button type="button" class="btn btn-secondary" data-geo="${i}">${esc(x.display_name)}</button>`).join("");
       box._res = res;
     } catch (e) { toast("Map search failed: " + e.message, true); } finally { busy(false); }
   }
 
-  function useGps() {
-    if (!navigator.geolocation) { toast("This phone can't share its location.", true); return; }
-    busy(true, "Getting your location…");
-    navigator.geolocation.getCurrentPosition(async pos => {
-      S.geo = { lat: pos.coords.latitude, lon: pos.coords.longitude, label: "Your current location" };
-      try {
-        const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=16&lat=${S.geo.lat}&lon=${S.geo.lon}`);
-        const j = await r.json();
-        if (j && j.display_name) {
-          S.geo.label = j.display_name;
-          if (!$("fMapLink").value.trim()) {
-            const ad = j.address || {};
-            $("fMapLink").value = [ad.road, ad.neighbourhood || ad.suburb, ad.city || ad.town || ad.county, ad.state].filter(Boolean).join(", ");
-          }
-        }
-      } catch (e) { /* non-fatal */ }
-      renderGeoChosen(); busy(false);
-    }, err => { busy(false); toast("Couldn't get location: " + err.message, true); }, { enableHighAccuracy: true, timeout: 20000 });
-  }
-
+  // Privacy: the exact property position is never used or stored. Points are snapped to a
+  // ~0.5 km grid (0.005°) and distances are rounded to the nearest 0.5 km.
+  const snap = v => Math.round(v / 0.005) * 0.005;
+  const roundKm = km => Math.max(0.5, Math.round(km * 2) / 2);
   const rad = x => x * Math.PI / 180;
   function hav(lat1, lon1, lat2, lon2) {
     const dLat = rad(lat2 - lat1), dLon = rad(lon2 - lon1);
@@ -481,7 +465,7 @@
   }
 
   async function fetchNearby() {
-    if (!S.geo) { toast("Set the location first (Find on map / I'm at the site).", true); return; }
+    if (!S.geo) { toast("Search for the area first (Find the area on map).", true); return; }
     const type = currentType();
     const keys = nbSet(type);
     const { lat, lon } = S.geo;
@@ -522,7 +506,7 @@
       for (const [key, arr] of Object.entries(found)) {
         arr.forEach(x => { x.km = x.road != null ? x.road / 1000 : x.d * 1.3 / 1000; });
         const best = arr.sort((a, b) => a.km - b.km)[0];
-        const row = { key, ...nbInfo(key), on: true, name: best.name, km: Math.round(best.km * 10) / 10 };
+        const row = { key, ...nbInfo(key), on: true, name: best.name, km: roundKm(best.km) };
         const i = S.nearby.findIndex(n => n.key === key);
         if (i >= 0) S.nearby[i] = row; else S.nearby.push(row);
         added++;
@@ -532,7 +516,7 @@
       S.nearby.sort((a, b) => (order.indexOf(a.key) + 1 || 99) - (order.indexOf(b.key) + 1 || 99));
       renderNearby();
       status.textContent = added
-        ? `Found ${added} nearby places${roadOK ? " (driving distances)" : " (approximate — straight-line distance × 1.3)"}. Please check them below.`
+        ? `Found ${added} nearby places${roadOK ? " (driving distances" : " (estimated distances"}, rounded to ½ km). Please check, edit or remove anything below.`
         : "No places found automatically. You can add them by hand in “More details”.";
     } catch (e) {
       status.textContent = "Something went wrong: " + e.message;
@@ -644,7 +628,7 @@
       attributes[nb.key] = { name: String(nb.name).trim(), distanceKm: isNaN(km) ? 0 : km };
     });
     const addr = $("fMapLink").value.trim(); if (addr) attributes.mapLink = addr;
-    if (S.geo) attributes.geo = { lat: Math.round(S.geo.lat * 1e5) / 1e5, lon: Math.round(S.geo.lon * 1e5) / 1e5 };
+    if (S.geo) attributes.geo = { lat: Math.round(snap(S.geo.lat) * 1e3) / 1e3, lon: Math.round(snap(S.geo.lon) * 1e3) / 1e3 };
 
     const units = S.units.filter(u => (u.config || "").trim()).map(u => ({ config: u.config.trim(), size: (u.size || "").trim(), parking: (u.parking || "").trim(), price: (u.price || "").trim() }));
 
@@ -779,11 +763,10 @@
 
     // location
     $("findBtn").addEventListener("click", geocode);
-    $("gpsBtn").addEventListener("click", useGps);
     $("geoPick").addEventListener("click", e => {
       const b = e.target.closest("button[data-geo]"); if (!b) return;
       const x = $("geoPick")._res[+b.dataset.geo];
-      S.geo = { lat: +x.lat, lon: +x.lon, label: x.display_name };
+      S.geo = { lat: snap(+x.lat), lon: snap(+x.lon), label: x.display_name };
       $("geoPick").hidden = true; renderGeoChosen();
     });
     $("nearbyBtn").addEventListener("click", fetchNearby);
