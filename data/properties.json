@@ -238,7 +238,7 @@
       "location": "khajaguda",
       "type": "2bhk",
       "soldOut": false,
-      "active": false,
+      "active": true,
       "attributes": {
         "mapLink": "Khajaguda"
       },
