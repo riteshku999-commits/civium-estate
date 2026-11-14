@@ -238,7 +238,7 @@
       "location": "khajaguda",
       "type": "2bhk",
       "soldOut": false,
-      "active": true,
+      "active": false,
       "attributes": {
         "totalFloors": "14",
         "balconies": "3",
