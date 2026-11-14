@@ -20,7 +20,6 @@ It is a plain static site: no framework, no build step, no package manager. What
 | `data/properties.json` | Property listings shown in the "Explore Properties" grid. **This is the file you edit to add or change listings** |
 | `data/contact.json` | Phone, email, address, hours and social links shown in the Contact section |
 | `data/legal.json` | Terms of Service and Privacy Policy text. **Not currently used by the site** (see "Known issues") |
-| `generate_json.py` | Optional script that builds `properties.json` from an Excel sheet (see "Excel workflow") |
 | `images/logo.png`, `images/logo-icon.png` | Header logo and favicon / fallback icon |
 | `robots.txt`, `sitemap.xml` | Search engine files |
 
@@ -65,13 +64,9 @@ Service ID is `service_tgcfhw2`. The public key sits in `script.js`, which is no
 
 **Change a section's wording or layout.** Edit `index.html` and `css/style.css`. Search the CSS for the section's class prefix (`about-`, `ep-` for explore properties, `enq-` for the enquiry modal, `sell-` for the sell form, `why-`, `partner-`, `footer-rera-`).
 
-## Excel workflow (`generate_json.py`), read before using
+## Note on the old Excel workflow
 
-The script reads `Civium_Estate_Property_Manager.xlsx` (sheet `Properties`, headers on row 4, data from row 5), writes `data/properties.json`, and refreshes a "JSON Preview" sheet in the workbook. It needs `pip install openpyxl` and the Excel file next to the script.
-
-**The Excel file is not in this repo** (it was added on 2026-03-01 and deleted on 2026-03-02). It only exists wherever you kept it locally, if at all.
-
-**Warning: the script is out of date with the live JSON.** The current `properties.json` contains fields the script cannot produce: `unitTypes` (per property) and the attributes `developer`, `landArea`, `towerElevation`, `totalUnits`, `reraApproved`, `reraNo`, `location_detail`. These were evidently added by hand after the script was written. Running the script will regenerate the file from Excel and **silently drop all of them**. Either keep editing the JSON by hand (simplest) or update the script's `COL_MAP` and `build_property()` first. Back up `properties.json` before running it.
+Earlier versions used `generate_json.py` to build `properties.json` from an Excel sheet. Both were removed in Nov 2026 (the Excel file was already gone and the script had drifted from the live JSON). `properties.json` is now edited directly. The script is still in git history (commit `7044ca5`) if ever needed.
 
 ## SEO
 
