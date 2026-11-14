@@ -14,7 +14,7 @@
       "budget": "2cr+",
       "location": "saltlake",
       "type": "3bhk",
-      "soldOut": true,
+      "soldOut": false,
       "media": [
         {
           "type": "image",
