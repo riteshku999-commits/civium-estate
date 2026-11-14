@@ -228,7 +228,7 @@
       "title": "Jains Carlton Creek",
       "description": "East facing",
       "category": "residential",
-      "isHotDeal": false,
+      "isHotDeal": true,
       "featured": false,
       "badge": "FEATURED",
       "badgeClass": "featured",
@@ -240,7 +240,14 @@
       "soldOut": false,
       "active": true,
       "attributes": {
-        "mapLink": "Khajaguda"
+        "totalFloors": "14",
+        "balconies": "3",
+        "furnished": "Fully Furnished",
+        "mapLink": "Khajaguda",
+        "geo": {
+          "lat": 17.415,
+          "lon": 78.365
+        }
       },
       "media": [
         {
@@ -258,6 +265,14 @@
         {
           "type": "video",
           "src": "https://youtube.com/shorts/h31tFkZBQ98?si=9R8O_N8nEzjUYQYC"
+        }
+      ],
+      "unitTypes": [
+        {
+          "config": "3 BHK",
+          "size": "1560 Sq. Ft",
+          "parking": "2 Covered",
+          "price": "1.1 Cr Onwards"
         }
       ]
     }
