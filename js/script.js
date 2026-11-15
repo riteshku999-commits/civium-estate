@@ -80,6 +80,7 @@ const startCounters = () => {
   document.querySelectorAll(".counter").forEach(counter => {
     const target = +counter.getAttribute("data-target");
     const step   = target / 200;
+    counter.innerText = 0;   // HTML ships the final number (for crawlers / no-JS); animate up from 0
     const tick   = () => {
       const c = +counter.innerText;
       if (c < target) { counter.innerText = Math.ceil(c + step); setTimeout(tick, 10); }
@@ -88,6 +89,8 @@ const startCounters = () => {
     tick();
   });
 };
+const yr = document.getElementById("copyYear"); if (yr) yr.textContent = new Date().getFullYear();
+
 const credSec = document.querySelector(".credibility");
 if (credSec) new IntersectionObserver((entries, obs) => {
   entries.forEach(e => { if (e.isIntersecting) { startCounters(); obs.disconnect(); } });
