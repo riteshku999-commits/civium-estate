@@ -22,6 +22,8 @@
     return w.map((x, i) => i === 0 ? x.charAt(0).toLowerCase() + x.slice(1) : x.charAt(0).toUpperCase() + x.slice(1)).join("");
   };
   const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "");
+  // URL slug for the property's own web page (same rules as tools/build-pages.mjs)
+  const pageSlug = t => String(t || "").toLowerCase().replace(/&/g, " and ").replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "property";
 
   function b64ToText(b64) {
     const bin = atob(b64.replace(/\s/g, ""));
@@ -644,6 +646,7 @@
     const p = {
       ...base,
       id: base.id || "",
+      slug: base.slug || pageSlug($("fTitle").value),   // stable once set, so the page URL never changes on edits
       title: $("fTitle").value.trim(),
       description: $("fDesc").value.trim(),
       category: cat,

@@ -461,6 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
   .then(([propData, contactData]) => {
     // Filter out inactive properties before anything else
     const activeProperties = propData.properties.filter(p => p.active !== false);
+    propSlugs(propData.properties);
     initExploreProperties(activeProperties);
     renderContactInfo(contactData.contact);
   })
@@ -791,6 +792,8 @@ function buildDrawerHTML(p) {
 
       ${mapBtn}
 
+      ${pagePathOf(p) ? `<a class="ep-drawer-fullpage" href="${pagePathOf(p)}">View full page &amp; share link →</a>` : ""}
+
       <button class="ep-enquire-btn ep-drawer-enquire${p.soldOut ? " disabled" : ""}"
               ${p.soldOut ? "disabled" : ""}>
         ${p.soldOut ? "🔴 Sold Out" : "📞 Enquire Now"}
@@ -849,6 +852,26 @@ let epVisible       = 6;
 let epActiveTab     = "all";
 let epSort          = "default";
 
+// Page slugs — MUST match assignSlugs() in tools/build-pages.mjs so links hit the generated pages.
+let _slugMap = new Map();
+function slugifyTitle(t) {
+  return String(t || "").toLowerCase().replace(/&/g, " and ").replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "property";
+}
+function propSlugs(list) {
+  const used = new Set(), out = new Map();
+  for (const p of list) if (p.slug) { const s = slugifyTitle(p.slug); if (!used.has(s)) { used.add(s); out.set(p.id, s); } }
+  for (const p of list) {
+    if (out.has(p.id)) continue;
+    const base = slugifyTitle(p.title); let s = base, i = 2;
+    while (used.has(s)) s = base + "-" + (i++);
+    used.add(s); out.set(p.id, s);
+  }
+  _slugMap = out;
+  return out;
+}
+const pagePathOf = p => _slugMap.has(p.id) ? `/properties/${_slugMap.get(p.id)}/` : null;
+
 function buildPropertyCard(p, index) {
   const soldClass   = p.soldOut ? " ep-card--sold" : "";
   const featBadge   = ""; // featured shown on card only, not duplicated in drawer
@@ -893,7 +916,7 @@ function buildPropertyCard(p, index) {
         <span class="ep-cat-label ${catClass}">${catLabel}</span>
       </div>
       <div class="ep-card-body">
-        <h3 class="ep-card-title">${p.title}</h3>
+        <h3 class="ep-card-title">${pagePathOf(p) ? `<a href="${pagePathOf(p)}" class="ep-card-title-link">${p.title}</a>` : p.title}</h3>
         <p class="ep-card-desc">${p.description}</p>
         ${teaserHtml}
         <div class="ep-card-footer">
@@ -962,6 +985,7 @@ function renderGrid() {
     // Open drawer on card click (but not when clicking the enquire button directly)
     grid.querySelectorAll(".ep-card").forEach(card => {
       const clickHandler = e => {
+        if (e.target.closest(".ep-card-title-link")) e.preventDefault();
         if (e.target.closest(".ep-card-details-btn") || e.target.closest(".ep-enquire-btn")) return;
         const id = card.dataset.id;
         const property = epAllProperties.find(p => p.id === id);

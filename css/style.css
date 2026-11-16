@@ -2696,3 +2696,7 @@ body.nav-open .whatsapp-float { opacity: 0; pointer-events: none; }
 .ep-drawer-media .media-stack--tall .media-layer--embed.is-playing { aspect-ratio: auto; height: min(640px, 78vh); max-height: none; }
 
 .seo-footer-col address { font-style: normal; }
+
+.ep-card-title-link{color:inherit;text-decoration:none}
+.ep-drawer-fullpage{display:block;text-align:center;margin:0 0 12px;color:var(--gold,#c5a47e);font-size:.9rem;text-decoration:none}
+.ep-drawer-fullpage:hover{text-decoration:underline}

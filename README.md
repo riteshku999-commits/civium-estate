@@ -2,7 +2,7 @@
 
 Website for **Civium Estate**, a real estate broking firm in Kolkata. Live at <https://civiumestate.com>.
 
-It is a plain static site: no framework, no build step, no package manager. Whatever is in this repo is what gets served.
+It is a plain static site: no framework, no package manager. Whatever is in this repo is what gets served. The one exception is the SEO pages under `properties/` and `areas/`, which a GitHub Action generates from `data/properties.json` (see "Generated SEO pages").
 
 ## How it is hosted
 
@@ -21,6 +21,11 @@ It is a plain static site: no framework, no build step, no package manager. What
 | `data/contact.json` | Phone, email, address, hours and social links shown in the Contact section |
 | `admin/` | **Listings Manager**: phone-friendly admin page at `/admin/` for adding/editing/removing properties (see `admin/README.md`) |
 | `worker/worker.js` | Optional Cloudflare Worker for the admin page's AI suggestions (setup in `admin/README.md`) |
+| `tools/build-pages.mjs` | Generator (plain Node, no dependencies) for the pages below |
+| `properties/`, `areas/`, `sitemap.xml`, `data/.page-state.json` | **Generated. Do not edit by hand**; they are overwritten on every rebuild |
+| `css/pages.css`, `js/pages.js` | Styles and small script used only by the generated pages |
+| `data/areas.json` | Optional intro text per area for the area pages, e.g. `{"saltlake": {"intro": "..."}}` |
+| `.github/workflows/build-pages.yml` | Runs the generator whenever listings change |
 | `images/properties/` | Photos uploaded through the admin page (created on first upload) |
 | `data/legal.json` | Terms of Service and Privacy Policy text. **Not currently used by the site** (see "Known issues") |
 | `images/logo.png`, `images/logo-icon.png`, `images/apple-touch-icon.png`, `images/og-image.jpg` | Header logo, favicon, iPhone home-screen icon, social-share preview image |
@@ -67,6 +72,17 @@ Service ID is `service_tgcfhw2`. The public key sits in `script.js`, which is no
 
 **Change a section's wording or layout.** Edit `index.html` and `css/style.css`. Search the CSS for the section's class prefix (`about-`, `ep-` for explore properties, `enq-` for the enquiry modal, `sell-` for the sell form, `why-`, `partner-`, `footer-rera-`).
 
+## Generated SEO pages
+
+Every active listing gets its own crawlable page (`/properties/<slug>/`), every area in use gets one (`/areas/<area>/`), and `/properties/` lists everything. `sitemap.xml` is generated too.
+
+- **Automatic.** When `data/properties.json` changes on `main` (for example when the client saves in the Listings Manager), the GitHub Action `Build property pages` runs `node tools/build-pages.mjs` and commits the result about a minute later. It can also be run by hand from the repo's Actions tab, or locally with `node tools/build-pages.mjs`.
+- **Hidden or sold listings.** `active: false` removes the page and its sitemap entry. Sold-out listings keep their page, marked as sold.
+- **Slugs.** Each property has a `slug` (set by the admin app when the listing is created and never changed by later edits, so URLs stay stable). If missing, it is derived from the title. `js/script.js` (`propSlugs`) and the generator (`assignSlugs`) must use identical rules, otherwise home page links would point to the wrong URLs.
+- **Labels.** `LOCATION_LABELS` / `TYPE_LABELS` exist in both `js/script.js` and `tools/build-pages.mjs`; add new areas or types to both.
+- **Header, footer and WhatsApp button** are copied from `index.html` by the generator, so changing contact details in `index.html` flows to all pages on the next rebuild.
+- **If the site does not update after a rebuild:** GitHub sometimes does not start a Pages build for pushes made by the Action. Re-run the workflow or push any small change to `main`.
+
 ## Note on the old Excel workflow
 
 Earlier versions used `generate_json.py` to build `properties.json` from an Excel sheet. Both were removed in Nov 2026 (the Excel file was already gone and the script had drifted from the live JSON). `properties.json` is now edited directly. The script is still in git history (commit `7044ca5`) if ever needed.
@@ -77,13 +93,13 @@ What is in place (Nov 2026):
 - `index.html` head: keyword-focused `<title>` (≤ 65 chars) and meta description (≤ 155 chars), canonical URL, Open Graph and Twitter tags using the 1200×630 share image `images/og-image.jpg`.
 - **One JSON-LD graph** (`WebSite` + `RealEstateAgent`) with the real phone, street address (Sidco Global Tower, Salt Lake Sector V, 700091), opening hours, areas served and social profiles. **When the phone, address or hours change, update both `data/contact.json` and this JSON-LD in `index.html`.** The map coordinates there are an approximation of Sector V; correct them from Google Maps if you want.
 - Footer shows the full name / address / phone as plain text (search engines match this with your Google Business Profile), a working `mailto:` link, and a self-updating © year.
-- `sitemap.xml` lists the homepage only (anchors like `#services` are not separate pages and are ignored by Google). Update its `lastmod` when the site changes materially.
+- `sitemap.xml` is generated: home page, `/properties/`, area pages and property pages, with `lastmod` updated only when a page's content actually changes.
 - `robots.txt` allows everything except `/admin/`. The admin page is also `noindex`.
 - Counters in the "Trusted by" band ship the real numbers in the HTML (crawlers / no-JS) and animate up from 0 in the browser.
 - Third-party partner logos are lazy-loaded.
 
 **Known SEO limits and next steps**
-- **Listings are drawn by JavaScript on a single URL.** Google can read them but weakly, and each property cannot rank on its own. The real fix is crawlable pages per property and per area ("Flats in New Town, Kolkata"), generated automatically from `data/properties.json`. Not built yet.
+- **Per-property and per-area pages are generated** (see "Generated SEO pages"). Submit `https://civiumestate.com/sitemap.xml` in Google Search Console. Area pages are thin until you add real intro text to `data/areas.json`.
 - Rankings for "real estate broker in Kolkata" depend mostly on things outside this repo: a verified **Google Business Profile** (same name / address / phone as the site), genuine Google reviews, listings on 99acres / MagicBricks / Housing / Justdial with the same details, and links from other sites. Also add the site to **Google Search Console** and submit `sitemap.xml`.
 - Claims in the copy ("15+ years", "1000+ transactions", "₹500 Cr+") should be accurate and provable. They are not in the search snippet or structured data, but they are on the page.
 

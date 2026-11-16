@@ -66,7 +66,8 @@
           "parking": "Covered",
           "price": "₹1.48 Cr Onwards"
         }
-      ]
+      ],
+      "slug": "dtc-still-waters-new-town"
     },
     {
       "id": "p-001",
@@ -137,7 +138,8 @@
           "parking": "4 Covered",
           "price": "₹5.97 Cr Onwards"
         }
-      ]
+      ],
+      "slug": "marinas-edge-mahisbathan"
     },
     {
       "id": "p-003",
@@ -221,7 +223,8 @@
           "parking": "Covered",
           "price": "₹3.71 Cr – ₹3.77 Cr"
         }
-      ]
+      ],
+      "slug": "eden-devprayag-foreshore-road"
     }
   ]
 }
