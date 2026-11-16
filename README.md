@@ -27,7 +27,6 @@ It is a plain static site: no framework, no package manager. Whatever is in this
 | `data/areas.json` | Optional intro text per area for the area pages, e.g. `{"saltlake": {"intro": "..."}}` |
 | `.github/workflows/build-pages.yml` | Runs the generator whenever listings change |
 | `images/properties/` | Photos uploaded through the admin page (created on first upload) |
-| `data/legal.json` | Terms of Service and Privacy Policy text. **Not currently used by the site** (see "Known issues") |
 | `images/logo.png`, `images/logo-icon.png`, `images/apple-touch-icon.png`, `images/og-image.jpg` | Header logo, favicon, iPhone home-screen icon, social-share preview image |
 | `robots.txt`, `sitemap.xml` | Search engine files |
 
@@ -106,7 +105,7 @@ What is in place (Nov 2026):
 ## Known issues and loose ends
 
 - **ImgBB is still used.** Three listing photos (Marina's Edge, DTC Still Waters, Eden Devprayag) and the About-section photo are hosted on ImgBB. New photos added through the admin app are stored in the repo, so re-uploading these once through the admin app (or supplying the founder photo) removes the dependency completely.
-- **`data/legal.json` is unused and out of date:** nothing loads it and there are no Terms or Privacy links on the page. Its phone (`+91 98300 12345`) and email (`contact@civiumestate.com`) differ from the real contact details. Either build a Terms/Privacy page from it (recommended, since three forms collect personal data) or delete it.
+- **No Terms or Privacy page.** `data/legal.json` (unused, with wrong contact details) was deleted in Nov 2026. The three forms collect names and phone numbers, so adding a Privacy Policy is still worth doing at some point.
 - **Hot Deals tab:** the site filters on `isHotDeal`; it is empty unless a listing is flagged.
 - **Badge colours:** `badgeClass` in `properties.json` selects a colour: `hot`, `urgent`, `investment`, `ready`, `luxury` (others, including `featured`, use the default gold). These CSS rules are kept on purpose because the class comes from data, not from the HTML or JS. The admin app currently always writes `featured`.
 - **Partner logos** are hot-linked favicons from each company's own site (24 external requests). If a site changes its icon the logo changes or falls back to 🏦.
