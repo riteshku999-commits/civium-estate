@@ -1,15 +1,23 @@
 {
   "/properties/": {
-    "hash": "7cfd8b40db2fccce",
-    "lastmod": "2026-11-16"
+    "hash": "afe04615f58fd228",
+    "lastmod": "2026-11-17"
+  },
+  "/areas/newtown/": {
+    "hash": "962b18caabe0bb19",
+    "lastmod": "2026-11-17"
   },
   "/areas/saltlake/": {
-    "hash": "2c8c8a1dfe55a1d5",
-    "lastmod": "2026-11-16"
+    "hash": "af99a0e0ab2248c4",
+    "lastmod": "2026-11-17"
   },
   "/areas/howrah/": {
-    "hash": "626d6444813d6805",
-    "lastmod": "2026-11-16"
+    "hash": "1ea5956517db3c46",
+    "lastmod": "2026-11-17"
+  },
+  "/properties/dtc-still-waters-new-town/": {
+    "hash": "bbf78e0eb388d3c3",
+    "lastmod": "2026-11-17"
   },
   "/properties/marinas-edge-mahisbathan/": {
     "hash": "82f207f94430a4d0",
@@ -20,7 +28,7 @@
     "lastmod": "2026-11-16"
   },
   "/": {
-    "hash": "3e98a1f6ce6a4712",
-    "lastmod": "2026-11-16"
+    "hash": "980f47ca4e663c55",
+    "lastmod": "2026-11-17"
   }
 }
