@@ -22,7 +22,7 @@
           "src": "https://i.ibb.co/RTkrCzPC/Pic.jpg"
         }
       ],
-      "active": false,
+      "active": true,
       "attributes": {
         "facing": null,
         "vastu": null,
