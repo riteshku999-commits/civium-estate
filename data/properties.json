@@ -156,7 +156,7 @@
       "budget": "1cr+",
       "location": "howrah",
       "type": "3bhk",
-      "soldOut": true,
+      "soldOut": false,
       "media": [
         {
           "type": "image",
